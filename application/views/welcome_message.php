@@ -51,7 +51,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                     <div class="carousel-item green white-text" href="#three!">
                         <h2>Tercera Noticia</h2>
-                        <p class="white-text">Texto para tercera Noticia</p>
+                        <p class="white-text">Texto para tercera Noticia </p>
                     </div>
                     <div class="carousel-item blue white-text" href="#four!">
                         <h2>Cuarta Noticia</h2>
