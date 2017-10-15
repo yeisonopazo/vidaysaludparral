@@ -19,12 +19,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Vida y Salud Parral</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a class="waves-effect waves-light modal-trigger" href="#modal1">Iniciar Sesion</a></li>
-                    <li><a class="waves-effect waves-light " href="#">Registrarse</a></li>
+                    <li><a class="waves-effect waves-light modal-trigger" href="#modal2">Registrarse</a></li>
                     <li><a href="#"><i class="material-icons">shopping_cart</i> </a></li>
                 </ul>
                 <ul id="nav-mobile" class="side-nav">
                     <li><a class="waves-effect waves-light modal-trigger" href="#modal1">Iniciar Sesion</a></li>
-                    <li><a class="waves-effect waves-light " href="#">Registrarse</a></li>
+                    <li><a class="waves-effect waves-light modal-trigger" href="#modal2">Registrarse</a></li>
                     <li><a href="#"><i class="material-icons">shopping_cart</i> </a></li>
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
@@ -115,25 +115,101 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </div>-->
 
-
-
         <!-- Modal Iniciar sesion -->
-        <div id="modal1" class="modal container">
+        <div id="modal1" class="modal">
+            <div class="row">
+                <div class="col s12">
+                    <div class="center">
+                        <img class="responsive-img circle" width="20%" src="<?php echo base_url(); ?>lib/img/logo.jpg">
+                        <h4>Iniciar Sesión</h4>
+                    </div>
+                    <form>
 
-            <img class="responsive-img center" width="25%" src="<?php echo base_url(); ?>lib/img/logo.jpg">
+                        <div class="input-field">
+                            <i class="material-icons prefix">account_circle</i>
+                            <label for="rutusuario">RUT: </label>  
+                            <input type="text" id="rutusuario" class="form-control" />
+                        </div>
+                        <div class="input-field">
+                            <i class="material-icons prefix">vpn_key</i>
+                            <label for="contraseña">Contraseña: </label>  
+                            <input type="password" id="contraseña" class="form-control"/>
+                        </div>
+                        <div>
+                            <input id="login" type="submit" class="btn btn-primary right waves-effect" value="Ingresar" /> <a href="#" class="btn btn-default right waves-effect">¿Perdiste la contraseña?</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- FIN Modal Iniciar sesion -->
 
-            <form>
-                <div class="modal-content">
-                    <input type="text" id="rutusuario" placeholder="Rut"/>
-                    <input type="password" id="contraseña" placeholder="Contraseña"/>
+        <!-- Modal Registrar -->
+        <div id="modal2" class="modal center">
+            <div class="row">
+                <div>
                 </div>
-                <div class="modal-footer">
-                    <input type="submit" id="bt" value="ENTRAR" class="btn right amber darken-4 waves-effect"/>
+                <div class="col s12">
+                    <form action="" name="formreg" method="POST" id="formreg">
+                        <h4>Datos de registro</h4>
+                        <div class="col s6">
+                            <div class="input-field">
+                                <i class="material-icons prefix">account_circle</i>
+                                <label for="rut">RUT: </label>                           
+                                <input type="text" name="rut" id="rutusuario2">
+                            </div>
+
+                            <div class="input-field">
+                                <i class="material-icons prefix">face</i>
+                                <label for="nombre">Nombre: </label>
+                                <input type="text" name="nombre" id="nombre"/>
+                            </div>
+
+                            <div class="input-field">
+                                <i class="material-icons prefix">face</i>
+                                <label for="apellido">Apellido: </label>
+                                <input type="text" name="apellido"  id="apellido"/>
+                            </div>
+                            <div class="input-field">
+                                <i class="material-icons prefix">location_on</i>
+                                <label for="direccion">Direccion: </label>
+                                <input type="text" name="direccion" id="direccion"/>
+                            </div>
+
+                        </div>
+                        <div class="col s6">
+                            <div class="input-field">
+                                <i class="material-icons prefix">call</i>
+                                <label for="telefono">Telefono: </label>
+                                <input type="text" name="telefono" id="telefono"/>
+                            </div>
+
+                            <div class="input-field">
+                                <i class="material-icons prefix">mail</i>
+                                <label for="correo">Correo: </label>
+                                <input type="text" name="correo" id="correo"/>
+                            </div>
+
+                            <div class="input-field">
+                                <i class="material-icons prefix">vpn_key</i>
+                                <label for="contraseña1">Contraseña: </label>
+                                <input type="password" name="contraseña1" id="contraseña1"/>
+                            </div>
+                            <div class="input-field">
+                                <i class="material-icons prefix">vpn_key</i>
+                                <label for="confirContraseña">Confirmar Contraseña: </label>
+                                <input type="password" name="confirContraseña" id="contraseña2"/>
+                            </div>
+                            <div class="right">
+                                <input type="submit" name="bt" id="btnregistrar" value="Registrarse" class="btn"/>
+                            </div>
+                        </div>
+                    </form>
+
                 </div>
-            </form>
+            </div>            
 
         </div>
-
         <div class="container">
             <div class="section">
                 <h4 class="center">Productos destacados</h4>
@@ -222,7 +298,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $('.slider').slider();
                 //                Fin de inicio materialize
 
-                $("#bt").click(function(e) {
+                $("#login").click(function(e) {
                     e.preventDefault();
                     var rutusuario = $("#rutusuario").val();
                     var contraseña = $("#contraseña").val();
@@ -247,13 +323,49 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                         }).fail(function() {
                             Materialize.toast("Consulta fallida", 1000);
-
                         });
                     }
 
                 });
+                //------------------REGISTRAR-------------------
+                $("#btnregistrar").click(function(e) {
+                    e.preventDefault();
+                    var rut = $("#rutusuario2").val();
+                    var nombre = $("#nombre").val();
+                    var apellido = $("#apellido").val();
+                    var direccion = $("#direccion").val();
+                    var telefono = $("#telefono").val();
+                    var correo = $("#correo").val();
+                    var contraseña = $("#contraseña2").val();
+                    var contraseña2 = $("#contraseña3").val();
+                    if (rut == "" || nombre == "" || apellido == "" || direccion == "" || telefono == "" ||
+                            correo == "" || contraseña == "" || contraseña2 == "") {
+                        Materialize.toast("Faltan Campos", 1000);
+                    } else if (contraseña != contraseña2) {
+                        Materialize.toast("Contraseña no coincide", 1000);
+                    } else {
+                        $.ajax({
+                            url: '<?php echo site_url() ?>/addClient',
+                            type: 'post',
+                            dataType: 'json',
+                            data: {"rutusuario": rut, "nombre": nombre, "apellido": apellido, "direccion": direccion,
+                                "telefono": telefono, "correo": correo, "contraseña": contraseña, "idperfil": 1
+                            }
+                        }).success(function(o) {
+                            Materialize.toast("Registro OK", 1000);
+                            $('#formreg').each(function() {
+                                this.reset();
+                            });
+                        }).fail(function() {
+                            Materialize.toast("Error", 1000);
+                        });
+                    }
+
+
+                });
+                //----------FIN REGISTRAR----------
             });
         </script>
-        
+
     </body>
 </html>

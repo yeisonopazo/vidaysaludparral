@@ -32,17 +32,92 @@
             <div class="nav-content container">
                 <ul class="tabs tabs-transparent">
                     <li class="tab"><a class="active" href="#home">Resumen</a></li>
-                    <li class="tab"><a href="#gproductos">Mis Pedidos</a></li>
-                    <li class="tab"><a href="#gservicios">Mi Cuenta</a></li>
+                    <li class="tab"><a href="#mispedidos">Mis Pedidos</a></li>
+                    <li class="tab"><a href="#misservicios">Mis Servicios</a></li>
+                    <li class="tab"><a href="#misdatos">Mis Datos</a></li>
                 </ul>
             </div>
 
         </nav>
 
-
         <div class="container">
             <h1>Vista Cliente</h1>
-            <br><br><br><br><br><br><br><br><br><br><br><br>
+            <div>
+                <div id="home" class="col s12">
+                    <h3>Resumen</h3>
+
+
+                </div>
+                <div id="mispedidos" class="col s12">
+                    <h3> Mis Pedidos</h3>
+                </div>
+                <div id="misservicios" class="col s12">
+                    <h3>  Mis Servicios</h3>
+                </div>
+                <div id="misdatos" class="col s12">
+                    <h3> Mis Datos</h3>
+                    <div class="row">
+                        <div class="col s1">
+
+                        </div>
+                        <div class="col s10">
+                            <form>
+                                <div class="col s5">
+                                    <div class="input-field">
+                                        <i class="material-icons prefix">account_circle</i>
+                                        <label for="rut">RUT: </label>                           
+                                        <input type="text" name="rut" id="rut">
+                                    </div>
+
+                                    <div class="input-field">
+                                        <i class="material-icons prefix">face</i>
+                                        <label for="nombre">Nombre: </label>
+                                        <input type="text" name="nombre" id="nombre"/>
+                                    </div>
+
+                                    <div class="input-field">
+                                        <i class="material-icons prefix">face</i>
+                                        <label for="apellido">Apellido: </label>
+                                        <input type="text" name="apellido"  id="apellido"/>
+                                    </div>
+                                    <div class="input-field">
+                                        <i class="material-icons prefix">location_on</i>
+                                        <label for="direccion">Direccion: </label>
+                                        <input type="text" name="direccion" id="direccion"/>
+                                    </div>
+                                    <input type="submit" name="bt" id="bt" value="Actualizar" class="waves-effect btn"/>
+                                </div>
+                                <div class="col s5">
+                                    <div class="input-field">
+                                        <i class="material-icons prefix">call</i>
+                                        <label for="telefono">Telefono: </label>
+                                        <input type="text" name="telefono" id="telefono"/>
+                                    </div>
+
+                                    <div class="input-field">
+                                        <i class="material-icons prefix">mail</i>
+                                        <label for="correo">Correo: </label>
+                                        <input type="text" name="correo" id="correo"/>
+                                    </div>
+
+                                    <div class="input-field">
+                                        <i class="material-icons prefix">vpn_key</i>
+                                        <label for="clave">Clave: </label>
+                                        <input type="password" name="clave" id="clave"/>
+                                    </div>
+                                    <div class="input-field">
+                                        <i class="material-icons prefix">vpn_key</i>
+                                        <label for="confirClave">Confirmar Clave: </label>
+                                        <input type="password" name="confirClave" id="confirClave"/>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
 

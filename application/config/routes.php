@@ -55,3 +55,4 @@ $route['translate_uri_dashes'] = FALSE;
 //login
 $route["iniciar"] = "welcome/iniciar";
 $route["user"] = "welcome/user";
+$route["addClient"]="ClientController/insertarCliente";
