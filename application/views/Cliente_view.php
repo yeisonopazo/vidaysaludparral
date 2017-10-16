@@ -14,15 +14,15 @@
         <nav class="light-blue lighten-1 nav-extended" role="navigation">
             <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Vida y Salud Parral</a>
                 <ul class="right hide-on-med-and-down">
+                    <li><a id="saludo1" href=""></a></li>
                     <li><a class="waves-effect waves-light" href="<?PHP echo site_url() ?>/welcome">Salir</a></li>
-
                     <li><a href="#"><i class="material-icons">shopping_cart</i> </a></li>
                     <li><a href="#"><i class="material-icons">notifications</i> </a></li>
 
                 </ul>
                 <ul id="nav-mobile" class="side-nav">
+                    <li><a id="saludo2" href=""></a></li>
                     <li><a class="waves-effect waves-light" href="<?PHP echo site_url() ?>/welcome">Salir</a></li>
-
                     <li><a href="#"><i class="material-icons">shopping_cart</i> </a></li>
                     <li><a href="#"><i class="material-icons">notifications</i> </a></li>
                 </ul>
@@ -54,6 +54,7 @@
                 <div id="misservicios" class="col s12">
                     <h3>  Mis Servicios</h3>
                 </div>
+                <!--            -------------MOSTRAR Y ACTUALIZAR DATOS CLIENTE-------->
                 <div id="misdatos" class="col s12">
                     <h3> Mis Datos</h3>
                     <div class="row">
@@ -61,54 +62,56 @@
 
                         </div>
                         <div class="col s10">
-                            <form>
+                            <form method="POST">
                                 <div class="col s5">
-                                    <div class="input-field">
+                                    <div >
                                         <i class="material-icons prefix">account_circle</i>
                                         <label for="rut">RUT: </label>                           
-                                        <input type="text" name="rut" id="rut">
+                                        <input type="text" name="rut" id="rutusuario">
                                     </div>
 
-                                    <div class="input-field">
+                                    <div >
                                         <i class="material-icons prefix">face</i>
                                         <label for="nombre">Nombre: </label>
                                         <input type="text" name="nombre" id="nombre"/>
                                     </div>
 
-                                    <div class="input-field">
+                                    <div >
                                         <i class="material-icons prefix">face</i>
                                         <label for="apellido">Apellido: </label>
                                         <input type="text" name="apellido"  id="apellido"/>
                                     </div>
-                                    <div class="input-field">
+                                    <div >
                                         <i class="material-icons prefix">location_on</i>
                                         <label for="direccion">Direccion: </label>
                                         <input type="text" name="direccion" id="direccion"/>
                                     </div>
-                                    <input type="submit" name="bt" id="bt" value="Actualizar" class="waves-effect btn"/>
                                 </div>
                                 <div class="col s5">
-                                    <div class="input-field">
+                                    <div >
                                         <i class="material-icons prefix">call</i>
                                         <label for="telefono">Telefono: </label>
                                         <input type="text" name="telefono" id="telefono"/>
                                     </div>
 
-                                    <div class="input-field">
+                                    <div >
                                         <i class="material-icons prefix">mail</i>
                                         <label for="correo">Correo: </label>
                                         <input type="text" name="correo" id="correo"/>
                                     </div>
 
-                                    <div class="input-field">
+                                    <div >
                                         <i class="material-icons prefix">vpn_key</i>
-                                        <label for="clave">Clave: </label>
-                                        <input type="password" name="clave" id="clave"/>
+                                        <label for="contraseña">Clave: </label>
+                                        <input type="text" name="clave" id="contraseña"/>
                                     </div>
-                                    <div class="input-field">
+                                    <div >
                                         <i class="material-icons prefix">vpn_key</i>
-                                        <label for="confirClave">Confirmar Clave: </label>
-                                        <input type="password" name="confirClave" id="confirClave"/>
+                                        <label for="confirContraseña">Confirmar Clave: </label>
+                                        <input type="text" name="confirContraseña" id="confirContraseña"/>
+                                    </div>
+                                    <div class="right">
+                                        <input type="submit" name="bt" id="btupdate" value="Actualizar" class="waves-effect btn"/>
                                     </div>
                                 </div>
                             </form>
@@ -176,7 +179,76 @@
                 $('.scrollspy').scrollSpy();
                 //                Fin de inicio materialize
 
+                getSesion();
 
+
+                function getSesion() {
+                    var url = "<?php echo site_url() ?>/getSesion";
+                    $.getJSON(url, function(result) {
+                        $.each(result, function(i, o) {
+                            $("#rutusuario").val(o.rutusuario);
+                            getUser();
+                        });
+                    });
+                }
+
+                function getUser() {
+                    var rut = $("#rutusuario").val();
+                    $("#saludo1").empty();
+                    $("#saludo2").empty();
+                    $.ajax({
+                        url: '<?php echo site_url() ?>/getUser',
+                        type: "POST",
+                        dataType: 'json',
+                        data: {"rutusuario": rut}
+                    }).success(function(obj) {
+                        $("#saludo1").empty();
+                        $("#saludo2").empty();
+                        $.each(obj, function(i, u) {
+                            $("#saludo1").append("Hola " + u.nombre + " " + u.apellido + "!");
+                            $("#saludo2").append("Hola " + u.nombre + " " + u.apellido + "!");
+                            $("#nombre").val(u.nombre);
+                            $("#apellido").val(u.apellido);
+                            $("#direccion").val(u.direccion);
+                            $("#telefono").val(u.telefono);
+                            $("#correo").val(u.correo);
+                            $("#contraseña").val(u.contraseña);
+                            $("#confirContraseña").val(u.contraseña);
+                        });
+                    });
+
+                }
+//                ----------ACTUALIZAR CUENTA--------
+                $("#btupdate").click(function(e) {
+                    e.preventDefault();
+                    var rut = $("#rutusuario").val();
+                    var nombre = $("#nombre").val();
+                    var apellido = $("#apellido").val();
+                    var direccion = $("#direccion").val();
+                    var telefono = $("#telefono").val();
+                    var correo = $("#correo").val();
+                    var contraseña = $("#contraseña").val();
+                    var confirContraseña = $("#confirContraseña").val();
+                    if (rut == "" || nombre == "" || apellido == "" || direccion == "" || telefono == "" || correo == "" || contraseña == "" || confirContraseña == "") {
+                        Materialize.toast("faltan campos", "1000");
+                    } else if (contraseña != confirContraseña) {
+                        Materialize.toast("Contraseña no coincide", "1000");
+                    } else {
+                        $.ajax({
+                            url: "<?php echo site_url() ?>/updateClient",
+                            type: "post",
+                            dataType: "json",
+                            data: {"rutusuario": rut, "nombre": nombre, "apellido": apellido, "direccion": direccion,
+                                "telefono": telefono, "correo": correo, "contraseña": contraseña
+                            }
+                        }).success(function(obj) {
+                            getUser();
+                            Materialize.toast("Cuenta Actualizada", "1000");
+                        }).fail(function() {
+                            Materialize.toast("error");
+                        });
+                    }
+                });
             });
         </script>
 

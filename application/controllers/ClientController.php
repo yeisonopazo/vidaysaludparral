@@ -24,4 +24,24 @@ class ClientController extends CI_Controller {
         echo json_encode(array("msg" => "Registrado"));
     }
 
+    public function getSesion() {
+        echo json_encode($this->session->userdata("cliente"));
+    }
+    public function getUser() {
+        $rutusuario = $this->input->post("rutusuario");
+        echo json_encode($this->ClientModel->getUser($rutusuario));
+    }
+
+    public function actualizarCliente() {
+        $rutusuario = $this->input->post("rutusuario");
+        $nombre = $this->input->post("nombre");
+        $apellido = $this->input->post("apellido");
+        $direccion = $this->input->post("direccion");
+        $telefono = $this->input->post("telefono");
+        $correo = $this->input->post("correo");
+        $contraseña = $this->input->post("contraseña");
+        $this->ClientModel->actualizarCliente($rutusuario, $nombre, $apellido, $direccion, $telefono, $correo, $contraseña);
+        echo json_encode(array("msg" => "Actualizado!"));
+    }
+
 }

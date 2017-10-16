@@ -14,10 +14,25 @@ class ClientModel extends CI_Model {
             "telefono" => $telefono,
             "correo" => $correo,
             "contraseña" => $contraseña,
-            "idperfil"=>$idperfil);
+            "idperfil" => $idperfil);
 
         $this->db->insert("usuario", $datos);
     }
-    
+
+    function actualizarCliente($rutusuario, $nombre, $apellido, $direccion, $telefono, $correo, $contraseña) {
+        $this->db->where("rutusuario", $rutusuario);
+        $datos = array("nombre" => $nombre,
+            "apellido" => $apellido,
+            "direccion" => $direccion,
+            "telefono" => $telefono,
+            "correo" => $correo,
+            "contraseña" => $contraseña);
+        $this->db->update("usuario", $datos);
+    }
+
+    function getUser($rutusuario) {
+        $this->db->where("rutusuario", $rutusuario);
+        return $this->db->get("usuario")->result();
+    }
 
 }
