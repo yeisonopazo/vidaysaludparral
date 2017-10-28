@@ -43,26 +43,31 @@
 
     </div>
 
-    <div id="addproduct2" class="col s12 m8 disabled">
-        <h5 class="tooltipped" data-position="top" data-delay="50" data-tooltip="Debe agregar producto">Agregar Imagenes</h5>
-        <div class="dropify-preview col s6 m6">
-            <label for="input-file-now"></label>
-            <input type="file" id="input-file-now" class="dropify" />
+    <div id="addproduct2" class="col s12 m8">
+        <div class="row">
+            <h5 class="tooltipped" data-position="top" data-delay="50" data-tooltip="Debe agregar producto">Agregar Imagenes</h5>
+            <div class="dropify-preview col s6 m6">
+                <label for="input-file-now"></label>
+                <input type="file" id="input-file-now" class="dropify" />
 
-        </div>
-        <div class="dropify-preview col s6 m6">
-            <label for="input-file-now"></label>
-            <input type="file" id="input-file-now" class="dropify" />
+            </div>
+            <div class="dropify-preview col s6 m6">
+                <label for="input-file-now"></label>
+                <input type="file" id="input-file-now" class="dropify" />
 
-        </div>
-        <div class="dropify-preview col s6 m6">
-            <label for="input-file-now"></label>
-            <input type="file" id="input-file-now" class="dropify" />
+            </div>
+            <div class="dropify-preview col s6 m6">
+                <label for="input-file-now"></label>
+                <input type="file" id="input-file-now" class="dropify" />
 
+            </div>
+            <div class="dropify-preview col s6 m6">
+                <label for="input-file-now"></label>
+                <input type="file" id="input-file-now" class="dropify" />
+            </div>
         </div>
-        <div class="dropify-preview col s6 m6">
-            <label for="input-file-now"></label>
-            <input type="file" id="input-file-now" class="dropify" />
+        <div class="row">
+            <input type="submit" class="btn right" value="Finalizar" />
         </div>
     </div>
 

@@ -1,66 +1,46 @@
 
 <h5>Agregar Categorias</h5>
-<div class="row col s12 m6">
-
+<div class="row col s12 m4">
     <div class=" row col s12">
-        <form>
+        <form id="formcat">
             <h6>Agregegar Categoria</h6>
             <div class="input-field">
-                <label for="nombre">Nombre: </label>
-                <input type="text" name="nombre" id="nombreprov"/>
+                <label for="nombre">Nombre categoria: </label>
+                <input type="text" name="nombre" id="nombrecat"/>
             </div>
-            <input type="submit" value="Agregar Categoria" class="btn btn-primary"/>
+            <input type="submit" id="btnaddcat"value="Agregar Categoria" class="btn btn-primary"/>
         </form>
     </div>
     <div class="row col s12">
-        <form>
+        <form id="formsubcat" name="formsubcat">
             <h6>Agregegar Sub-Categoria</h6>
             <div class="input-field">
 
-                <label for="direccion">Nombre: </label>
-                <input type="text" name="direccion"  id="direccionprov"/>
+                <label for="subcat">Nombre Sub-Categoria </label>
+                <input type="text" name="subcat"  id="nombresubcat"/>
             </div>
-            <select id="idsubcat">
-                <option value="" disabled selected>Selecciona una categoria</option>
-                <option value="1">Option 1</option>
-                <option value="2">Option 2</option>
-                <option value="3">Option 3</option>
+            <select id="idcat" name="idcat">
+                <option value="0" disabled selected>Selecciona una categoria</option>
+                
             </select>
-            <input type="submit" value="Agregar Sub-Categoria" class="btn btn-primary"/>
+            <input type="submit" id="btnaddsubcat" value="Agregar Sub-Categoria" class="btn btn-primary"/>
         </form> 
     </div>
 </div>
-<div class="row col s12 m6">
+<div class="row col s12 m8">
     <div id="tablcat" >
         <table class="bordered">
             <thead>
                 <tr>
-                    <th>ID</th>
+                    <th>ID-Cat</th>
                     <th>Categoria</th>
-                    <th>Subcategoria</th>
+                    <th>ID-SubCat</th>
+                    <th>Sub-Categoria</th>
                 </tr>
             </thead>
 
-            <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>Alvin</td>
-                    <td>Eclair</td>                 
-                    <td><button id="edit" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">edit</i></button></td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td>Alan</td>
-                    <td>Jellybean</td>
-                    <td><button id="edit" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">edit</i></button></td>
+            <tbody id="tablacateg">
 
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Jonathan</td>
-                    <td>Lollipop</td>                   
-                    <td><button id="edit" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">edit</i></button></td>
-                </tr>
             </tbody>
         </table> 
         <ul class="pagination">

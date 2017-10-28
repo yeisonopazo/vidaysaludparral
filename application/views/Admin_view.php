@@ -70,8 +70,8 @@
                     <div class="card-panel">
                         <div class="row">
                             <div class="row"> 
-                                <input type="submit" id="btnaddcat" class="btn btn-primary" value="Agregar Categoria"/>
-                                <input type="submit" id="btnaddprodut" class="btn btn-primary" value="Agregar Producto/Servicio"/>
+                                <input type="submit" id="btnshowcat" class="btn btn-primary" value="Agregar Categoria"/>
+                                <input type="submit" id="btnshowprod" class="btn btn-primary" value="Agregar Producto/Servicio"/>
                                 <a href="#" class="right" id="volver">Volver</a>
                             </div>  
                             <div id="modulocat" class="row card-panel">
@@ -184,7 +184,7 @@
                 </div>
                 <div id="gservicios" class="col s12">
                     <h3>Servicios</h3>
-                 
+
                 </div>
                 <div id="gventas" class="col s12">
                     <h3>Gestion de ventas</h3>
@@ -203,11 +203,7 @@
                 </div>
             </div>
         </div>
-
-
     </main>
-
-
     <footer class="page-footer blue lighten-1">
         <div class="container">
             <div class="row">
@@ -257,7 +253,7 @@
     <script src="<?php echo base_url(); ?>lib/js/dropify.min.js"></script>  
     <script type="text/javascript">
         $(function() {
-            //                Inicio de Materialize
+            //                Inicio de Materialize y Otros
             $('.modal').modal();
             $('.button-collapse').sideNav();
             $('.carousel.carousel-slider').carousel({fullWidth: true});
@@ -266,37 +262,123 @@
             $('.scrollspy').scrollSpy();
             $('select').material_select();
             $('ul.tabs').tabs();
-            // Basic
             $('.dropify').dropify();
-
-
 
             //                Fin de inicio materialize
             $("#tablaproduct").editableTableWidget();
             ocultar();
-
-            $("#btnaddcat").click(function(e) {
+            verTodasCategorias();
+            getCategorias();
+            
+            //Seccion de categoria///
+            $("#btnshowcat").click(function(e) {
                 e.preventDefault();
                 ocultar();
                 $("#modulocat").show();
+
+                $("#btnaddcat").click(function(e) {
+                    e.preventDefault();
+                    var nombre = $("#nombrecat").val();
+                    if (nombre == "") {
+                        Materialize.toast("Debe ingresar un nombre", 1000);
+
+                    } else {
+                        $.ajax({
+                            url: '<?php echo site_url() ?>/addCat',
+                            type: 'post',
+                            dataType: 'json',
+                            data: {"nombre": nombre}
+                        }).success(function(o) {
+                            Materialize.toast("Categoria agregada", 1000);
+                            $('#formcat').each(function() {
+                                this.reset();
+                            });
+                            verTodasCategorias();
+                            getCategorias();
+                        }).fail(function() {
+                            Materialize.toast("Error", 1000);
+                        });
+                    }
+
+
+                });
+
+                $("#btnaddsubcat").click(function(e) {
+                    e.preventDefault();
+                    var nombre = $("#nombresubcat").val();
+                    var categoria = document.getElementById("idcat").value;
+                    if (nombre == "" || formsubcat.idcat.value == 0) {
+                        Materialize.toast("Debe completar campos", 1000);
+
+                    } else {
+                        $.ajax({
+                            url: '<?php echo site_url() ?>/addSubCat',
+                            type: 'post',
+                            dataType: 'json',
+                            data: {"nombre": nombre, "idcategoria": categoria}
+                        }).success(function(o) {
+                            Materialize.toast("SubCategoria Agregada", 1000);
+                            $('#formsubcat').each(function() {
+                                this.reset();
+                            });
+                            verTodasCategorias();
+                            getCategorias();
+
+                        }).fail(function() {
+                            Materialize.toast("Error", 1000);
+                        });
+                    }
+                });
+
             });
-            $("#btnaddprodut").click(function(e) {
+
+            $("#btnshowprod").click(function(e) {
                 e.preventDefault();
                 ocultar();
                 $("#moduloaddprod").show();
-                
-            });
-            $("#btnaddprodut1").click(function (e){
-                     e.preventDefault();
+                $("#btnaddprodut1").click(function(e) {
+                    e.preventDefault();
                     $("#addproduct2").show();
                 });
+            });
+
             $("#volver").click(function() {
                 ocultar();
             });
+
             function ocultar() {
                 $("#moduloaddprod").hide();
                 $("#modulocat").hide();
                 $("#addproduct2").hide();
+            }
+            //ver//
+            function verTodasCategorias() {
+                var url = "<?php echo site_url() ?>/getSubCat";
+                $("#tablacateg").empty();
+                $.getJSON(url, function(result) {
+                    $.each(result, function(i, o) {
+                        var fila = "<tr><td>" + o.idcategoria + "</td>";
+                        fila += "<td>" + o.nombre + "</td>";
+                        fila += "<td>" + o.idsubcategoria + "</td>";
+                        fila += "<td>" + o.subcategoria + "</td>";
+                        $("#tablacateg").append(fila);
+                    });
+                });
+            }
+            function getCategorias() {
+                var url = "<?php echo site_url() ?>/getCat";
+                $("#idcat").empty();
+                $("#cat").empty();
+                $("#idcat").append("<option value='0' disabled selected>Selecciona una categoria</option>");
+                $("#cat").append("<option value='0' disabled selected>Selecciona una categoria</option>");
+                $.getJSON(url, function(datos) {
+                    $.each(datos, function(i, o) {
+                        var x = "<option value='" + o.idcategoria + "'>" + o.nombre + "</option>";
+                        $("#idcat").append(x);
+                        $("#cat").append(x);
+                        $('select').material_select();
+                    });
+                });
             }
 
         });

@@ -62,3 +62,9 @@ $route["addClient"] = "ClientController/insertarCliente";
 $route["getSesion"] = "ClientController/getSesion";
 $route["getUser"] = "ClientController/getUser";
 $route["updateClient"] = "ClientController/actualizarCliente";
+
+//categorias
+$route["addCat"]="AdminController/insertarCategoria";
+$route["getCat"]="AdminController/getCategorias";
+$route["addSubCat"]="AdminController/insertarSubCateg";
+$route["getSubCat"]="AdminController/getSubCateg";

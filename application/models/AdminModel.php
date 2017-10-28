@@ -16,6 +16,7 @@ class AdminModel extends CI_Model {
             "rutproveedor" => $rutproveedor);
         $this->db->insert("producto", $datos);
     }
+
     function getProductos() {
         return $this->db->get("producto")->result();
     }
@@ -33,9 +34,8 @@ class AdminModel extends CI_Model {
         return $this->db->get("proveedores")->result();
     }
 
-    function insertarCategoria($nombre, $idsubcategoria) {
-        $datos = array("nombre" => $nombre,
-            "idsubcategoria" => $idsubcategoria);
+    function insertarCategoria($nombre) {
+        $datos = array("nombre" => $nombre);
         $this->db->insert("categoria", $datos);
     }
 
@@ -43,13 +43,26 @@ class AdminModel extends CI_Model {
         return $this->db->get("categoria")->result();
     }
 
-    function insertSubCateg($nombre) {
-        $datos = array("nombre" => $nombre);
+    function insertSubCateg($nombre, $idcategoria) {
+        $datos = array("nombre" => $nombre,
+            "idcategoria" => $idcategoria);
         $this->db->insert("subcategoria", $datos);
     }
 
+//    function getVentas() {
+//        $this->db->select("v.fecha, u.nombre, p.nombre as producto, p.precio, dv.cantidad, v.total");
+//        $this->db->from("detalleventa dv");
+//        $this->db->join("venta v", " dv.idventa=v.idventa");
+//        $this->db->join("usuario u", "v.rut= u.rut");
+//        $this->db->join("producto p", "dv.idproducto= p.idproducto");
+//        return $this->db->get()->result();
+//    }
+
     function getSubCateg() {
-        return $this->db->get("subcategoria")->result();
+        $this->db->Select("c.idcategoria, c.nombre, sc.idsubcategoria, sc.nombre as subcategoria");
+        $this->db->from("subcategoria sc");
+        $this->db->join("categoria c", "c.idcategoria=sc.idcategoria");
+        return $this->db->get()->result();
     }
 
     function insertarNoticia($titulo, $descripcion, $fecha, $imagen, $autor, $refencia) {
