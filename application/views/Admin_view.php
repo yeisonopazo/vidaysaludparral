@@ -9,6 +9,9 @@
         <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link href="<?php echo base_url(); ?>lib/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="<?php echo base_url(); ?>lib/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+        <!--SUBIR FOTOS CHEVERE-->
+        <link href="<?php echo base_url(); ?>lib/css/dropify.css" type="text/css" rel="stylesheet"/>
+        <link href="<?php echo base_url(); ?>lib/css/dropify.min.css" type="text/css" rel="stylesheet"/>
     </head>
     <style>
         body {
@@ -45,8 +48,8 @@
 
             <div class="nav-content container">
                 <ul class="tabs tabs-transparent">
-                    <li class="tab"><a class="active" href="#home">Resumen</a></li>
-                    <li class="tab"><a href="#gproductos">Gestion Productos</a></li>
+                    <li class="tab"><a  href="#home">Resumen</a></li>
+                    <li class="tab"><a class="active" href="#gproductos">Gestion Productos</a></li>
                     <li class="tab"><a href="#gservicios">Gestion Servicios</a></li>
                     <li class="tab"><a href="#gventas">Gestion Ventas</a></li>
                     <li class="tab"><a href="#noticias">Noticias</a></li>
@@ -69,7 +72,7 @@
                             <div class="row"> 
                                 <input type="submit" id="btnaddcat" class="btn btn-primary" value="Agregar Categoria"/>
                                 <input type="submit" id="btnaddprodut" class="btn btn-primary" value="Agregar Producto/Servicio"/>
-                                <a href="#" class="right" id="voler">volver</a>
+                                <a href="#" class="right" id="volver">Volver</a>
                             </div>  
                             <div id="modulocat" class="row card-panel">
                                 <?php include ('modulos/categorias.php'); ?>
@@ -115,7 +118,7 @@
                             <!-------------------------FIN MODAL AGREGAR PROVEEDOR-------->
 
 
-                            <nav class="row">
+                            <nav class="row hoverable">
                                 <div class="nav-wrapper">
                                     <div class="input-field">
                                         <input id="search" type="search" required placeholder="Buscar Producto">
@@ -125,8 +128,8 @@
                                 </div>
                             </nav>
 
-                            <div class="col s12">
-                                <table class="bordered">
+                            <div class="col s12 ">
+                                <table id="tablaproduct" class="responsive-table bordered">
                                     <thead>
                                         <tr>
                                             <th>Name</th>
@@ -181,23 +184,22 @@
                 </div>
                 <div id="gservicios" class="col s12">
                     <h3>Servicios</h3>
+                 
                 </div>
                 <div id="gventas" class="col s12">
                     <h3>Gestion de ventas</h3>
+                    <nav>
+                        <div class="nav-wrapper">
+                            <div class="col s12">
+                                <a href="#!" class="breadcrumb">First</a>
+                                <a href="#!" class="breadcrumb">Second</a>
+                                <a href="#!" class="breadcrumb">Third</a>
+                            </div>
+                        </div>
+                    </nav>
                 </div>
                 <div id="noticias" class="col s12">
-                    <h3>Noticias</h3>
-                    <ul id="tabs-swipe-demo" class="tabs swipeable">
-                        <li class="tab col s3"><a href="#test-swipe-1">Test 1</a></li>
-                        <li class="tab col s3"><a class="active" href="#test-swipe-2">Test 2</a></li>
-                        <li class="tab col s3"><a href="#test-swipe-3">Test 3</a></li>
-                    </ul>
-
-                    <div id="test-swipe-1" class="col s12 blue">Test 1</div>
-                    <div id="test-swipe-2" class="col s12 red">Test 2</div>
-                    <div id="test-swipe-3" class="col s12 green">Test 3</div>
-
-
+                    <h3>Noticias</h3>  
                 </div>
             </div>
         </div>
@@ -245,8 +247,14 @@
 
     <!--  Scripts-->
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+
     <script src="<?php echo base_url(); ?>lib/js/materialize.js"></script>
     <script src="js/init.js"></script>
+    <!-- tabla editable--->
+    <script src="<?php echo base_url(); ?>lib/js/mindmup-editabletable.js"></script>
+    <script src="<?php echo base_url(); ?>lib/js/numeric-input-example.js"></script>
+    <!--Subir fotos chevere-->
+    <script src="<?php echo base_url(); ?>lib/js/dropify.min.js"></script>  
     <script type="text/javascript">
         $(function() {
             //                Inicio de Materialize
@@ -258,8 +266,13 @@
             $('.scrollspy').scrollSpy();
             $('select').material_select();
             $('ul.tabs').tabs();
+            // Basic
+            $('.dropify').dropify();
+
+
 
             //                Fin de inicio materialize
+            $("#tablaproduct").editableTableWidget();
             ocultar();
 
             $("#btnaddcat").click(function(e) {
@@ -271,13 +284,19 @@
                 e.preventDefault();
                 ocultar();
                 $("#moduloaddprod").show();
+                
             });
-            $("#voler").click(function() {
+            $("#btnaddprodut1").click(function (e){
+                     e.preventDefault();
+                    $("#addproduct2").show();
+                });
+            $("#volver").click(function() {
                 ocultar();
             });
             function ocultar() {
                 $("#moduloaddprod").hide();
                 $("#modulocat").hide();
+                $("#addproduct2").hide();
             }
 
         });
