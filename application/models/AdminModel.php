@@ -6,19 +6,30 @@ class AdminModel extends CI_Model {
         parent::__construct();
     }
 
-    function insertarProducto($nombre, $idcat, $descripcion, $precio, $stock, $imagen, $rutproveedor) {
+    function insertarProducto($nombre, $idcat, $descripcion, $precio, $stock, $rutproveedor) {
         $datos = array("nombre" => $nombre,
             "idcategoria" => $idcat,
             "descripcion" => $descripcion,
             "precio" => $precio,
             "stock" => $stock,
-            "imagen" => $imagen,
             "rutproveedor" => $rutproveedor);
         $this->db->insert("producto", $datos);
     }
 
+    //    function getVentas() {
+//        $this->db->select("v.fecha, u.nombre, p.nombre as producto, p.precio, dv.cantidad, v.total");
+//        $this->db->from("detalleventa dv");
+//        $this->db->join("venta v", " dv.idventa=v.idventa");
+//        $this->db->join("usuario u", "v.rut= u.rut");
+//        $this->db->join("producto p", "dv.idproducto= p.idproducto");
+//        return $this->db->get()->result();
+//    }
     function getProductos() {
-        return $this->db->get("producto")->result();
+        $this->db->select("p.idproducto, p.nombre,c.idsubcategoria, c.nombre as categoria, p.descripcion, p.precio, p.stock, prov.rutproveedor, prov.nombre as proveedor");
+        $this->db->from("producto p");
+        $this->db->join("subcategoria c", "c.idsubcategoria=p.idcategoria");
+        $this->db->join("proveedor prov","p.rutproveedor=prov.rutproveedor");
+        return $this->db->get()->result();
     }
 
     function insertarProveedor($rutproveedor, $nombre, $telefono, $direccion, $correo) {
@@ -31,7 +42,7 @@ class AdminModel extends CI_Model {
     }
 
     function getProveedores() {
-        return $this->db->get("proveedores")->result();
+        return $this->db->get("proveedor")->result();
     }
 
     function insertarCategoria($nombre) {
@@ -48,15 +59,6 @@ class AdminModel extends CI_Model {
             "idcategoria" => $idcategoria);
         $this->db->insert("subcategoria", $datos);
     }
-
-//    function getVentas() {
-//        $this->db->select("v.fecha, u.nombre, p.nombre as producto, p.precio, dv.cantidad, v.total");
-//        $this->db->from("detalleventa dv");
-//        $this->db->join("venta v", " dv.idventa=v.idventa");
-//        $this->db->join("usuario u", "v.rut= u.rut");
-//        $this->db->join("producto p", "dv.idproducto= p.idproducto");
-//        return $this->db->get()->result();
-//    }
 
     function getSubCateg() {
         $this->db->Select("c.idcategoria, c.nombre, sc.idsubcategoria, sc.nombre as subcategoria");

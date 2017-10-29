@@ -82,37 +82,43 @@
                             </div>
                             <!--         -----------------MODAL PROVEEDOR----------------------------->
                             <div id="modalprov" class="modal modal-fixed-footer">
-                                <div class="container">
-                                    <br>
+                                <div class="modal-content">
+
                                     <h5>Agregar Proveedor</h5>
-                                    <form>
+                                    <form id="formprov">
                                         <div class="col s12">
                                             <div class="input-field">
                                                 <i class="material-icons prefix">account_circle</i>
-                                                <label for="rut">RUT: </label>                           
-                                                <input type="text" name="rut" id="rutprov">
+                                                <label for="rutprov">RUT: </label>                           
+                                                <input type="text" name="rutprov" required id="rutprov">
                                             </div>
 
                                             <div class="input-field">
                                                 <i class="material-icons prefix">face</i>
-                                                <label for="nombre">Nombre: </label>
-                                                <input type="text" name="nombre" id="nombreprov"/>
+                                                <label for="nombreprov">Nombre: </label>
+                                                <input type="text" name="nombreprov" required id="nombreprov"/>
                                             </div>
                                             <div class="input-field">
                                                 <i class="material-icons prefix">location_on</i>
-                                                <label for="direccion">Direccion: </label>
-                                                <input type="text" name="direccion"  id="direccionprov"/>
+                                                <label for="direccionprov">Direccion: </label>
+                                                <input type="text" name="direccionprov" required id="direccionprov"/>
                                             </div>
-                                            <div class="input-field">
+                                            <div class="input-field col s12 m4">
+                                                <i class="material-icons prefix">location_on</i>
+                                                <label for="telefonoprov">Telefono: </label>
+                                                <input type="text" name="telefonoprov" required id="telefonoprov"/>
+                                            </div>
+                                            <div class="input-field col s12 m8">
                                                 <i class="material-icons prefix">mail</i>
-                                                <label for="email">Direccion: </label>
-                                                <input type="text" name="email" id="emailprov"/>
+                                                <label for="emailprov">Email: </label>
+                                                <input type="text" name="emailprov" required id="emailprov"/>
                                             </div>
                                         </div>
                                     </form>
+
                                 </div>
                                 <div class="modal-footer">                                      
-                                    <input type="submit" class="btn btn-primary" value="Agregar Proveedor"/>
+                                    <input type="submit" class="btn btn-primary" id="btnaddprov" value="Agregar Proveedor"/>
                                 </div>
                             </div>
                             <!-------------------------FIN MODAL AGREGAR PROVEEDOR-------->
@@ -132,41 +138,17 @@
                                 <table id="tablaproduct" class="responsive-table bordered">
                                     <thead>
                                         <tr>
-                                            <th>Name</th>
+                                            <th>ID</th>
+                                            <th>Nombre</th>
                                             <th>Categoria</th>
+                                            <th>Descripcion</th>
                                             <th>Precio</th>
                                             <th>Stock</th>
                                             <th>Proveedor</th>
                                         </tr>
                                     </thead>
+                                    <tbody id="tbodyproduct">
 
-                                    <tbody>
-                                        <tr>
-                                            <td>Alvin</td>
-                                            <td>Eclair</td>
-                                            <td>$0.87</td>
-                                            <td> 5</td>
-                                            <td>Proveedor 1</td>
-                                            <td><button id="edit" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">edit</i></button></td>
-                                        </tr>
-                                        <tr>
-                                            <td>Alan</td>
-                                            <td>Jellybean</td>
-                                            <td>$3.76</td>
-                                            <td> 5</td>
-                                            <td>Proveedor 2</td>
-                                            <td><button id="edit" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">edit</i></button></td>
-
-                                        </tr>
-                                        <tr>
-                                            <td>Jonathan</td>
-                                            <td>Lollipop</td>
-                                            <td>$7.00</td>
-                                            <td> 7</td>
-                                            <td>Proveedor 3</td>
-                                            <td><button id="edit" class="btn-floating btn-large waves-effect waves-light blue"><i class="material-icons">edit</i></button></td>
-
-                                        </tr>
                                     </tbody>
                                 </table>
                                 <ul class="pagination">
@@ -200,6 +182,18 @@
                 </div>
                 <div id="noticias" class="col s12">
                     <h3>Noticias</h3>  
+                </div>
+            </div>
+
+            <div id="modalprodver" class="modal">
+                <div class="modal-content">
+                    <h4 id="txtnombreprod"></h4>
+                    <p id="txtdescrip"></p>
+                    <p id="txtprecio"></p>
+                    <p id="txtprovedor"></p>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
                 </div>
             </div>
         </div>
@@ -245,11 +239,11 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
     <script src="<?php echo base_url(); ?>lib/js/materialize.js"></script>
-    <script src="js/init.js"></script>
+    <script src="<?php echo base_url(); ?>js/init.js"></script>
     <!-- tabla editable--->
-    <script src="<?php echo base_url(); ?>lib/js/mindmup-editabletable.js"></script>
+<!--<script src="<?php echo base_url(); ?>lib/js/mindmup-editabletable.js"></script>
     <script src="<?php echo base_url(); ?>lib/js/numeric-input-example.js"></script>
-    <!--Subir fotos chevere-->
+    Subir fotos chevere-->
     <script src="<?php echo base_url(); ?>lib/js/dropify.min.js"></script>  
     <script type="text/javascript">
         $(function() {
@@ -263,19 +257,21 @@
             $('select').material_select();
             $('ul.tabs').tabs();
             $('.dropify').dropify();
+            $('.tooltipped').tooltip({delay: 50});
 
             //                Fin de inicio materialize
-            $("#tablaproduct").editableTableWidget();
+            // $("#tablaproduct").editableTableWidget();
             ocultar();
             verTodasCategorias();
             getCategorias();
-            
+            verProveedores();
+            verProductos();
+
             //Seccion de categoria///
             $("#btnshowcat").click(function(e) {
                 e.preventDefault();
                 ocultar();
                 $("#modulocat").show();
-
                 $("#btnaddcat").click(function(e) {
                     e.preventDefault();
                     var nombre = $("#nombrecat").val();
@@ -336,10 +332,65 @@
                 e.preventDefault();
                 ocultar();
                 $("#moduloaddprod").show();
-                $("#btnaddprodut1").click(function(e) {
+                $("#btnaddprov").click(function(e) {
                     e.preventDefault();
-                    $("#addproduct2").show();
+                    var rut = $("#rutprov").val();
+                    var nombre = $("#nombreprov").val();
+                    var telefono = $("#telefonoprov").val();
+                    var direccion = $("#direccionprov").val();
+                    var correo = $("#emailprov").val();
+                    if (rut == "" || nombre == "" || telefono == "" || direccion == "" || correo == "") {
+                        Materialize.toast("Faltan Campos", 1000);
+                    } else {
+                        $.ajax({
+                            url: '<?php echo site_url() ?>/addProv',
+                            type: 'post',
+                            dataType: 'json',
+                            data: {"rutproveedor": rut, "nombre": nombre, "telefono": telefono,
+                                "direccion": direccion, "correo": correo}
+                        }).success(function(o) {
+                            Materialize.toast("Registro OK", 1000);
+                            $('#formprov').each(function() {
+                                this.reset();
+                            });
+                            verProveedores();
+                        }).fail(function() {
+                            Materialize.toast("Error", 1000);
+                        });
+                    }
                 });
+            });
+            //AGREGAR PRODUCTO///
+            $("#btnaddprodut1").click(function(e) {
+                e.preventDefault();
+                var nombre = $("#nombreprod").val();
+                var categoria = document.getElementById("subcat").value;
+                var descripcion = $("#drescripcionprod").val();
+                var precio = $("#precioprod").val();
+                var stock = $("#stockprod").val();
+                var rutProv = document.getElementById("selectprov").value;
+                if (nombre == "" || categoria == 0 || descripcion == "" ||
+                        precio == "" || stock == "" || rutProv == 0) {
+                    Materialize.toast("Faltan Campos", 1000);
+                } else {
+                    $.ajax({
+                        url: '<?php echo site_url() ?>/addProd',
+                        type: 'post',
+                        dataType: 'json',
+                        data: {"nombre": nombre, "idcategoria": categoria, "descripcion": descripcion,
+                            "precio": precio, "stock": stock, "rutproveedor": rutProv}
+                    }).success(function(o) {
+                        Materialize.toast("Registro OK", 1000);
+                        $('#formprod').each(function() {
+                            this.reset();
+                        });
+                        verProductos();
+                        $("#addproduct2").show();
+                    }).fail(function() {
+                        Materialize.toast("Error", 1000);
+                    });
+                }
+
             });
 
             $("#volver").click(function() {
@@ -355,6 +406,8 @@
             function verTodasCategorias() {
                 var url = "<?php echo site_url() ?>/getSubCat";
                 $("#tablacateg").empty();
+                $("#subcat").empty();
+                $("#subcat").append("<option value='0' disabled selected>Selecciona una categoria</option>");
                 $.getJSON(url, function(result) {
                     $.each(result, function(i, o) {
                         var fila = "<tr><td>" + o.idcategoria + "</td>";
@@ -362,25 +415,70 @@
                         fila += "<td>" + o.idsubcategoria + "</td>";
                         fila += "<td>" + o.subcategoria + "</td>";
                         $("#tablacateg").append(fila);
+                        var subcat = "<option value='" + o.idsubcategoria + "'>" + o.subcategoria + "</option>";
+                        $("#subcat").append(subcat);
+                        $('select').material_select();
+
                     });
                 });
             }
             function getCategorias() {
                 var url = "<?php echo site_url() ?>/getCat";
                 $("#idcat").empty();
-                $("#cat").empty();
                 $("#idcat").append("<option value='0' disabled selected>Selecciona una categoria</option>");
-                $("#cat").append("<option value='0' disabled selected>Selecciona una categoria</option>");
                 $.getJSON(url, function(datos) {
                     $.each(datos, function(i, o) {
                         var x = "<option value='" + o.idcategoria + "'>" + o.nombre + "</option>";
                         $("#idcat").append(x);
-                        $("#cat").append(x);
                         $('select').material_select();
                     });
                 });
             }
+            function verProveedores() {
+                var url = "<?php echo site_url() ?>/getProv";
+                $("#selectprov").empty();
+                $("#selectprov").append("<option value='0' disabled selected>Seleccione Proveedor</option>");
+                $.getJSON(url, function(datos) {
+                    $.each(datos, function(i, o) {
+                        var x = "<option value='" + o.rutproveedor + "'>" + o.nombre + "</option>";
+                        $("#selectprov").append(x);
+                        $('select').material_select();
+                    });
+                });
+            }
+            function verProductos() {
+                var url = "<?php echo site_url() ?>/getProd";
+                $("#tbodyproduct").empty();
+                $.getJSON(url, function(result) {
+                    $.each(result, function(i, o) {
+                        //p.nombre, c.nombre as categoria, p.descripcion, 
+                        // p.precio, p.stock, prov.nombre as proveedor
+                        var fila = "<tr><td>" + o.idproducto + "</td>";
+                        fila += "<td>" + o.nombre + "</td>";
+                        fila += "<td>" + o.categoria + "</td>";
+                        fila += '<td><button id="prodver" value="' + o.nombre + "," + o.descripcion + "," + o.precio + "," + o.proveedor + '" class="btn-floating waves-effect waves-light" ><i class=#material-icons">search</i></button></td>';
+                        fila += "<td>" + o.precio + "</td>";
+                        fila += "<td>" + o.stock + "</td>";
+                        fila += "<td>" + o.proveedor + "</td>";
+                        $("#tbodyproduct").append(fila);
+                    });
+                });
+            }
 
+            $("body").on("click", "#prodver", function(e) {
+                e.preventDefault();               
+                $("#txtnombreprod").empty();
+                $("#txtdescrip").empty();
+                $("#txtprecio").empty();
+                $("#txtprovedor").empty();
+                var datos = $(this).val();
+                var fila = datos.split(",");
+                $("#txtnombreprod").append(fila[0]);
+                $("#txtdescrip").append(fila[1]);
+                $("#txtprecio").append(fila[2]);
+                $("#txtprovedor").append(fila[3]);
+                $("#modalprodver").modal('open');
+            });
         });
     </script>
 

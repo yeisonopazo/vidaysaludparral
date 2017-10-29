@@ -3,27 +3,27 @@
 <div class="row col s12 m4">
     <div class=" row col s12">
         <form id="formcat">
-            <h6>Agregegar Categoria</h6>
+            <h6>Categoria</h6>
             <div class="input-field">
                 <label for="nombre">Nombre categoria: </label>
-                <input type="text" name="nombre" id="nombrecat"/>
+                <input type="text" name="nombre" required id="nombrecat"/>
             </div>
-            <input type="submit" id="btnaddcat"value="Agregar Categoria" class="btn btn-primary"/>
+            <input type="submit" id="btnaddcat"value="Agregar Categoria" class="btn small"/>
         </form>
     </div>
     <div class="row col s12">
         <form id="formsubcat" name="formsubcat">
-            <h6>Agregegar Sub-Categoria</h6>
+            <h6>Sub-Categoria</h6>
             <div class="input-field">
 
                 <label for="subcat">Nombre Sub-Categoria </label>
-                <input type="text" name="subcat"  id="nombresubcat"/>
+                <input type="text" name="subcat" required id="nombresubcat"/>
             </div>
-            <select id="idcat" name="idcat">
+            <select id="idcat" required name="idcat">
                 <option value="0" disabled selected>Selecciona una categoria</option>
                 
             </select>
-            <input type="submit" id="btnaddsubcat" value="Agregar Sub-Categoria" class="btn btn-primary"/>
+            <input type="submit" id="btnaddsubcat" value="Agregar Sub-Categoria" class="btn small"/>
         </form> 
     </div>
 </div>

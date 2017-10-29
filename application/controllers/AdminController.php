@@ -13,13 +13,12 @@ class AdminController extends CI_Controller {
 
     public function insertarProducto() {
         $nombre = $this->input->post("nombre");
-        $idcat = $this->input->post("idcat");
+        $idcat = $this->input->post("idcategoria");
         $descripcion = $this->input->post("descripcion");
         $precio = $this->input->post("precio");
-        $stock = $this->input->post("stock");
-        $imagen = $this->input->post("imagen");
+        $stock = $this->input->post("stock");       
         $rutproveedor = $this->input->post("rutproveedor");
-        $this->AdminModel->insertarProducto($nombre, $idcat, $descripcion, $precio, $stock, $imagen, $rutproveedor);
+        $this->AdminModel->insertarProducto($nombre, $idcat, $descripcion, $precio, $stock, $rutproveedor);
         echo json_encode(array("msg" => "Producto Agregado"));
     }
 

@@ -100,9 +100,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       
 
         <!-- Modal Iniciar sesion -->
-        <div id="modal1" class="modal" width="280" height="280"  >
+        <div id="modal1" class="modal modal-content">
             <div class="container">
-                <div class="row">
+                <div class="row ">
                     <div class="center">
                         <img class="responsive-img circle" width="25%" src="<?php echo base_url(); ?>lib/img/logo3.jpg">
                         <h4>Iniciar Sesión</h4>

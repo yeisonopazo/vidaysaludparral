@@ -68,3 +68,9 @@ $route["addCat"]="AdminController/insertarCategoria";
 $route["getCat"]="AdminController/getCategorias";
 $route["addSubCat"]="AdminController/insertarSubCateg";
 $route["getSubCat"]="AdminController/getSubCateg";
+
+//PRODUCTOS
+$route["addProv"]="AdminController/insertarProveedor";
+$route["getProv"]="AdminController/getProveedores";
+$route["addProd"]="AdminController/insertarProducto";
+$route["getProd"]="AdminController/getProductos";
