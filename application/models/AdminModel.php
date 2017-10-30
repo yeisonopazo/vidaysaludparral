@@ -6,13 +6,14 @@ class AdminModel extends CI_Model {
         parent::__construct();
     }
 
-    function insertarProducto($nombre, $idcat, $descripcion, $precio, $stock, $rutproveedor) {
+    function insertarProducto($nombre, $idcat, $descripcion, $precio, $stock, $fecha, $rutencargado) {
         $datos = array("nombre" => $nombre,
             "idcategoria" => $idcat,
             "descripcion" => $descripcion,
             "precio" => $precio,
             "stock" => $stock,
-            "rutproveedor" => $rutproveedor);
+            "fecha"=>$fecha,
+            "rutencargado" => $rutencargado);
         $this->db->insert("producto", $datos);
     }
 
@@ -25,24 +26,30 @@ class AdminModel extends CI_Model {
 //        return $this->db->get()->result();
 //    }
     function getProductos() {
-        $this->db->select("p.idproducto, p.nombre,c.idsubcategoria, c.nombre as categoria, p.descripcion, p.precio, p.stock, prov.rutproveedor, prov.nombre as proveedor");
+        $this->db->select("p.idproducto, p.nombre,"
+                . "sub.idsubcategoria, sub.nombre as categoria,"
+                . "c.idcategoria, c.nombre nombcateg,"
+                . " p.descripcion, p.precio, p.stock, p.fecha,"
+                . " prov.rutencargado, prov.nombre as proveedor");
         $this->db->from("producto p");
-        $this->db->join("subcategoria c", "c.idsubcategoria=p.idcategoria");
-        $this->db->join("proveedor prov","p.rutproveedor=prov.rutproveedor");
+        $this->db->join("subcategoria sub", "sub.idsubcategoria=p.idcategoria");
+        $this->db->join("categoria c", "sub.idsubcategoria=c.idcategoria");
+        $this->db->join("encargado prov", "p.rutencargado=prov.rutencargado");
         return $this->db->get()->result();
     }
 
-    function insertarProveedor($rutproveedor, $nombre, $telefono, $direccion, $correo) {
-        $datos = array("rutproveedor" => $rutproveedor,
+    function insertarProveedor($rutproveedor, $nombre, $telefono, $direccion, $correo, $idperfil) {
+        $datos = array("rutencargado" => $rutproveedor,
             "nombre" => $nombre,
             "telefono" => $telefono,
             "direccion" => $direccion,
-            "correo" => $correo);
-        $this->db->insert("proveedor", $datos);
+            "correo" => $correo,
+            "idperfil" => $idperfil);
+        $this->db->insert("encargado", $datos);
     }
 
     function getProveedores() {
-        return $this->db->get("proveedor")->result();
+        return $this->db->get("encargado")->result();
     }
 
     function insertarCategoria($nombre) {

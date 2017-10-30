@@ -16,9 +16,9 @@ class AdminController extends CI_Controller {
         $idcat = $this->input->post("idcategoria");
         $descripcion = $this->input->post("descripcion");
         $precio = $this->input->post("precio");
-        $stock = $this->input->post("stock");       
-        $rutproveedor = $this->input->post("rutproveedor");
-        $this->AdminModel->insertarProducto($nombre, $idcat, $descripcion, $precio, $stock, $rutproveedor);
+        $stock = $this->input->post("stock");
+        $rutencargado = $this->input->post("rutencargado");
+        $this->AdminModel->insertarProducto($nombre, $idcat, $descripcion, $precio, $stock, $rutencargado);
         echo json_encode(array("msg" => "Producto Agregado"));
     }
 
@@ -47,14 +47,14 @@ class AdminController extends CI_Controller {
         echo json_encode($this->AdminModel->getSubCateg());
     }
 
-    
     public function insertarProveedor() {
         $rutproveedor = $this->input->post("rutproveedor");
         $nombre = $this->input->post("nombre");
         $telefono = $this->input->post("telefono");
         $direcion = $this->input->post("direccion");
         $correo = $this->input->post("correo");
-        $this->AdminModel->insertarProveedor($rutproveedor, $nombre, $telefono, $direcion, $correo);
+        $idperfil = $this->input->post("idperfil");
+        $this->AdminModel->insertarProveedor($rutproveedor, $nombre, $telefono, $direcion, $correo, $idperfil);
         echo json_encode(array("msg" => "Proveedor agregado"));
     }
 

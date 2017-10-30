@@ -48,12 +48,12 @@
 
             <div class="nav-content container">
                 <ul class="tabs tabs-transparent">
-                    <li class="tab"><a class="waves-effect waves-light" href="#home">Resumen</a></li>
-                    <li class="tab"><a class="waves-effect waves-light active"  href="#gproductos">Gestion Productos</a></li>
-                    <li class="tab"><a class="waves-effect waves-light" target="_self" href="<?PHP echo site_url() ?>/AdminServ">Gestion Servicios</a></li>
-                    <li class="tab"><a class="waves-effect waves-light"  href="#gventas">Gestion Ventas</a></li>
-                    <li class="tab"><a class="waves-effect waves-light"  href="#noticias">Noticias</a></li>
-                    <li class="tab"><a class="waves-effect waves-light" target="_self" href="<?PHP echo site_url() ?>/AdminOtros"><i class="material-icons left">build</i></a></li>
+                    <li class="tab"><a  href="#home">Resumen</a></li>
+                    <li class="tab"><a class="waves-effect waves-light" target="_self" href="<?PHP echo site_url() ?>/AdminController">Gestion Productos</a></li>
+                    <li class="tab"><a class="active" href="#gservicios">Gestion Servicios</a></li>
+                    <li class="tab"><a class="waves-effect waves-light" href="#gventas">Gestion Ventas</a></li>
+                    <li class="tab"><a class="waves-effect waves-light" href="#noticias">Noticias</a></li>
+                    <li class="tab"><a class="waves-effect waves-light" target="_self" href="<?PHP echo site_url() ?>/AdminOtros"><i class="material-icons  left">build</i></a></li>
                 </ul>
             </div>
         </nav>
@@ -65,74 +65,81 @@
                     <h3>Resumen</h3>
                 </div>
                 <div id="gproductos" class="col s12">
-                    <div class="card-panel orange text-primary">
-                        <h4> Productos</h4>
+
+                    <div class="">
+                        <div class="row">
+
+                            <!--         -----------------MODAL PROVEEDOR----------------------------->
+                            <div id="modalprov" class="modal modal-fixed-footer">
+                                <div class="modal-content">
+
+                                    <h5>Agregar Proveedor</h5>
+                                    <form id="formprov">
+                                        <div class="col s12">
+                                            <div class="input-field">
+                                                <i class="material-icons prefix">account_circle</i>
+                                                <label for="rutprov">RUT: </label>                           
+                                                <input type="text" name="rutprov" required id="rutprov">
+                                            </div>
+
+                                            <div class="input-field">
+                                                <i class="material-icons prefix">face</i>
+                                                <label for="nombreprov">Nombre: </label>
+                                                <input type="text" name="nombreprov" required id="nombreprov"/>
+                                            </div>
+                                            <div class="input-field">
+                                                <i class="material-icons prefix">location_on</i>
+                                                <label for="direccionprov">Direccion: </label>
+                                                <input type="text" name="direccionprov" required id="direccionprov"/>
+                                            </div>
+                                            <div class="input-field col s12 m4">
+                                                <i class="material-icons prefix">location_on</i>
+                                                <label for="telefonoprov">Telefono: </label>
+                                                <input type="text" name="telefonoprov" required id="telefonoprov"/>
+                                            </div>
+                                            <div class="input-field col s12 m8">
+                                                <i class="material-icons prefix">mail</i>
+                                                <label for="emailprov">Email: </label>
+                                                <input type="text" name="emailprov" required id="emailprov"/>
+                                            </div>
+                                        </div>
+                                    </form>
+
+                                </div>
+                                <div class="modal-footer">                                      
+                                    <input type="submit" class="btn btn-primary" id="btnaddprov" value="Agregar Proveedor"/>
+                                </div>
+                            </div>
+                            <!-------------------------FIN MODAL AGREGAR PROVEEDOR-------->
+
+                        </div>
                     </div>
+                </div>
+                <div id="gservicios" class="col s12">                    
+                    <div class="card-panel orange text-primary">
+                        <h3>Servicios</h3>
+                    </div>
+
                     <div class="card-panel">
 
                         <div class="row"> 
                             <button type="submit" id="btnshowcat" class="btn btn-primary" ><i class="material-icons left">library_add</i>Agregar Categoria</button>
-                            <button type="submit" id="btnshowprod" class="btn btn-primary"> <i class="material-icons left">library_add</i>Agregar Producto</button>
+                            <button type="submit" id="btnshowserv" class="btn btn-primary" ><i class="material-icons left">library_add</i>Agregar Servicio</button>
                             <a href="#" class="btn-floating right" id="volver"><i class="material-icons">arrow_back</i></a>
                         </div>  
+
+
                         <div id="modulocat" class="row card-panel">
                             <?php include ('modulos/categorias.php'); ?>
-                        </div>
-                        <div id="moduloaddprod" class="row card-panel">
-                            <?php include ('modulos/addproduct.php'); ?>
                         </div>                            
-                        <div id="moduloverproducto" class="row card-panel">
-                            <?php include ('modulos/verproducto.php'); ?>
+                        <div id="moduloaddserv" class="row card-panel">
+                            <?php include ('modulos/addservice.php'); ?>
                         </div>
-
-                        <!--         -----------------MODAL PROVEEDOR----------------------------->
-                        <div id="modalprov" class="modal modal-fixed-footer">
-                            <div class="modal-content">
-
-                                <h5>Agregar Proveedor</h5>
-                                <form id="formprov">
-                                    <div class="col s12">
-                                        <div class="input-field">
-                                            <i class="material-icons prefix">account_circle</i>
-                                            <label for="rutprov">RUT: </label>                           
-                                            <input type="text" name="rutprov" required id="rutprov">
-                                        </div>
-
-                                        <div class="input-field">
-                                            <i class="material-icons prefix">face</i>
-                                            <label for="nombreprov">Nombre: </label>
-                                            <input type="text" name="nombreprov" required id="nombreprov"/>
-                                        </div>
-                                        <div class="input-field">
-                                            <i class="material-icons prefix">location_on</i>
-                                            <label for="direccionprov">Direccion: </label>
-                                            <input type="text" name="direccionprov" required id="direccionprov"/>
-                                        </div>
-                                        <div class="input-field col s12 m4">
-                                            <i class="material-icons prefix">location_on</i>
-                                            <label for="telefonoprov">Telefono: </label>
-                                            <input type="text" name="telefonoprov" required id="telefonoprov"/>
-                                        </div>
-                                        <div class="input-field col s12 m8">
-                                            <i class="material-icons prefix">mail</i>
-                                            <label for="emailprov">Email: </label>
-                                            <input type="text" name="emailprov" required id="emailprov"/>
-                                        </div>
-                                    </div>
-                                </form>
-
-                            </div>
-                            <div class="modal-footer">                                      
-                                <input type="submit" class="btn btn-primary" id="btnaddprov" value="Agregar Proveedor"/>
-                            </div>
-                        </div>
-                        <!-------------------------FIN MODAL AGREGAR PROVEEDOR-------->
-
 
                         <nav class="row hoverable">
                             <div class="nav-wrapper">
                                 <div class="input-field">
-                                    <input id="search" type="search" required placeholder="Buscar Producto">
+                                    <input id="search" type="search" required placeholder="Buscar Servicio">
                                     <label class="label-icon" for="search"><i class="material-icons">search</i></label>
                                     <i class="material-icons">close</i>
                                 </div>
@@ -140,7 +147,7 @@
                         </nav>
 
                         <div class="col s12 ">
-                            <table id="tablaproduct" class="responsive-table bordered">
+                            <table id="tablaserv" class="responsive-table bordered">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
@@ -148,11 +155,12 @@
                                         <th>Categoria</th>
                                         <th>Descripcion</th>
                                         <th>Precio</th>
-                                        <th>Stock</th>
-                                        <th>Proveedor</th>
+                                        <th>Disponibilidad</th>
+                                        <th>Fecha</th>
+                                        <th>Encargado</th>
                                     </tr>
                                 </thead>
-                                <tbody id="tbodyproduct">
+                                <tbody id="tbodyserv">
 
                                 </tbody>
                             </table>
@@ -166,10 +174,8 @@
                                 <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
                             </ul>
                         </div>
-
                     </div>
                 </div>
-
                 <div id="gventas" class="col s12">
                     <h3>Gestion de ventas</h3>
                     <nav>
@@ -246,7 +252,7 @@
 <!--<script src="<?php echo base_url(); ?>lib/js/mindmup-editabletable.js"></script>
     <script src="<?php echo base_url(); ?>lib/js/numeric-input-example.js"></script>
     Subir fotos chevere-->
-    <script src="<?php echo base_url(); ?>lib/js/dropify.min.js"></script>  
+    <script src="<?php echo base_url(); ?>lib/js/dropify.min.js"></script> 
     <script type="text/javascript">
         $(function() {
             //                Inicio de Materialize y Otros
@@ -266,149 +272,66 @@
                 today: 'Hoy',
                 clear: 'Limpiar',
                 close: 'Ok',
+                format: "dd-mm-yyyy",
                 closeOnSelect: false // Close upon selecting a date,
 
             });
-            //                Fin de inicio materialize
-            // $("#tablaproduct").editableTableWidget();
+
             ocultar();
             verTodasCategorias();
             getCategorias();
             verProveedores();
-            verProductos();
-            //Seccion de categoria///
+            verServicios();
+
             $("#btnshowcat").click(function(e) {
                 e.preventDefault();
                 ocultar();
                 $("#modulocat").show();
             });
-            $("#btnshowprod").click(function(e) {
-                e.preventDefault();
-                ocultar();
-                $("#moduloaddprod").show();
-            });
+
             $("#btnshowserv").click(function(e) {
                 e.preventDefault();
                 ocultar();
                 $("#moduloaddserv").show();
             });
-            $("#btnaddcat").click(function(e) {
-                e.preventDefault();
-                var nombre = $("#nombrecat").val();
-                if (nombre == "") {
-                    Materialize.toast("Debe ingresar un nombre", 1000);
-                } else {
-                    $.ajax({
-                        url: '<?php echo site_url() ?>/addCat',
-                        type: 'post',
-                        dataType: 'json',
-                        data: {"nombre": nombre}
-                    }).success(function(o) {
-                        Materialize.toast("Categoria agregada", 1000);
-                        $('#formcat').each(function() {
-                            this.reset();
-                        });
-                        verTodasCategorias();
-                        getCategorias();
-                    }).fail(function() {
-                        Materialize.toast("Error", 1000);
-                    });
-                }
+
+            $("#volver").click(function() {
+                ocultar();
             });
-            $("#btnaddsubcat").click(function(e) {
-                e.preventDefault();
-                var nombre = $("#nombresubcat").val();
-                var categoria = document.getElementById("idcat").value;
-                if (nombre == "" || formsubcat.idcat.value == 0) {
-                    Materialize.toast("Debe completar campos", 1000);
-                } else {
-                    $.ajax({
-                        url: '<?php echo site_url() ?>/addSubCat',
-                        type: 'post',
-                        dataType: 'json',
-                        data: {"nombre": nombre, "idcategoria": categoria}
-                    }).success(function(o) {
-                        Materialize.toast("SubCategoria Agregada", 1000);
-                        $('#formsubcat').each(function() {
-                            this.reset();
-                        });
-                        verTodasCategorias();
-                        getCategorias();
-                    }).fail(function() {
-                        Materialize.toast("Error", 1000);
-                    });
-                }
-            });
-            $("#btnaddprov").click(function(e) {
-                e.preventDefault();
-                var rut = $("#rutprov").val();
-                var nombre = $("#nombreprov").val();
-                var telefono = $("#telefonoprov").val();
-                var direccion = $("#direccionprov").val();
-                var correo = $("#emailprov").val();
-                if (rut == "" || nombre == "" || telefono == "" || direccion == "" || correo == "") {
-                    Materialize.toast("Faltan Campos", 1000);
-                } else {
-                    $.ajax({
-                        url: '<?php echo site_url() ?>/addProv',
-                        type: 'post',
-                        dataType: 'json',
-                        data: {"rutproveedor": rut, "nombre": nombre, "telefono": telefono,
-                            "direccion": direccion, "correo": correo, "idperfil": 4}
-                    }).success(function(o) {
-                        Materialize.toast("Proveedor registrado", 1000);
-                        $('#formprov').each(function() {
-                            this.reset();
-                        });
-                        verProveedores();
-                    }).fail(function() {
-                        Materialize.toast("Error", 1000);
-                    });
-                }
-            });
+
             //AGREGAR PRODUCTO///
-            $("#btnaddprodut1").click(function(e) {
+            $("#btnaddserv1").click(function(e) {
                 e.preventDefault();
-                var nombre = $("#nombreprod").val();
-                var categoria = document.getElementById("subcat").value;
-                var descripcion = $("#drescripcionprod").val();
-                var precio = $("#precioprod").val();
-                var stock = $("#stockprod").val();
-                var rutProv = document.getElementById("selectprov").value;
+                var nombre = $("#nombreserv").val();
+                var categoria = document.getElementById("subcatserv").value;
+                var descripcion = $("#drescripcionserv").val();
+                var precio = $("#precioserv").val();
+                var stock = $("#stockserv").val();
+                var fecha =$("#fechaserv").val();
+                var rutEncarg = document.getElementById("selectencarg").value;
                 if (nombre == "" || categoria == 0 || descripcion == "" ||
-                        precio == "" || stock == "" || rutProv == 0) {
+                        precio == "" || stock == "" || rutEncarg == 0) {
                     Materialize.toast("Faltan Campos", 1000);
                 } else {
                     $.ajax({
-                        url: '<?php echo site_url() ?>/addProd',
+                        url: '<?php echo site_url() ?>/addServ',
                         type: 'post',
                         dataType: 'json',
                         data: {"nombre": nombre, "idcategoria": categoria, "descripcion": descripcion,
-                            "precio": precio, "stock": stock, "rutencargado": rutProv}
+                            "precio": precio, "stock": stock, "fecha": fecha, "rutencargado": rutEncarg}
                     }).success(function(o) {
                         Materialize.toast("Registro OK", 1000);
-                        $('#formprod').each(function() {
+                        $('#formserv').each(function() {
                             this.reset();
                         });
-                        verProductos();
+                        verServicios();
                         $("#addproduct2").show();
                     }).fail(function() {
                         Materialize.toast("Error", 1000);
                     });
                 }
+            });
 
-            });
-            $("#volver").click(function() {
-                ocultar();
-            });
-            function ocultar() {
-                $("#moduloaddprod").hide();
-                $("#modulocat").hide();
-                $("#addproduct2").hide();
-                $("#moduloverproducto").hide();
-                $("#moduloaddserv").hide();
-            }
-            //ver//
             function verTodasCategorias() {
                 var url = "<?php echo site_url() ?>/getSubCat";
                 $("#tablacateg").empty();
@@ -473,53 +396,44 @@
                     });
                 });
             }
-            function verProductos() {
+            function verServicios() {
                 var url = "<?php echo site_url() ?>/getProd";
-                $("#tbodyproduct").empty();
+                $("#tbodyserv").empty();
                 $.getJSON(url, function(result) {
                     $.each(result, function(i, o) {
-                        if (o.idcategoria == 1) {
+                        if (o.idcategoria != 1) {
                             var fila = "<tr><td>" + o.idproducto + "</td>";
                             fila += "<td>" + o.nombre + "</td>";
                             fila += "<td>" + o.categoria + "</td>";
-                            fila += '<td><button id="prodver" value="'
+                            fila += '<td><button id="servver" value="'
                                     + o.idproducto + '|'
                                     + o.nombre + '|'
                                     + o.categoria + '|'
                                     + o.descripcion + '|'
                                     + o.precio + '|'
                                     + o.stock + '|'
+                                    + o.fecha + '|'
                                     + o.proveedor +
                                     '" class="btn-floating waves-effect waves-light" ><i class="material-icons">search</i></button></td>';
                             fila += "<td>" + o.precio + "</td>";
                             fila += "<td>" + o.stock + "</td>";
+                            fila += "<td>" + o.fecha + "</td>";
                             fila += "<td>" + o.proveedor + "</td>";
-                            $("#tbodyproduct").append(fila);
+                            $("#tbodyserv").append(fila);
                         }
                     });
                 });
             }
-            ///VER Y EDITAR PRODUCTOS///
-            $("body").on("click", "#prodver", function(e) {
-                e.preventDefault();
-                ocultar();
-                $('#formupdate').each(function() {
-                    this.reset();
-                });
-                var datos = $(this).val();
-                var fila = datos.split("|");
-                $("#upidprod").val(fila[0]);
-                $("#upnombreprod").val(fila[1]);
-                $("#upsubcat").val(fila[2]);
-                $("#updescripcionprod").val(fila[3]);
-                $("#upprecioprod").val(fila[4]);
-                $("#upstockprod").val(fila[5]);
-                $("#upselectprov").val(fila[6]);
-                $("#moduloverproducto").show();
-            });
+
+
+            function ocultar() {
+                $("#moduloaddprod").hide();
+                $("#modulocat").hide();
+                $("#addproduct2").hide();
+                $("#moduloverproducto").hide();
+                $("#moduloaddserv").hide();
+            }
         });
     </script>
-
 </body>
 </html>
-

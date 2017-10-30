@@ -62,7 +62,7 @@ $route["addClient"] = "ClientController/insertarCliente";
 $route["getSesion"] = "ClientController/getSesion";
 $route["getUser"] = "ClientController/getUser";
 $route["updateClient"] = "ClientController/actualizarCliente";
-
+$route["getClient"] = "AdminOtros/getClientes";
 //categorias
 $route["addCat"]="AdminController/insertarCategoria";
 $route["getCat"]="AdminController/getCategorias";
@@ -74,3 +74,6 @@ $route["addProv"]="AdminController/insertarProveedor";
 $route["getProv"]="AdminController/getProveedores";
 $route["addProd"]="AdminController/insertarProducto";
 $route["getProd"]="AdminController/getProductos";
+
+//SERVICIOS
+$route["addServ"]="AdminServ/insertarServicio";
