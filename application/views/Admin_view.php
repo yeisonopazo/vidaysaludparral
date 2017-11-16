@@ -258,7 +258,14 @@
             $('.scrollspy').scrollSpy();
             $('select').material_select();
             $('ul.tabs').tabs();
-            $('.dropify').dropify();
+            $('.dropify').dropify({
+                messages: {
+                    'default': 'Arrastre y suelte un archivo aquí o haga clic',
+                    'replace': 'Arrastrar y soltar o hacer clic para reemplazar',
+                    'remove': 'Eliminar',
+                    'error': 'Ooops, sucedió algo mal.'
+                }
+            });
             $('.tooltipped').tooltip({delay: 50});
             $('.datepicker').pickadate({
                 selectMonths: true, // Creates a dropdown to control month
@@ -404,7 +411,7 @@
             function ocultar() {
                 $("#moduloaddprod").hide();
                 $("#modulocat").hide();
-                $("#addproduct2").hide();
+//                $("#addproduct2").hide();
                 $("#moduloverproducto").hide();
                 $("#moduloaddserv").hide();
             }
@@ -424,6 +431,7 @@
                         fila += "<td>" + o.nombre + "</td>";
                         fila += "<td>" + o.idsubcategoria + "</td>";
                         fila += "<td>" + o.subcategoria + "</td>";
+                        fila += '<td><button id="editprov" class="btn-floating waves-effect waves-light" ><i class="material-icons">edit</i></button></td></tr>';
                         $("#tablacateg").append(fila);
                         if (o.nombre == "Productos") {
                             var subcat = "<option value='" + o.idsubcategoria + "'>" + o.subcategoria + "</option>";

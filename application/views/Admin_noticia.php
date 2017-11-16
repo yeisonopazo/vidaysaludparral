@@ -99,7 +99,8 @@
                         <div id="moduloaddserv" class="row card-panel">
                             <?php include ('modulos/addservice.php'); ?>
                         </div>
-                        <div id="clientes" class="row card-panel">
+                        <!---------------------------------CLIENTES--------------------------------->
+                        <div id="clientes" >
                             <nav class="row hoverable">
                                 <div class="nav-wrapper">
                                     <div class="input-field">
@@ -110,7 +111,7 @@
                                 </div>
                             </nav>
                             <!---------------------------------CLIENTES--------------------------------->
-                            <div id="gclient" class=" col s12 ">
+                            <div id="client" class=" col s12 ">
                                 <table id="tablaclient" class="bordered">
                                     <thead>
                                         <tr>
@@ -140,7 +141,7 @@
                             </div>
                         </div>
                         <!---------------------------------ENCARGADOS--------------------------------->
-                        <div id="encargados" class="row card-panel">
+                        <div id="encargados">
                             <nav class="row hoverable">
                                 <div class="nav-wrapper">
                                     <div class="input-field">
@@ -179,7 +180,7 @@
                             </div>
                         </div>
                         <!---------------------------------PROVEEDORES--------------------------------->
-                        <div id="proveedores" class="row card-panel">
+                        <div id="proveedores">
                             <nav class="row hoverable">
                                 <div class="nav-wrapper">
                                     <div class="input-field">
@@ -356,23 +357,9 @@
             //////////
             verTodasCategorias();
             getCategorias();
-        
-
-            $("#btnshowclient").click(function(e) {
-                ocultar();
-                $("#clientes").show();
-            });
-
-            $("#btnshowproveed").click(function(e) {
-                 ocultar();
-                $("#proveedores").show();
-
-            });
-
-            $("#btnshowencargados").click(function(e) {
-                ocultar();
-                $("#encargados").show();
-            });
+            verServicios();
+            
+            
 
             $("#btnshowcat").click(function(e) {
                 e.preventDefault();
@@ -391,7 +378,37 @@
             });
 
             //AGREGAR PRODUCTO///
-         
+            $("#btnaddserv1").click(function(e) {
+                e.preventDefault();
+                var nombre = $("#nombreserv").val();
+                var categoria = document.getElementById("subcatserv").value;
+                var descripcion = $("#drescripcionserv").val();
+                var precio = $("#precioserv").val();
+                var stock = $("#stockserv").val();
+                var fecha = $("#fechaserv").val();
+                var rutEncarg = document.getElementById("selectencarg").value;
+                if (nombre == "" || categoria == 0 || descripcion == "" ||
+                        precio == "" || stock == "" || rutEncarg == 0) {
+                    Materialize.toast("Faltan Campos", 1000);
+                } else {
+                    $.ajax({
+                        url: '<?php echo site_url() ?>/addServ',
+                        type: 'post',
+                        dataType: 'json',
+                        data: {"nombre": nombre, "idcategoria": categoria, "descripcion": descripcion,
+                            "precio": precio, "stock": stock, "fecha": fecha, "rutencargado": rutEncarg}
+                    }).success(function(o) {
+                        Materialize.toast("Registro OK", 1000);
+                        $('#formserv').each(function() {
+                            this.reset();
+                        });
+                        verServicios();
+                        $("#addproduct2").show();
+                    }).fail(function() {
+                        Materialize.toast("Error", 1000);
+                    });
+                }
+            });
 
             function verTodasCategorias() {
                 var url = "<?php echo site_url() ?>/getSubCat";
@@ -507,12 +524,9 @@
                 $("#addproduct2").hide();
                 $("#moduloverproducto").hide();
                 $("#moduloaddserv").hide();
-                $("#clientes").hide();
-                $("#proveedores").hide();
-                $("#encargados").hide();
-
             }
         });
     </script>
 </body>
 </html>
+

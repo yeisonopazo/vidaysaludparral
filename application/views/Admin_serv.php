@@ -283,6 +283,8 @@
             verProveedores();
             verServicios();
 
+           
+
             $("#btnshowcat").click(function(e) {
                 e.preventDefault();
                 ocultar();
@@ -307,7 +309,7 @@
                 var descripcion = $("#drescripcionserv").val();
                 var precio = $("#precioserv").val();
                 var stock = $("#stockserv").val();
-                var fecha =$("#fechaserv").val();
+                var fecha = $("#fechaserv").val();
                 var rutEncarg = document.getElementById("selectencarg").value;
                 if (nombre == "" || categoria == 0 || descripcion == "" ||
                         precio == "" || stock == "" || rutEncarg == 0) {

@@ -1,7 +1,7 @@
 <div class="row">
     
     <div id="addserv1" class="col s12 m4">
-        <h5  >Agregar un Producto</h5>
+        <h5  >Agregar un Servicio</h5>
         <form id="formserv">
             <div class="input-field">
                 <label for="nombreserv">Nombre de Servicio: </label>

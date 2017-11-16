@@ -52,89 +52,83 @@
         </nav>
     <main>
         <div class="container">
-            <h1>Vista Cliente</h1>
-            <div>
-                <div id="home" class="col s12">
-                    <h3>Resumen</h3>
+
+            <div id="home" class="col s12">
+                <h3>Resumen</h3>
 
 
+            </div>
+            <div id="mispedidos" class="col s12">
+                <h3> Mis Pedidos</h3>
+            </div>
+            <div id="misservicios" class="col s12">
+                <h3>  Mis Servicios</h3>
+            </div>
+            <!--            -------------MOSTRAR Y ACTUALIZAR DATOS CLIENTE-------->
+            <div id="misdatos" class="col s12">
+                <div class="card-panel blue-grey text-primary">
+                    <h3><i class="material-icons medium left">account_box</i> Mis Datos</h3>   
                 </div>
-                <div id="mispedidos" class="col s12">
-                    <h3> Mis Pedidos</h3>
-                </div>
-                <div id="misservicios" class="col s12">
-                    <h3>  Mis Servicios</h3>
-                </div>
-                <!--            -------------MOSTRAR Y ACTUALIZAR DATOS CLIENTE-------->
-                <div id="misdatos" class="col s12">
-                    <h3> Mis Datos</h3>
+
+                <div class="card-panel"> 
                     <div class="row">
-                        <div class="col s1">
-
-                        </div>
-                        <div class="col s10">
-                            <form method="POST">
-                                <div class="col s5">
-                                    <div >
-                                        <i class="material-icons prefix">account_circle</i>
-                                        <label for="rut">RUT: </label>                           
-                                        <input type="text" name="rut" id="rutusuario" disabled>
-                                    </div>
-
-                                    <div >
-                                        <i class="material-icons prefix">face</i>
-                                        <label for="nombre">Nombre: </label>
-                                        <input type="text" name="nombre" id="nombre"/>
-                                    </div>
-
-                                    <div >
-                                        <i class="material-icons prefix">face</i>
-                                        <label for="apellido">Apellido: </label>
-                                        <input type="text" name="apellido"  id="apellido"/>
-                                    </div>
-                                    <div >
-                                        <i class="material-icons prefix">location_on</i>
-                                        <label for="direccion">Direccion: </label>
-                                        <input type="text" name="direccion" id="direccion"/>
-                                    </div>
+                        <form >
+                            <div class="col s12 m5">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <label class="active" for="rut">RUT: </label>                           
+                                    <input type="text" value=" " name="rut" id="rutusuario" disabled>
                                 </div>
-                                <div class="col s5">
-                                    <div >
-                                        <i class="material-icons prefix">call</i>
-                                        <label for="telefono">Telefono: </label>
-                                        <input type="text" name="telefono" id="telefono"/>
-                                    </div>
 
-                                    <div >
-                                        <i class="material-icons prefix">mail</i>
-                                        <label for="correo">Correo: </label>
-                                        <input type="text" name="correo" id="correo"/>
-                                    </div>
-
-                                    <div >
-                                        <i class="material-icons prefix">vpn_key</i>
-                                        <label for="contraseña">Clave: </label>
-                                        <input type="text" name="clave" id="contraseña"/>
-                                    </div>
-                                    <div >
-                                        <i class="material-icons prefix">vpn_key</i>
-                                        <label for="confirContraseña">Confirmar Clave: </label>
-                                        <input type="text" name="confirContraseña" id="confirContraseña"/>
-                                    </div>
-                                    <div class="right">
-                                        <input type="submit" name="bt" id="btupdate" value="Actualizar" class="waves-effect btn"/>
-                                    </div>
+                                <div class="input-field">
+                                    <i class="material-icons prefix">face</i>
+                                    <label for="nombre">Nombre: </label>
+                                    <input type="text" value=" " name="nombre" id="nombre"/>
                                 </div>
-                            </form>
 
-                        </div>
+                                <div class="input-field">
+                                    <i class="material-icons prefix">face</i>
+                                    <label for="apellido">Apellido: </label>
+                                    <input type="text" value=" " name="apellido"  id="apellido"/>
+                                </div>
+                                <div class="input-field">
+                                    <i class="material-icons prefix">location_on</i>
+                                    <label for="direccion">Direccion: </label>
+                                    <input type="text" value=" " name="direccion" id="direccion"/>
+                                </div>
+                            </div>
+                            <div class="col s12 m5">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">call</i>
+                                    <label for="telefono">Telefono: </label>
+                                    <input type="text" value=" " name="telefono" id="telefono"/>
+                                </div>
+
+                                <div class="input-field">
+                                    <i class="material-icons prefix">mail</i>
+                                    <label for="correo">Correo: </label>
+                                    <input type="text" value=" " name="correo" id="correo"/>
+                                </div>
+
+                                <div class="input-field">
+                                    <i class="material-icons prefix">vpn_key</i>
+                                    <label for="contraseña">Clave: </label>
+                                    <input type="password" value=" " name="clave" id="contraseña"/>
+                                </div>
+                                <div class="input-field">
+                                    <i class="material-icons prefix">vpn_key</i>
+                                    <label for="confirContraseña">Confirmar Clave: </label>
+                                    <input type="password" value=" " name="confirContraseña" id="confirContraseña"/>
+                                </div>
+                                <div class="right">                                    
+                                    <button type="submit" name="bt" id="btupdate" class="waves-effect btn"><i class="material-icons left"> system_update_alt</i>Actualizar</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
-
         </div>
-
-
 
 
     </main>
