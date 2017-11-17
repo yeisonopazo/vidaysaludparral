@@ -1,7 +1,7 @@
 
 <h5>Agregar Categorias</h5>
 <div class="row col s12 m4">
-    <div class=" row col s12">
+    <div id="divcat" class=" row col s12">
         <form id="formcat">
             <h6>Categoria</h6>
             <div class="input-field">
@@ -20,7 +20,6 @@
                 <input type="text" name="subcat" required id="nombresubcat"/>
             </div>
             <select id="idcat" required name="idcat">
-                <option value="0" disabled selected>Selecciona una categoria</option>
                 
             </select>
             <input type="submit" id="btnaddsubcat" value="Agregar Sub-Categoria" class="btn small"/>

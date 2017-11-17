@@ -12,9 +12,20 @@ class AdminModel extends CI_Model {
             "descripcion" => $descripcion,
             "precio" => $precio,
             "stock" => $stock,
-            "fecha"=>$fecha,
+            "fecha" => $fecha,
             "rutencargado" => $rutencargado);
         $this->db->insert("producto", $datos);
+    }
+
+    function actualizarProducto($idproducto, $nombre, $idcat, $descripcion, $precio, $stock, $rutencargado) {
+        $this->db->where("idproducto", $idproducto);
+        $datos = array("nombre" => $nombre,
+            "idcategoria" => $idcat,
+            "descripcion" => $descripcion,
+            "precio" => $precio,
+            "stock" => $stock,       
+            "rutencargado" => $rutencargado);
+        $this->db->update("producto", $datos);
     }
 
     //    function getVentas() {
@@ -27,13 +38,13 @@ class AdminModel extends CI_Model {
 //    }
     function getProductos() {
         $this->db->select("p.idproducto, p.nombre,"
-                . "sub.idsubcategoria, sub.nombre as categoria,"
+                . "sub.idsubcategoria, sub.nombre as nombresubcat,"
                 . "c.idcategoria, c.nombre nombcateg,"
                 . " p.descripcion, p.precio, p.stock, p.fecha,"
-                . " prov.rutencargado, prov.nombre as proveedor");
+                . " prov.rutencargado, prov.nombre as nombreprov");
         $this->db->from("producto p");
-        $this->db->join("subcategoria sub", "sub.idsubcategoria=p.idcategoria");
-        $this->db->join("categoria c", "sub.idsubcategoria=c.idcategoria");
+        $this->db->join("subcategoria sub", "sub.idsubcategoria=p.idsubcategoria");
+        $this->db->join("categoria c", "sub.idcategoria=c.idcategoria");
         $this->db->join("encargado prov", "p.rutencargado=prov.rutencargado");
         return $this->db->get()->result();
     }

@@ -118,9 +118,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <label for="contraseña">Contraseña: </label>  
                                 <input type="password" id="contraseña" class="form-control"/>
                             </div>
-                            <div class="input-field right">
+                            <div class="right">
                                 <a href="#">¿Perdiste la contraseña?</a>
-                                <input id="login" type="submit" class="btn btn-primary waves-effect" value="Ingresar" /> 
+                                <input id="login" type="submit" class="btn" value="Ingresar" /> 
                             </div>
                         </form>
 

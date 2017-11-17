@@ -3,7 +3,7 @@
         <h5 >Ver Producto</h5>
         <form id="formupdate">
             <div class="input-field">
-                <label class="active" for="upidprod">Nombre producto: </label>
+                <label class="active" for="upidprod">ID producto: </label>
                 <input type="text" value=" " disabled id="upidprod">
             </div>
             <div class="input-field">
@@ -34,7 +34,7 @@
                 <a id="addprov2" class="btn-floating waves-effect waves-light green modal-trigger" href="#modalprov"><i class="material-icons">add</i></a>
             </div>
 
-            <button type="submit" class="btn waves-effect waves-light" id="btnaddprodut1"><i class="material-icons left">mode_edit</i>Actualizar Producto</button>
+            <button type="submit" class="btn waves-effect waves-light" id="btnupprodut1"><i class="material-icons left">mode_edit</i>Actualizar Producto</button>
         </form>
     </div>
     <div id="verprod2" class="col s12 m8">
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="row">
-            <input type="submit" class="btn right" id="btnaddprodut2" value="Finalizar" />
+            <input type="submit" class="btn right" id="btnupprodut2" value="Finalizar" />
         </div>
     </div>
 
