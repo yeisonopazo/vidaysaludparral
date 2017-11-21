@@ -52,7 +52,7 @@
                     <li class="tab"><a class="waves-effect waves-light" target="_self" href="<?PHP echo site_url() ?>/AdminController">Gestion Productos</a></li>
                     <li class="tab"><a class="waves-effect waves-light" target="_self" href="<?PHP echo site_url() ?>/AdminServ">Gestion Servicios</a></li>
                     <li class="tab"><a class="waves-effect waves-light" href="#gventas">Gestion Ventas</a></li>
-                    <li class="tab"><a class="waves-effect waves-light" href="#noticias">Noticias</a></li>
+                    <li class="tab"><a class="waves-effect waves-light" target="_self" href="<?PHP echo site_url() ?>/AdminNotice">Noticias</a></li>
                     <li class="tab"><a class="waves-effect waves-light active" href="#gotros"><i class="material-icons left">build</i></a></li>
                 </ul>
             </div>
@@ -76,7 +76,7 @@
 
                 </div>
                 <div id="noticias" class="col s12">
-                    <h3>Noticias</h3>  
+                   
                 </div>
 
                 <div id="gotros" class="col s12">                    
@@ -337,7 +337,14 @@
             $('.scrollspy').scrollSpy();
             $('select').material_select();
             $('ul.tabs').tabs();
-            $('.dropify').dropify();
+            $('.dropify').dropify({                    
+                    messages: {
+                        'default': 'Arrastre y suelte un archivo aquí o haga clic',
+                        'replace': 'Arrastrar y soltar o hacer clic para reemplazar',
+                        'remove': 'Eliminar',
+                        'error': 'Ooops, sucedió algo mal.'
+                    }
+                });
             $('.tooltipped').tooltip({delay: 50});
             $('.datepicker').pickadate({
                 selectMonths: true, // Creates a dropdown to control month

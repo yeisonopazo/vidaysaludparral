@@ -52,7 +52,7 @@
                     <li class="tab"><a class="waves-effect waves-light active"  href="#gproductos">Gestion Productos</a></li>
                     <li class="tab"><a class="waves-effect waves-light" target="_self" href="<?PHP echo site_url() ?>/AdminServ">Gestion Servicios</a></li>
                     <li class="tab"><a class="waves-effect waves-light"  href="#gventas">Gestion Ventas</a></li>
-                    <li class="tab"><a class="waves-effect waves-light"  href="#noticias">Noticias</a></li>
+                    <li class="tab"><a class="waves-effect waves-light"  target="_self" href="<?PHP echo site_url() ?>/AdminNotice">Noticias</a></li>
                     <li class="tab"><a class="waves-effect waves-light" target="_self" href="<?PHP echo site_url() ?>/AdminOtros"><i class="material-icons left">build</i></a></li>
                 </ul>       
             </div>
@@ -173,18 +173,10 @@
 
                     <div id="gventas" class="col s12">
                         <h3>Gestion de ventas</h3>
-                        <nav>
-                            <div class="nav-wrapper">
-                                <div class="col s12">
-                                    <a href="#!" class="breadcrumb">First</a>
-                                    <a href="#!" class="breadcrumb">Second</a>
-                                    <a href="#!" class="breadcrumb">Third</a>
-                                </div>
-                            </div>
-                        </nav>
+                     
                     </div>
                     <div id="noticias" class="col s12">
-                        <h3>Noticias</h3>  
+                       
                     </div>
                 </div>
 
@@ -248,6 +240,7 @@
         <script src="<?php echo base_url(); ?>lib/js/numeric-input-example.js"></script>
         Subir fotos chevere-->
         <script src="<?php echo base_url(); ?>lib/js/dropify.min.js"></script>  
+        <script src="<?php echo base_url(); ?>lib/js/jquery.rut.js"></script>
         <script type="text/javascript">
             $(function () {
                 //                Inicio de Materialize y Otros
@@ -301,29 +294,10 @@
                     ocultar();
                     $("#moduloaddserv").show();
                 });
-                $("#btnaddcat").click(function (e) {
-                    e.preventDefault();
-                    var nombre = $("#nombrecat").val();
-                    if (nombre == "") {
-                        Materialize.toast("Debe ingresar un nombre", 1000);
-                    } else {
-                        $.ajax({
-                            url: '<?php echo site_url() ?>/addCat',
-                            type: 'post',
-                            dataType: 'json',
-                            data: {"nombre": nombre}
-                        }).success(function (o) {
-                            Materialize.toast("Categoria agregada", 1000);
-                            $('#formcat').each(function () {
-                                this.reset();
-                            });
-                            verTodasCategorias();
-                            getCategorias();
-                        }).fail(function () {
-                            Materialize.toast("Error", 1000);
-                        });
-                    }
-                });
+                
+                $("#rutprov").rut({validateOn: 'change keyup'});
+                
+                //////AGREGAR SUB-CATEGORIA//////////
                 $("#btnaddsubcat").click(function (e) {
                     e.preventDefault();
                     var nombre = $("#nombresubcat").val();
@@ -393,7 +367,7 @@
                             type: 'post',
                             dataType: 'json',
                             data: {"nombre": nombre, "idcategoria": categoria, "descripcion": descripcion,
-                                "precio": precio, "stock": stock, "rutencargado": rutProv}
+                                "precio": precio, "stock": stock, "fecha": "17-11-2017", "rutencargado": rutProv}
                         }).success(function (o) {
                             Materialize.toast("Registro OK", 1000);
                             $('#formprod').each(function () {

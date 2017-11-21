@@ -6,9 +6,9 @@ class AdminModel extends CI_Model {
         parent::__construct();
     }
 
-    function insertarProducto($nombre, $idcat, $descripcion, $precio, $stock, $fecha, $rutencargado) {
+    function insertarProducto($nombre, $idsubcategoria, $descripcion, $precio, $stock, $fecha, $rutencargado) {
         $datos = array("nombre" => $nombre,
-            "idcategoria" => $idcat,
+            "idsubcategoria" => $idsubcategoria,
             "descripcion" => $descripcion,
             "precio" => $precio,
             "stock" => $stock,
@@ -17,10 +17,10 @@ class AdminModel extends CI_Model {
         $this->db->insert("producto", $datos);
     }
 
-    function actualizarProducto($idproducto, $nombre, $idcat, $descripcion, $precio, $stock, $rutencargado) {
+    function actualizarProducto($idproducto, $nombre, $idcategoria, $descripcion, $precio, $stock, $rutencargado) {
         $this->db->where("idproducto", $idproducto);
         $datos = array("nombre" => $nombre,
-            "idcategoria" => $idcat,
+            "idsubcategoria" => $idcategoria,
             "descripcion" => $descripcion,
             "precio" => $precio,
             "stock" => $stock,       

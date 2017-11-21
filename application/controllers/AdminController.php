@@ -17,21 +17,23 @@ class AdminController extends CI_Controller {
         $descripcion = $this->input->post("descripcion");
         $precio = $this->input->post("precio");
         $stock = $this->input->post("stock");
+        $fecha=$this->input->post("fecha");
         $rutencargado = $this->input->post("rutencargado");
-        $this->AdminModel->insertarProducto($nombre, $idcat, $descripcion, $precio, $stock, $rutencargado);
+        
+        $this->AdminModel->insertarProducto($nombre, $idcat, $descripcion, $precio, $stock, $fecha, $rutencargado);
         echo json_encode(array("msg" => "Producto Agregado"));
     }
 
     public function actualizarProducto() {
         $idproducto = $this->input->post("idproducto");
         $nombre = $this->input->post("nombre");
-        $idcat = $this->input->post("idcategoria");
+        $idcategoria = $this->input->post("idcategoria");
         $descripcion = $this->input->post("descripcion");
         $precio = $this->input->post("precio");
         $stock = $this->input->post("stock");
         $rutencargado = $this->input->post("rutencargado");
         
-        $this->AdminModel->actualizarProducto($idproducto, $nombre, $idcat, $descripcion, $precio, $stock, $rutencargado);
+        $this->AdminModel->actualizarProducto($idproducto, $nombre, $idcategoria, $descripcion, $precio, $stock, $rutencargado);
         echo json_encode(array("msg" => "Actualizado!"));
     }
 

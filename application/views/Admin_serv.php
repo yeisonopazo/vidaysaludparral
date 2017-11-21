@@ -52,7 +52,7 @@
                     <li class="tab"><a class="waves-effect waves-light" target="_self" href="<?PHP echo site_url() ?>/AdminController">Gestion Productos</a></li>
                     <li class="tab"><a class="active" href="#gservicios">Gestion Servicios</a></li>
                     <li class="tab"><a class="waves-effect waves-light" href="#gventas">Gestion Ventas</a></li>
-                    <li class="tab"><a class="waves-effect waves-light" href="#noticias">Noticias</a></li>
+                    <li class="tab"><a class="waves-effect waves-light" target="_self" href="<?PHP echo site_url() ?>/AdminNotice">Noticias</a></li>
                     <li class="tab"><a class="waves-effect waves-light" target="_self" href="<?PHP echo site_url() ?>/AdminOtros"><i class="material-icons  left">build</i></a></li>
                 </ul>
             </div>
@@ -68,12 +68,10 @@
 
                         <div class="">
                             <div class="row">
-
-                                <!--         -----------------MODAL PROVEEDOR----------------------------->
+                                <!--         -----------------MODAL ENCARGADO----------------------------->
                                 <div id="modalprov" class="modal modal-fixed-footer">
                                     <div class="modal-content">
-
-                                        <h5>Agregar Proveedor</h5>
+                                        <h5>Agregar Encargado</h5>
                                         <form id="formprov">
                                             <div class="col s12">
                                                 <div class="input-field">
@@ -107,10 +105,10 @@
 
                                     </div>
                                     <div class="modal-footer">                                      
-                                        <input type="submit" class="btn btn-primary" id="btnaddprov" value="Agregar Proveedor"/>
+                                        <input type="submit" class="btn btn-primary" id="btnaddprov" value="Agregar Encargado"/>
                                     </div>
                                 </div>
-                                <!-------------------------FIN MODAL AGREGAR PROVEEDOR-------->
+                                <!-------------------------FIN MODAL AGREGAR ENCARGADO-------->
 
                             </div>
                         </div>
@@ -178,18 +176,10 @@
                     </div>
                     <div id="gventas" class="col s12">
                         <h3>Gestion de ventas</h3>
-                        <nav>
-                            <div class="nav-wrapper">
-                                <div class="col s12">
-                                    <a href="#!" class="breadcrumb">First</a>
-                                    <a href="#!" class="breadcrumb">Second</a>
-                                    <a href="#!" class="breadcrumb">Third</a>
-                                </div>
-                            </div>
-                        </nav>
+
                     </div>
                     <div id="noticias" class="col s12">
-                        <h3>Noticias</h3>  
+
                     </div>
                 </div>
 
@@ -253,6 +243,7 @@
         <script src="<?php echo base_url(); ?>lib/js/numeric-input-example.js"></script>
         Subir fotos chevere-->
         <script src="<?php echo base_url(); ?>lib/js/dropify.min.js"></script> 
+        <script src="<?php echo base_url(); ?>lib/js/jquery.rut.js"></script>
         <script type="text/javascript">
             $(function () {
                 //                Inicio de Materialize y Otros
@@ -264,7 +255,14 @@
                 $('.scrollspy').scrollSpy();
                 $('select').material_select();
                 $('ul.tabs').tabs();
-                $('.dropify').dropify();
+                $('.dropify').dropify({
+                    messages: {
+                        'default': 'Arrastre y suelte un archivo aquí o haga clic',
+                        'replace': 'Arrastrar y soltar o hacer clic para reemplazar',
+                        'remove': 'Eliminar',
+                        'error': 'Ooops, sucedió algo mal.'
+                    }
+                });
                 $('.tooltipped').tooltip({delay: 50});
                 $('.datepicker').pickadate({
                     selectMonths: true, // Creates a dropdown to control month
@@ -299,6 +297,59 @@
 
                 $("#volver").click(function () {
                     ocultar();
+                });
+
+                $("#rutprov").rut({validateOn: 'change keyup'});
+                
+                /////////AGREGAR CATEGORIA///////////
+                $("#btnaddcat").click(function (e) {
+                    e.preventDefault();
+                    var nombre = $("#nombrecat").val();
+                    if (nombre == "") {
+                        Materialize.toast("Debe ingresar un nombre", 1000);
+                    } else {
+                        $.ajax({
+                            url: '<?php echo site_url() ?>/addCat',
+                            type: 'post',
+                            dataType: 'json',
+                            data: {"nombre": nombre}
+                        }).success(function (o) {
+                            Materialize.toast("Categoria agregada", 1000);
+                            $('#formcat').each(function () {
+                                this.reset();
+                            });
+                            verTodasCategorias();
+                            getCategorias();
+                        }).fail(function () {
+                            Materialize.toast("Error", 1000);
+                        });
+                    }
+                });
+
+                //////////AGREGAR UBCATEGORIA//////
+                $("#btnaddsubcat").click(function (e) {
+                    e.preventDefault();
+                    var nombre = $("#nombresubcat").val();
+                    var categoria = document.getElementById("idcat").value;
+                    if (nombre == "" || formsubcat.idcat.value == 0) {
+                        Materialize.toast("Debe completar campos", 1000);
+                    } else {
+                        $.ajax({
+                            url: '<?php echo site_url() ?>/addSubCat',
+                            type: 'post',
+                            dataType: 'json',
+                            data: {"nombre": nombre, "idcategoria": categoria}
+                        }).success(function (o) {
+                            Materialize.toast("SubCategoria Agregada", 1000);
+                            $('#formsubcat').each(function () {
+                                this.reset();
+                            });
+                            verTodasCategorias();
+                            getCategorias();
+                        }).fail(function () {
+                            Materialize.toast("Error", 1000);
+                        });
+                    }
                 });
 
                 //AGREGAR PRODUCTO///
