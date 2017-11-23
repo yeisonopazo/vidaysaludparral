@@ -26,7 +26,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </style>
     <body>
 
-        <nav class="light-blue lighten-1 nav-extended" role="navigation">
+        <nav class="teal nav-extended" role="navigation">
             <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Vida Y Salud Parral</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a class="waves-effect waves-light modal-trigger" href="#modal1">Iniciar Sesion</a></li>
@@ -40,7 +40,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </ul>
                 <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
                 <div class="nav-content">
-                    <ul class="tabs tabs-transparent">
+                    <ul class="tabs tabs-transparent tabs-fixed-width">
                         <li class="tab"><a class="active" href="#home">Home</a></li>
                         <li class="tab"><a href="#productos">Productos</a></li>
                         <li class="tab"><a href="#servicios">Servicios</a></li>
@@ -48,6 +48,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <li class="tab"><a href="#contacto">Contacto</a></li>
                     </ul>
                 </div>
+                
             </div>
 
 
@@ -252,6 +253,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="divider"></div>
                     <h4 class="center">PRODUCTOS</h4>
                     <div class="divider"></div>
+                    <br>
+
+                    <nav class="row">
+                        <div class="nav-wrapper teal">
+                            <div class="input-field">
+                                <input id="search" type="search" required placeholder="Que buscas??">
+                                <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                <i class="material-icons">close</i>
+                            </div>
+                        </div>
+                    </nav>
+
                     <div class="col s3">
                         <div class="card hoverable">
                             <div class="card-image waves-effect waves-block waves-light">
@@ -402,7 +415,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
 
         </main>
-        <footer class="page-footer blue lighten-1">
+        <footer class="page-footer teal">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
@@ -411,29 +424,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
                     </div>
-                    <div class="col l3 s12">
-                        <h5 class="white-text">Settings</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">Link 1</a></li>
-                            <li><a class="white-text" href="#!">Link 2</a></li>
-                            <li><a class="white-text" href="#!">Link 3</a></li>
-                            <li><a class="white-text" href="#!">Link 4</a></li>
-                        </ul>
-                    </div>
-                    <div class="col l3 s12">
-                        <h5 class="white-text">Connect</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">Link 1</a></li>
-                            <li><a class="white-text" href="#!">Link 2</a></li>
-                            <li><a class="white-text" href="#!">Link 3</a></li>
-                            <li><a class="white-text" href="#!">Link 4</a></li>
-                        </ul>
+                    <div class="col l6 s12">
+                        <div id="google-map-tab" class="col s12 hoverable center-align">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2709.4152998642435!2d-71.81904501372995!3d-36.140850900596774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb3ec9bb85f0be6b2!2sVida+y+Salud%2C+Centro+de+Medicina+Complementaria%2C+Parral!5e0!3m2!1ses!2scl!4v1511405544855" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="footer-copyright">
                 <div class="container">
-                    Desarrollado por <a class="orange-text text-lighten-3" href="#">Yeison Opazo, Inacap Talca</a>
+                    Desarrollado por <a class="white-text text-lighten-3" href="#">Yeison Opazo, Inacap Talca</a>
                 </div>
             </div>
         </footer>
@@ -443,7 +443,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
         <script src="<?php echo base_url(); ?>lib/js/materialize.js"></script>
         <script src="<?php echo base_url(); ?>lib/js/jquery.rut.js"></script>
-        <script src="js/init.js"></script>
+        <script src="<?php echo base_url(); ?>lib/js/init.js"></script>
         <script type="text/javascript">
             $(function () {
                 //                Inicio de Materialize
@@ -452,6 +452,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $('.carousel.carousel-slider').carousel({fullWidth: true});
                 $('.carousel').carousel('next', 3);
                 $('.slider').slider();
+                $('ul.tabs').tabs();
+
                 //                Fin de inicio materialize
 
                 //VALIDA RUT
@@ -464,7 +466,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $("#rutok").val("invalido");
                 });
                 $("#rutusuario").rut({validateOn: 'change keyup'});
-
+                
+                $("#ircontacto").click(function () {
+                    $("#contacto").focus();
+                });
 
 //Inicio de Sesion
                 $("#login").click(function (e) {

@@ -28,7 +28,7 @@
     <body>
         <!-- NAV-->
 
-        <nav class="light-blue lighten-1 nav-extended " role="navigation">
+        <nav class="teal nav-extended " role="navigation">
             <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Vida y Salud Parral</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a class="waves-effect waves-light" href="<?PHP echo site_url() ?>/welcome">Salir</a></li>
@@ -114,7 +114,7 @@
                         </div>
                     </div>
                     <div id="gservicios" class="col s12">                    
-                        <div class="card-panel orange text-primary">
+                        <div class="card-panel teal darken-3 text-primary">
                             <h3>Servicios</h3>
                         </div>
 
@@ -134,7 +134,7 @@
                                 <?php include ('modulos/addservice.php'); ?>
                             </div>
 
-                            <nav class="row hoverable">
+                            <nav class="row hoverable teal darken-3">
                                 <div class="nav-wrapper">
                                     <div class="input-field">
                                         <input id="search" type="search" required placeholder="Buscar Servicio">
@@ -164,7 +164,7 @@
                                 </table>
                                 <ul class="pagination">
                                     <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-                                    <li class="active"><a href="#!">1</a></li>
+                                    <li class="active grey darken-4"><a href="#!">1</a></li>
                                     <li class="waves-effect"><a href="#!">2</a></li>
                                     <li class="waves-effect"><a href="#!">3</a></li>
                                     <li class="waves-effect"><a href="#!">4</a></li>
@@ -196,7 +196,7 @@
                 </div>
             </div>
         </main>
-        <footer class="page-footer blue lighten-1">
+        <footer class="page-footer teal">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">

@@ -28,7 +28,7 @@
     <body>
         <!-- NAV-->
 
-        <nav class="light-blue lighten-1 nav-extended " role="navigation">
+        <nav class="teal nav-extended " role="navigation">
             <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Vida y Salud Parral</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a class="waves-effect waves-light" href="<?PHP echo site_url() ?>/welcome">Salir</a></li>
@@ -74,7 +74,7 @@
 
                     </div>
                     <div id="noticias" class="col s12">
-                        <div class="card-panel orange text-primary">
+                        <div class="card-panel teal darken-3 text-primary">
                             <h3>Noticias <i class="material-icons medium left">public</i></h3>
                         </div>
                         <div class="card-panel">
@@ -135,7 +135,7 @@
                     </div>
                 </div>
         </main>
-        <footer class="page-footer blue lighten-1">
+        <footer class="page-footer teal">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">

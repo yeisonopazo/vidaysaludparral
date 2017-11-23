@@ -22,7 +22,7 @@
         }
     </style>
     <body>
-        <nav class="light-blue lighten-1 nav-extended" role="navigation">
+        <nav class="teal nav-extended" role="navigation">
             <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Vida y Salud Parral</a>
                 <ul class="right hide-on-med-and-down">
                     <li><a id="saludo1" href=""></a></li>
@@ -66,7 +66,7 @@
             </div>
             <!--            -------------MOSTRAR Y ACTUALIZAR DATOS CLIENTE-------->
             <div id="misdatos" class="col s12">
-                <div class="card-panel blue-grey text-primary">
+                <div class="card-panel teal darken-4 text-primary">
                     <h3><i class="material-icons medium left">account_box</i> Mis Datos</h3>   
                 </div>
 
@@ -132,7 +132,7 @@
 
 
     </main>
-    <footer class="page-footer blue lighten-1">
+    <footer class="page-footer teal">
         <div class="container">
             <div class="row">
                 <div class="col l6 s12">
@@ -210,8 +210,8 @@
                     $("#saludo1").empty();
                     $("#saludo2").empty();
                     $.each(obj, function(i, u) {
-                        $("#saludo1").append("Hola " + u.nombre + " " + u.apellido + "!");
-                        $("#saludo2").append("Hola " + u.nombre + " " + u.apellido + "!");
+                        $("#saludo1").append("Bienvenido " + u.nombre + " " + u.apellido + "!");
+                        $("#saludo2").append("Bienvenido " + u.nombre + " " + u.apellido + "!");
                         $("#nombre").val(u.nombre);
                         $("#apellido").val(u.apellido);
                         $("#direccion").val(u.direccion);
