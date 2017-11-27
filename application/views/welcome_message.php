@@ -26,39 +26,41 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </style>
     <body>
 
-        <nav class="teal nav-extended" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Vida Y Salud Parral</a>
+        <nav class="nav-extended teal" role="navigation">
+            <div class="nav-wrapper container ">
+                <a id="logo-container" href="#" class="brand-logo center-align">Vida Y Salud Parral</a>
+                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
                 <ul class="right hide-on-med-and-down">
                     <li><a class="waves-effect waves-light modal-trigger" href="#modal1">Iniciar Sesion</a></li>
                     <li><a class="waves-effect waves-light modal-trigger" href="#modal2">Registrarse</a></li>
                     <li><a href="#"><i class="material-icons">shopping_cart</i> </a></li>
-                </ul>
+                </ul>                 
                 <ul id="nav-mobile" class="side-nav">
-                    <li><a class="waves-effect waves-light modal-trigger" href="#modal1">Iniciar Sesion</a></li>
-                    <li><a class="waves-effect waves-light modal-trigger" href="#modal2">Registrarse</a></li>
-                    <li><a href="#"><i class="material-icons">shopping_cart</i> </a></li>
-                </ul>
-                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-                <div class="nav-content">
-                    <ul class="tabs tabs-transparent tabs-fixed-width">
-                        <li class="tab"><a class="active" href="#home">Home</a></li>
-                        <li class="tab"><a href="#productos">Productos</a></li>
-                        <li class="tab"><a href="#servicios">Servicios</a></li>
-                        <li class="tab"><a href="#about">Quienes Somos</a></li>
-                        <li class="tab"><a href="#contacto">Contacto</a></li>
-                    </ul>
-                </div>
-                
+                    <li><a class="modal-trigger" href="#modal1">Iniciar Sesion</a></li>
+                    <li><a class="modal-trigger" href="#modal2">Registrarse</a></li>
+                    <div class="divider"></div>
+                    <li><a href="#home"><i class="material-icons">home</i>Inicio</a></li>
+                    <li><a href="#about"><i class="material-icons">business</i>Quienes Somos</a></li>  
+                    <li><a href="#productos" class="modal-trigger" ><i class="material-icons">store_mall_directory</i>Productos</a></li>
+                    <li><a href="#"><i class="material-icons">shopping_cart</i></a></li>
+                </ul>            
             </div>
-
-
-
+            <div class="nav-wrapper container">
+                <ul class="hide-on-med-and-down">
+                    <li><a class="waves-effect waves-light" class="active" href="#home">Home</a></li>
+                    <li><a class="waves-effect waves-light" href="#productos">Productos</a></li>
+                    <li><a class="waves-effect waves-light" href="#productos">Servicios</a></li>
+                    <li><a class="waves-effect waves-light" href="#about">Quienes Somos</a></li>
+                    <li><a class="waves-effect waves-light" href="#about">Contacto</a></li>
+                </ul>
+            </div>
         </nav>
+
         <main>
 
             <!--Noticias-->
             <div class="">
-                <div class="slider">
+                <div class="slider scrollspy" id="home">
                     <ul class="slides">
 
                         <li>
@@ -248,10 +250,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <br><br>
             </div>
             <!--            VISTA DE PRODUCTOS-->
-            <div class="container">
+            <div class="container scrollspy" id="productos">
                 <div class="row">
                     <div class="divider"></div>
-                    <h4 class="center">PRODUCTOS</h4>
+                    <h4 class="center">PRODUCTOS Y SERVICIOS</h4>
                     <div class="divider"></div>
                     <br>
 
@@ -414,19 +416,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             </div>
 
+            <div class="fixed-action-btn">
+                <a class="btn-floating btn-large teal">
+                    <i class="large material-icons">menu</i>
+                </a>
+                <ul>
+                    <li><a href="#home" class="btn-floating red"><i class="material-icons">home</i></a></li>
+                    <li><a href="#productos" class="btn-floating yellow darken-1"><i class="material-icons">store_mall_directory</i></a></li>
+                    <li><a href="#about" class="btn-floating green"><i class="material-icons">business</i></a></li>                  
+                </ul>
+            </div>
+
         </main>
         <footer class="page-footer teal">
             <div class="container">
                 <div class="row">
-                    <div class="col l6 s12">
+                    <div class="col l6 s12 scrollspy" id="about">
                         <h5 class="white-text">Acerca De</h5>
                         <p class="grey-text text-lighten-4">Nuestro objetivo, es acercar a un sin número de terapias Complementarias, y a los mejores terapeutas, para así aportar un granito de arena en el logro de un Equilibrio en tu salud y la de todos aquellos que trabajamos para ello.</p>
 
+                        <p class="grey-text text-lighten-4"><i class="material-icons">call</i> 73 - 2 46 21 28 / +569 - 9265 9369</p>
+
+                        <p class="grey-text text-lighten-4"><i class="material-icons">mail</i> vidaysalud@centrodemedicinacomplementaria.cl</p>
+
+                        <p class="grey-text text-lighten-4"> Lunes a Viernes 9:00 - 13:00, 15:00 - 19:00<br>
+                            Sabados 9:00 - 13:00
+                        </p>
 
                     </div>
                     <div class="col l6 s12">
-                        <div id="google-map-tab" class="col s12 hoverable center-align">
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2709.4152998642435!2d-71.81904501372995!3d-36.140850900596774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb3ec9bb85f0be6b2!2sVida+y+Salud%2C+Centro+de+Medicina+Complementaria%2C+Parral!5e0!3m2!1ses!2scl!4v1511405544855" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
+                        <div id="google-map-tab" class="col s12 center-align">
+
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2709.4152998642435!2d-71.81904501372995!3d-36.140850900596774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb3ec9bb85f0be6b2!2sVida+y+Salud%2C+Centro+de+Medicina+Complementaria%2C+Parral!5e0!3m2!1ses!2scl!4v1511405544855" width="440" height="300" frameborder="0" style="border:0" allowfullscreen class="responsive-img z-depth-5"></iframe>
                         </div>
                     </div>
                 </div>
@@ -466,12 +487,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $("#rutok").val("invalido");
                 });
                 $("#rutusuario").rut({validateOn: 'change keyup'});
-                
+
                 $("#ircontacto").click(function () {
                     $("#contacto").focus();
                 });
 
-//Inicio de Sesion
+                //Inicio de Sesion
                 $("#login").click(function (e) {
                     e.preventDefault();
                     var rutusuario = $("#rutusuario").val();
@@ -495,7 +516,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             }
 
                         }).fail(function () {
-                            Materialize.toast("Consulta fallida", 1000);
+                            Materialize.toast("Usuario no registrado", 1000);
                         });
                     }
 
@@ -552,6 +573,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 });
                 //----------FIN REGISTRAR----------
+
             });
         </script>
 

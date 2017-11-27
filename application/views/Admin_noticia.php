@@ -78,59 +78,57 @@
                             <h3>Noticias <i class="material-icons medium left">public</i></h3>
                         </div>
                         <div class="card-panel">
-                            <form></form>
-                            <div class="row">
-                                <h5>Agregar una Noticia</h5>
-                                <div class="input-field col s12">
+                            <form>
+                                <div class="row">
+                                    <h5>Agregar una Noticia</h5>
+                                    <div class="input-field col s12">
 
-                                    <label for="titulonoti">Titulo de la noticia </label>
-                                    <input type="text" id="titulonoti">
-                                </div>
-                                <div class="col s12 m6" id="imgnoti">
-                                    <div class="dropify-preview" >
-                                        <label for="input-file-now"></label>
-                                        <input  type="file" id="input-file-now" class="dropify" />
+                                        <label for="titulonoti">Titulo de la noticia </label>
+                                        <input type="text" id="titulonoti">
                                     </div>
-                                    <br>
-                                    <div id="otraimg" class="dropify-preview" >
-                                        <label for="input-file-now"></label>
-                                        <input  type="file" id="input-file-now" class="dropify" />
+                                    <div class="col s12 m6" id="imgnoti">
+                                        <div class="dropify-preview" >
+                                            <label for="input-file-now"></label>
+                                            <input  type="file" id="input-file-now" class="dropify" />
+                                        </div>
+                                        <br>
+                                        <div id="otraimg" class="dropify-preview" >
+                                            <label for="input-file-now"></label>
+                                            <input  type="file" id="input-file-now" class="dropify" />
+                                        </div>
+                                        <button type="submit" id="addimg" class="btn-floating waves-effect waves-light green"><i class="material-icons">add</i></button>
                                     </div>
-                                    <button type="submit" id="addimg" class="btn-floating waves-effect waves-light green"><i class="material-icons">add</i></button>
+                                    <div class="input-field col s12 m6">
+                                        <label for="descripnoti">Descripcion </label>
+                                        <textarea class="materialize-textarea" id="descripnoti" placeholder="
+                                                  Texto descriptivo de la noticia, Texto descriptivo de la noticia, Texto descriptivo de la noticia, Texto descriptivo de la noticiaTexto descriptivo de la noticia"></textarea>
+                                    </div>
                                 </div>
-                                <div class="input-field col s12 m6">
-                                    <label for="descripnoti">Descripcion </label>
-                                    <textarea class="materialize-textarea" id="descripnoti" placeholder="
-                                              Texto descriptivo de la noticia, Texto descriptivo de la noticia, Texto descriptivo de la noticia, Texto descriptivo de la noticiaTexto descriptivo de la noticia"></textarea>
-                                </div>
+                                <div class="row">
+                                    <div class=" col s12 m2">
+                                        <div class="input-field">
+                                            <label for="fecha">Fecha:</label>
+                                            <input type="text" id="fechaserv" class="datepicker">
+                                        </div>
+                                    </div>
+                                    <div class=" col s12 m5">
+                                        <div class="input-field">
+                                            <label for="autornoti">Autor:</label>
+                                            <input type="text" id="autornoti">
+                                        </div>
+                                    </div>
+                                    <div class=" col s12 m5">
+                                        <div class="input-field">
+                                            <label for="refernoti">Referencia:</label>
+                                            <input type="text" id="refernoti" >
+                                        </div>
+                                    </div>
 
-
-                            </div>
-                            <div class="row">
-                                <div class=" col s12 m2">
-                                    <div class="input-field">
-                                        <label for="fecha">Fecha:</label>
-                                        <input type="text" id="fechaserv" class="datepicker">
-                                    </div>
                                 </div>
-                                <div class=" col s12 m5">
-                                    <div class="input-field">
-                                        <label for="autornoti">Autor:</label>
-                                        <input type="text" id="autornoti">
-                                    </div>
+                                <div class="row">
+                                    <input type="submit" class="btn btn-primary right" id="btnaddnoti" value="Agregar Noticia"/>
                                 </div>
-                                <div class=" col s12 m5">
-                                    <div class="input-field">
-                                        <label for="refernoti">Referencia:</label>
-                                        <input type="text" id="refernoti" >
-                                    </div>
-                                </div>
-
-                            </div>
-                            <div class="row">
-                                 <input type="submit" class="btn btn-primary right" id="btnaddnoti" value="Agregar Noticia"/>
-                            </div>
-                            
+                            </form>
                         </div>                       
                     </div>
                 </div>
@@ -214,16 +212,16 @@
                 });
 
                 ocultar();
-                         
+
 
                 $("#volver").click(function () {
                     ocultar();
                 });
-                
+
                 $("#addimg").click(function (e) {
                     e.preventDefault();
-                    
-                   $("#otraimg").show();
+
+                    $("#otraimg").show();
                     $("#addimg").hide();
                 });
 
@@ -290,7 +288,7 @@
                         });
                     });
                 }
-             
+
 
 
                 function ocultar() {
