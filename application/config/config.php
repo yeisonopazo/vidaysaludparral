@@ -24,7 +24,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 |
 */
 $config['base_url'] = 'http://localhost/VidaySaludParral/';
-
+//$config['base_url'] = 'http://vidaysaludparral.netvoiss.cl/';
 /*
 |--------------------------------------------------------------------------
 | Index File

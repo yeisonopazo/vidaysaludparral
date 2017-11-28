@@ -78,7 +78,7 @@
                             <h3>Noticias <i class="material-icons medium left">public</i></h3>
                         </div>
                         <div class="card-panel">
-                            <form>
+                            <form id="formnoti">
                                 <div class="row">
                                     <h5>Agregar una Noticia</h5>
                                     <div class="input-field col s12">
@@ -108,7 +108,7 @@
                                     <div class=" col s12 m2">
                                         <div class="input-field">
                                             <label for="fecha">Fecha:</label>
-                                            <input type="text" id="fechaserv" class="datepicker">
+                                            <input type="text" id="fechanoti" class="datepicker">
                                         </div>
                                     </div>
                                     <div class=" col s12 m5">
@@ -174,7 +174,7 @@
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
         <script src="<?php echo base_url(); ?>lib/js/materialize.js"></script>
-        <script src="<?php echo base_url(); ?>js/init.js"></script>
+        <script src="<?php echo base_url(); ?>lib/js/init.js"></script>
         <!-- tabla editable--->
     <!--<script src="<?php echo base_url(); ?>lib/js/mindmup-editabletable.js"></script>
         <script src="<?php echo base_url(); ?>lib/js/numeric-input-example.js"></script>
@@ -226,35 +226,33 @@
                 });
 
 
-                //AGREGAR PRODUCTO///
-                $("#btnaddserv1").click(function (e) {
+                //AGREGAR NOTICIA///
+                $("#btnaddnoti").click(function (e) {
                     e.preventDefault();
-                    var nombre = $("#nombreserv").val();
-                    var categoria = document.getElementById("subcatserv").value;
-                    var descripcion = $("#drescripcionserv").val();
-                    var precio = $("#precioserv").val();
-                    var stock = $("#stockserv").val();
-                    var fecha = $("#fechaserv").val();
-                    var rutEncarg = document.getElementById("selectencarg").value;
-                    if (nombre == "" || categoria == 0 || descripcion == "" ||
-                            precio == "" || stock == "" || rutEncarg == 0) {
+                    var titulo = $("#titulonoti").val();
+                    var descripcion = $("#descripnoti").val();
+                    var fecha = $("#fechanoti").val();
+                    var imagen = "";
+                    var autor = $("#autornoti").val();
+                    var referencia = $("#refernoti").val();
+                    if (titulo == "" || descripcion == "" || fecha == 0 ||
+                             autor == "" || referencia == 0) {
                         Materialize.toast("Faltan Campos", 1000);
                     } else {
                         $.ajax({
-                            url: '<?php echo site_url() ?>/addServ',
+                            url: '<?php echo site_url() ?>/addNoti',
                             type: 'post',
                             dataType: 'json',
-                            data: {"nombre": nombre, "idcategoria": categoria, "descripcion": descripcion,
-                                "precio": precio, "stock": stock, "fecha": fecha, "rutencargado": rutEncarg}
+                            data: {"titulo": titulo, "descripcion": descripcion, "fecha": fecha,
+                                "imagen": imagen, "autor": autor, "referencia": referencia}
                         }).success(function (o) {
-                            Materialize.toast("Registro OK", 1000);
-                            $('#formserv').each(function () {
+                            Materialize.toast("Noticia agregada!!", 1000);
+                            $('#formnoti').each(function () {
                                 this.reset();
                             });
-                            verServicios();
-                            $("#addproduct2").show();
+                           
                         }).fail(function () {
-                            Materialize.toast("Error", 1000);
+                            Materialize.toast("Error al agregar noticia", 1000);
                         });
                     }
                 });

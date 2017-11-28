@@ -234,7 +234,7 @@
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
         <script src="<?php echo base_url(); ?>lib/js/materialize.js"></script>
-        <script src="<?php echo base_url(); ?>js/init.js"></script>
+        <script src="<?php echo base_url(); ?>lib/js/init.js"></script>
         <!-- tabla editable--->
     <!--<script src="<?php echo base_url(); ?>lib/js/mindmup-editabletable.js"></script>
         <script src="<?php echo base_url(); ?>lib/js/numeric-input-example.js"></script>

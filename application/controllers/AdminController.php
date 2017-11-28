@@ -77,19 +77,5 @@ class AdminController extends CI_Controller {
         echo json_encode($this->AdminModel->getProveedores());
     }
 
-    public function insertarNoticia() {
-        $titulo = $this->input->post("titulo");
-        $descripcion = $this->input->post("descripcion");
-        $fecha = $this->input - post("fecha");
-        $imagen = $this->input->post("imagen");
-        $autor = $this->input->post("autor");
-        $refencia = $this->input->post("referencia");
-        $this->AdminModel->insertarNoticia($titulo, $descripcion, $fecha, $imagen, $autor, $refencia);
-        echo json_encode(array("msg" => "Noticia agregada"));
-    }
-
-    public function getNoticias() {
-        echo json_encode($this->AdminModel->getNoticias());
-    }
 
 }

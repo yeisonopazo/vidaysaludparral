@@ -267,7 +267,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                     </nav>
 
-                    <div class="col s3">
+                    <div class="col s6 m4">
                         <div class="card hoverable">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="<?php echo base_url(); ?>lib/img/aromaterapia1.png">
@@ -285,7 +285,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                         </div>
                     </div>
-                    <div class="col s3">
+                    <div class="col s6 m4">
                         <div class="card hoverable">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="<?php echo base_url(); ?>lib/img/aromaterapia1.png">
@@ -303,7 +303,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                         </div>
                     </div>   
-                    <div class="col s3">
+                    <div class="col s6 m4">
                         <div class="card hoverable">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="<?php echo base_url(); ?>lib/img/aromaterapia1.png">
@@ -321,7 +321,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                         </div>
                     </div>  
-                    <div class="col s3">
+                    <div class="col s6 m4">
                         <div class="card hoverable">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="<?php echo base_url(); ?>lib/img/aromaterapia1.png">
@@ -339,7 +339,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                         </div>
                     </div>   
-                    <div class="col s3">
+                    <div class="col s6 m4">
                         <div class="card hoverable">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="<?php echo base_url(); ?>lib/img/aromaterapia1.png">
@@ -357,7 +357,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                         </div>
                     </div> 
-                    <div class="col s3">
+                    <div class="col s6 m4">
                         <div class="card hoverable">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="<?php echo base_url(); ?>lib/img/aromaterapia1.png">
@@ -375,7 +375,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                         </div>
                     </div>  
-                    <div class="col s3">
+                    <div class="col s6 m4">
                         <div class="card hoverable">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="<?php echo base_url(); ?>lib/img/aromaterapia1.png">
@@ -393,7 +393,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                         </div>
                     </div>   
-                    <div class="col s3">
+                    <div class="col s6 m4">
                         <div class="card hoverable">
                             <div class="card-image waves-effect waves-block waves-light">
                                 <img class="activator" src="<?php echo base_url(); ?>lib/img/aromaterapia1.png">
@@ -417,7 +417,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
 
             <div class="fixed-action-btn">
-                <a class="btn-floating btn-large teal">
+                <a class="btn-floating btn-large teal hide-on-med-and-down">
                     <i class="large material-icons">menu</i>
                 </a>
                 <ul>
@@ -447,7 +447,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <div class="col l6 s12">
                         <div id="google-map-tab" class="col s12 center-align">
 
-                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2709.4152998642435!2d-71.81904501372995!3d-36.140850900596774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb3ec9bb85f0be6b2!2sVida+y+Salud%2C+Centro+de+Medicina+Complementaria%2C+Parral!5e0!3m2!1ses!2scl!4v1511405544855" width="440" height="300" frameborder="0" style="border:0" allowfullscreen class="responsive-img z-depth-5"></iframe>
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2709.4152998642435!2d-71.81904501372995!3d-36.140850900596774!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0xb3ec9bb85f0be6b2!2sVida+y+Salud%2C+Centro+de+Medicina+Complementaria%2C+Parral!5e0!3m2!1ses!2scl!4v1511405544855" width="100%" height="300" frameborder="0" style="border:0" allowfullscreen class="responsive-img z-depth-5"></iframe>
                         </div>
                     </div>
                 </div>

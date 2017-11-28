@@ -9,7 +9,7 @@ class AdminOtros extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('Admin_Otros');
+        $this->load->view('Admin_otros');
     }
 
     public function getClientes() {

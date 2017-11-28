@@ -320,7 +320,7 @@
     <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 
     <script src="<?php echo base_url(); ?>lib/js/materialize.js"></script>
-    <script src="<?php echo base_url(); ?>js/init.js"></script>
+    <script src="<?php echo base_url(); ?>lib/js/init.js"></script>
     <!-- tabla editable--->
 <!--<script src="<?php echo base_url(); ?>lib/js/mindmup-editabletable.js"></script>
     <script src="<?php echo base_url(); ?>lib/js/numeric-input-example.js"></script>
@@ -361,10 +361,7 @@
             verClientes();
             verProveedores();
             //////////
-            verTodasCategorias();
-            getCategorias();
-        
-
+          
             $("#btnshowclient").click(function(e) {
                 ocultar();
                 $("#clientes").show();
@@ -379,68 +376,14 @@
             $("#btnshowencargados").click(function(e) {
                 ocultar();
                 $("#encargados").show();
-            });
-
-            $("#btnshowcat").click(function(e) {
-                e.preventDefault();
-                ocultar();
-                $("#modulocat").show();
-            });
-
-            $("#btnshowserv").click(function(e) {
-                e.preventDefault();
-                ocultar();
-                $("#moduloaddserv").show();
-            });
+            });       
 
             $("#volver").click(function() {
                 ocultar();
             });
 
-            //AGREGAR PRODUCTO///
-         
-
-            function verTodasCategorias() {
-                var url = "<?php echo site_url() ?>/getSubCat";
-                $("#tablacateg").empty();
-                $("#subcat").empty();
-                $("#upsubcat").empty();
-                $("#subcatserv").empty();
-                $("#subcatserv").append("<option value='0' disabled selected>Selecciona una categoria</option>");
-                $("#upsubcat").append("<option value='0' disabled>Selecciona una categoria</option>");
-                $("#subcat").append("<option value='0' disabled selected>Selecciona una categoria</option>");
-                $.getJSON(url, function(result) {
-                    $.each(result, function(i, o) {
-                        var fila = "<tr><td>" + o.idcategoria + "</td>";
-                        fila += "<td>" + o.nombre + "</td>";
-                        fila += "<td>" + o.idsubcategoria + "</td>";
-                        fila += "<td>" + o.subcategoria + "</td>";
-                        $("#tablacateg").append(fila);
-                        if (o.nombre == "Productos") {
-                            var subcat = "<option value='" + o.idsubcategoria + "'>" + o.subcategoria + "</option>";
-                            $("#subcat").append(subcat);
-                            $("#upsubcat").append(subcat);
-                            $('select').material_select();
-                        } else {
-                            var subcat = "<option value='" + o.idsubcategoria + "'>" + o.subcategoria + "</option>";
-                            $("#subcatserv").append(subcat);
-                            $('select').material_select();
-                        }
-                    });
-                });
-            }
-            function getCategorias() {
-                var url = "<?php echo site_url() ?>/getCat";
-                $("#idcat").empty();
-                $("#idcat").append("<option value='0' disabled selected>Selecciona una categoria</option>");
-                $.getJSON(url, function(datos) {
-                    $.each(datos, function(i, o) {
-                        var x = "<option value='" + o.idcategoria + "'>" + o.nombre + "</option>";
-                        $("#idcat").append(x);
-                        $('select').material_select();
-                    });
-                });
-            }
+                  
+          
             function verProveedores() {
                 var url = "<?php echo site_url() ?>/getProv";
                 $("#tbodyprov").empty();

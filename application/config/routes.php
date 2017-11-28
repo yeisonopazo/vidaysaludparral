@@ -31,3 +31,7 @@ $route["upProd"]="AdminController/actualizarProducto";
 
 //SERVICIOS
 $route["addServ"]="AdminServ/insertarServicio";
+
+//NOTICIA
+$route["addNoti"]="AdminNotice/insertarNoticia";
+$route["getNoti"]="AdminNotice/getNoticias";
