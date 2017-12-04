@@ -16,7 +16,7 @@
             </div>
             <div class="input-field">
                 <label class="active"  for="updescripcionprod">Descripcion:</label>
-                <textarea class=" materialize-textarea" value=" " required name="updescripcionprod" id="updescripcionprod"></textarea>
+                <textarea class="materialize-textarea" required name="updescripcionprod" id="updescripcionprod" placeholder=" "></textarea>
             </div>
             <div class="input-field">
                 <label class="active" for="upprecioprod">Precio:</label>

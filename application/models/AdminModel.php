@@ -23,7 +23,19 @@ class AdminModel extends CI_Model {
             "idsubcategoria" => $idcategoria,
             "descripcion" => $descripcion,
             "precio" => $precio,
-            "stock" => $stock,       
+            "stock" => $stock,
+            "rutencargado" => $rutencargado);
+        $this->db->update("producto", $datos);
+    }
+
+    function actualizarServicio($idproducto, $nombre, $idcategoria, $descripcion, $precio, $stock, $fecha, $rutencargado) {
+        $this->db->where("idproducto", $idproducto);
+        $datos = array("nombre" => $nombre,
+            "idsubcategoria" => $idcategoria,
+            "descripcion" => $descripcion,
+            "precio" => $precio,
+            "stock" => $stock,
+            "fecha" => $fecha,
             "rutencargado" => $rutencargado);
         $this->db->update("producto", $datos);
     }

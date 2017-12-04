@@ -133,6 +133,9 @@
                             <div id="moduloaddserv" class="row card-panel">
                                 <?php include ('modulos/addservice.php'); ?>
                             </div>
+                            <div id="moduloverservicio" class="row card-panel">
+                                <?php include ('modulos/verservice.php'); ?>
+                            </div>
 
                             <nav class="row hoverable teal darken-3">
                                 <div class="nav-wrapper">
@@ -300,7 +303,7 @@
                 });
 
                 $("#rutprov").rut({validateOn: 'change keyup'});
-                
+
                 /////////AGREGAR CATEGORIA///////////
                 $("#btnaddcat").click(function (e) {
                     e.preventDefault();
@@ -392,8 +395,9 @@
                     $("#upsubcat").empty();
                     $("#subcatserv").empty();
                     $("#subcatserv").append("<option value='0' disabled selected>Selecciona una categoria</option>");
-                    $("#upsubcat").append("<option value='0' disabled>Selecciona una categoria</option>");
                     $("#subcat").append("<option value='0' disabled selected>Selecciona una categoria</option>");
+                    $("#upsubcat").append("<option value='0' disabled>Selecciona una categoria</option>");
+                    $("#upsubcatserv").append("<option value='0' disabled>Selecciona una categoria</option>");
                     $.getJSON(url, function (result) {
                         $.each(result, function (i, o) {
                             if (o.nombre != "Productos") {
@@ -410,6 +414,7 @@
                                 } else {
                                     var subcat = "<option value='" + o.idsubcategoria + "'>" + o.subcategoria + "</option>";
                                     $("#subcatserv").append(subcat);
+                                    $("#upsubcatserv").append(subcat);
                                     $('select').material_select();
                                 }
                             }
@@ -436,6 +441,7 @@
                     $("#upselectprov").empty();
                     $("#selectencarg").empty();
                     $("#upselectprov").append("<option value='0' disabled>Seleccione Proveedor</option>");
+                    $("#upselectencarg").append("<option value='0' disabled>Seleccione Encargado</option>");
                     $("#selectencarg").append("<option value='0' disabled selected>Seleccione Encargado</option>");
                     $("#selectprov").append("<option value='0' selected disabled>Seleccione Proveedor</option>");
                     $.getJSON(url, function (datos) {
@@ -448,6 +454,7 @@
                             } else {
                                 var x = "<option value='" + o.rutencargado + "'>" + o.nombre + "</option>";
                                 $("#selectencarg").append(x);
+                                $("#upselectencarg").append(x);
                                 $('select').material_select();
                             }
                         });
@@ -481,7 +488,56 @@
                         });
                     });
                 }
+                ///VER Y EDITAR SERVICIOS///
+                $("body").on("click", "#servver", function (e) {
+                    e.preventDefault();
+                    ocultar();
+                    $('#formupdserv').each(function () {
+                        this.reset();
+                    });
+                    var datos = $(this).val();
+                    var fila = datos.split("|");
+                    $("#upidserv").val(fila[0]);
+                    $("#upnombreserv").val(fila[1]);
+                    $("#upsubcatserv").val(fila[2]);
+                    $("#updescripcionserv").val(fila[3]);
+                    $("#upprecioserv").val(fila[4]);
+                    $("#upstockserv").val(fila[5]);
+                    $("#upfechaserv").val(fila[6]);
+                    $("#upselectencarg").val(fila[7]);
+                    //   $("#upselectencarg").show();
+                    $("#moduloverservicio").show();
+                });
 
+                $("#btnupserv1").click(function (e) {
+                    e.preventDefault();
+                    var idprod = $("#upidserv").val();
+                    var nombre = $("#upnombreserv").val();
+                    var categoria = document.getElementById("upsubcatserv").value;
+                    var descripcion = $("#updescripcionserv").val();
+                    var precio = $("#upprecioserv").val();
+                    var stock = $("#upstockserv").val();
+                    var fecha = $("#upfechaserv").val();
+                    var rutEncarg = document.getElementById("upselectencarg").value;
+                    if (nombre == "" || categoria == 0 || descripcion == "" ||
+                            precio == "" || stock == "" || fecha == "" || rutEncarg == 0) {
+                        Materialize.toast("Hay campos vacios o no seleccionados", 1000);
+                    } else {
+                        $.ajax({
+                            url: '<?php echo site_url() ?>/upServ',
+                            type: 'post',
+                            dataType: 'json',
+                            data: {"idproducto": idprod, "nombre": nombre, "idcategoria": categoria, "descripcion": descripcion,
+                                "precio": precio, "stock": stock, "fecha": fecha, "rutencargado": rutEncarg}
+                        }).success(function (o) {
+                            Materialize.toast("Servicio Actualizado", 1000);
+                            verServicios();
+                            $("#uppserv2").show();
+                        }).fail(function () {
+                            Materialize.toast("Error al actualizar", 1000);
+                        });
+                    }
+                });
 
                 function ocultar() {
                     $("#moduloaddprod").hide();
@@ -489,6 +545,7 @@
                     $("#addproduct2").hide();
                     $("#moduloverproducto").hide();
                     $("#moduloaddserv").hide();
+                    $("#moduloverservicio").hide();
                 }
             });
         </script>

@@ -25,37 +25,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         }
     </style>
     <body>
+        <ul id="dropdown1" class="dropdown-content">
+            <li><a class="waves-effect waves-light modal-trigger purple-text" href="#modal1">Iniciar</a></li>
+            <li><a class="waves-effect waves-light modal-trigger purple-text" href="#modal2">Registrarse</a></li>
+            <li class="divider"></li>
 
-        <nav class="nav-extended teal" role="navigation">
-            <div class="nav-wrapper container ">
-                <a id="logo-container" href="#" class="brand-logo center-align">Vida Y Salud Parral</a>
-                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a class="waves-effect waves-light modal-trigger" href="#modal1">Iniciar Sesion</a></li>
-                    <li><a class="waves-effect waves-light modal-trigger" href="#modal2">Registrarse</a></li>
-                    <li><a href="#"><i class="material-icons">shopping_cart</i> </a></li>
-                </ul>                 
-                <ul id="nav-mobile" class="side-nav">
-                    <li><a class="modal-trigger" href="#modal1">Iniciar Sesion</a></li>
-                    <li><a class="modal-trigger" href="#modal2">Registrarse</a></li>
-                    <div class="divider"></div>
-                    <li><a href="#home"><i class="material-icons">home</i>Inicio</a></li>
-                    <li><a href="#about"><i class="material-icons">business</i>Quienes Somos</a></li>  
-                    <li><a href="#productos" class="modal-trigger" ><i class="material-icons">store_mall_directory</i>Productos</a></li>
-                    <li><a href="#"><i class="material-icons">shopping_cart</i></a></li>
-                </ul>            
-            </div>
-            <div class="nav-wrapper container">
-                <ul class="hide-on-med-and-down">
-                    <li><a class="waves-effect waves-light" class="active" href="#home">Home</a></li>
-                    <li><a class="waves-effect waves-light" href="#productos">Productos</a></li>
-                    <li><a class="waves-effect waves-light" href="#productos">Servicios</a></li>
-                    <li><a class="waves-effect waves-light" href="#about">Quienes Somos</a></li>
-                    <li><a class="waves-effect waves-light" href="#about">Contacto</a></li>
-                </ul>
-            </div>
-        </nav>
+        </ul> 
+        <div class="navbar-fixed">
+            <nav class="nav-extended white" role="navigation">
+                <div class="nav-wrapper">
+                    <!--               center-on-small-only  hide-on-large-only-->
+                    <a id="logo-container" href="#" class="brand-logo hide-on-med-and-down purple-text" style="font-family: freestyle script; font-size: xx-large; font-weight: bold"><i><img width="40%" src="<?php echo base_url(); ?>/lib/img/logo.png"></i> Vida y Salud Parral</a>
+                    <a id="logo-container" href="#" class="brand-logo center hide-on-large-only"><i><img width="40%" src="<?php echo base_url(); ?>/lib/img/logo.png"></i></a>
+                    <a href="#" data-activates="nav-mobile" class="button-collapse purple-text"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down ">
+                        <li><a class="waves-effect waves-light purple-text" href="#home">Home</a></li>
+                        <li><a class="waves-effect waves-light purple-text" href="#productos">Productos</a></li>
+                        <li><a class="waves-effect waves-light purple-text" href="#productos">Servicios</a></li>
+                        <li><a class="waves-effect waves-light purple-text" href="#about">Nosotros</a></li>  
+                        <li><a class="dropdown-button waves-light purple-text" href="#!" data-activates="dropdown1">Clientes<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a href="#"><i class="material-icons purple-text">shopping_cart</i> </a></li>
+                    </ul> 
 
+                </div>    
+            </nav>
+        </div>
+        <ul id="nav-mobile" class="side-nav">
+            <li><a class="modal-trigger" href="#modal1">Iniciar Sesion</a></li>
+            <li><a class="modal-trigger" href="#modal2">Registrarse</a></li>
+            <div class="divider"></div>
+            <li><a href="#home"><i class="material-icons">home</i>Inicio</a></li>
+            <li><a href="#productos"><i class="material-icons">store_mall_directory</i>Productos y Servicios</a></li>
+            <li><a href="#about"><i class="material-icons">business</i>Nosotros</a></li>              
+            <li><a href="#"><i class="material-icons">shopping_cart</i></a></li>
+        </ul>   
         <main>
 
             <!--Noticias-->
@@ -428,18 +431,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
 
         </main>
-        <footer class="page-footer teal">
+        <footer class="page-footer yellow">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12 scrollspy" id="about">
-                        <h5 class="white-text">Acerca De</h5>
-                        <p class="grey-text text-lighten-4">Nuestro objetivo, es acercar a un sin número de terapias Complementarias, y a los mejores terapeutas, para así aportar un granito de arena en el logro de un Equilibrio en tu salud y la de todos aquellos que trabajamos para ello.</p>
+                        <h5 class="white-text">Acerca de Nosotros</h5>
+                        <p class="text-lighten-4">Nuestro objetivo, es acercar a un sin número de terapias Complementarias, y a los mejores terapeutas, para así aportar un granito de arena en el logro de un Equilibrio en tu salud y la de todos aquellos que trabajamos para ello.</p>
 
-                        <p class="grey-text text-lighten-4"><i class="material-icons">call</i> 73 - 2 46 21 28 / +569 - 9265 9369</p>
+                        <p class="text-lighten-4"><i class="material-icons">call</i> 73 - 2 46 21 28 / +569 - 9265 9369</p>
 
-                        <p class="grey-text text-lighten-4"><i class="material-icons">mail</i> vidaysalud@centrodemedicinacomplementaria.cl</p>
+                        <p class="text-lighten-4"><i class="material-icons">mail</i> vidaysalud@centrodemedicinacomplementaria.cl</p>
 
-                        <p class="grey-text text-lighten-4"> Lunes a Viernes 9:00 - 13:00, 15:00 - 19:00<br>
+                        <p class="text-lighten-4"> Lunes a Viernes 9:00 - 13:00, 15:00 - 19:00<br>
                             Sabados 9:00 - 13:00
                         </p>
 
@@ -474,6 +477,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $('.carousel').carousel('next', 3);
                 $('.slider').slider();
                 $('ul.tabs').tabs();
+                $(".dropdown-button").dropdown({hover: true});
 
                 //                Fin de inicio materialize
 

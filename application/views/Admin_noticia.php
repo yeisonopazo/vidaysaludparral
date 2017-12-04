@@ -224,6 +224,8 @@
                     $("#otraimg").show();
                     $("#addimg").hide();
                 });
+                
+                $('texarea').trigger('autoresize');
 
 
                 //AGREGAR NOTICIA///
