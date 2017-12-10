@@ -8,18 +8,31 @@ class AdminNotice extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('Admin_noticia');
+     
+       if ($this->session->userdata("administrador")) {
+             $this->load->view('Admin_noticia');
+        } else {
+            redirect('welcome');
+        }
     }
 
     public function insertarNoticia() {
         $titulo = $this->input->post("titulo");
         $descripcion = $this->input->post("descripcion");
-        $fecha = $this->input -> post("fecha");
-        $imagen = $this->input->post("imagen");
+        $fecha = $this->input->post("fecha");
         $autor = $this->input->post("autor");
         $refencia = $this->input->post("referencia");
-        $this->AdminModel->insertarNoticia($titulo, $descripcion, $fecha, $imagen, $autor, $refencia);
-        echo json_encode(array("msg" => "Noticia agregada"));
+        $path = $_FILES["file"]["tmp_name"];
+        if (is_uploaded_file($path) && !empty($_FILES)) {
+            $imagen = file_get_contents($path);
+            if ($this->AdminModel->insertarNoticia($titulo, $descripcion, $fecha, $imagen, $autor, $refencia)) {
+                echo json_encode(array("msg" => "Noticia agregada"));
+            } else {
+                echo json_encode(array("msg" => "Error al ingresar Noticia"));
+            }
+        } else {
+            echo json_encode(array("msg" => "Error de archivo"));
+        }
     }
 
     public function getNoticias() {

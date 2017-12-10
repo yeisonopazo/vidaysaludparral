@@ -8,7 +8,11 @@ class AdminServ extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('Admin_serv');
+        if ($this->session->userdata("administrador")) {
+           $this->load->view('Admin_serv');
+        } else {
+            redirect('welcome');
+        }
     }
 
     public function insertarServicio() {

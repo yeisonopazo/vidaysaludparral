@@ -9,9 +9,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <title>Vida y Salud Parral</title>
 
         <!-- CSS  -->
-        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">       
         <link href="<?php echo base_url(); ?>lib/css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
         <link href="<?php echo base_url(); ?>lib/css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
     </head>
     <style>
         body {
@@ -23,41 +24,50 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         main {
             flex: 1 0 auto;
         }
+
+
     </style>
     <body>
-        <ul id="dropdown1" class="dropdown-content">
+
+        <div id="loader-wrapper">
+
+            <div id="loader"></div>
+
+            <div class="loader-section section-left"></div>
+            <div class="loader-section section-right"></div>
+        </div>
+
+        <ul id="dropdown1" class="dropdown-content" >
             <li><a class="waves-effect waves-light modal-trigger purple-text" href="#modal1">Iniciar</a></li>
             <li><a class="waves-effect waves-light modal-trigger purple-text" href="#modal2">Registrarse</a></li>
             <li class="divider"></li>
 
         </ul> 
         <div class="navbar-fixed">
-            <nav class="nav-extended white" role="navigation">
-                <div class="nav-wrapper">
-                    <!--               center-on-small-only  hide-on-large-only-->
-                    <a id="logo-container" href="#" class="brand-logo hide-on-med-and-down purple-text" style="font-family: freestyle script; font-size: xx-large; font-weight: bold"><i><img width="40%" src="<?php echo base_url(); ?>/lib/img/logo.png"></i> Vida y Salud Parral</a>
-                    <a id="logo-container" href="#" class="brand-logo center hide-on-large-only"><i><img width="40%" src="<?php echo base_url(); ?>/lib/img/logo.png"></i></a>
+            <nav class="grey lighten-5" role="navigation">
+                <div class="nav-wrapper container">
                     <a href="#" data-activates="nav-mobile" class="button-collapse purple-text"><i class="material-icons">menu</i></a>
+                    <a id="logo-container" href="" class="brand-logo center-on-small-only"><img width="340" src="<?php echo base_url(); ?>/lib/img/logo3.png"></a>
                     <ul class="right hide-on-med-and-down ">
+                        <li></li>
                         <li><a class="waves-effect waves-light purple-text" href="#home">Home</a></li>
-                        <li><a class="waves-effect waves-light purple-text" href="#productos">Productos</a></li>
-                        <li><a class="waves-effect waves-light purple-text" href="#productos">Servicios</a></li>
+                        <li><a class="waves-effect waves-light purple-text" href="#productos">Productos y Servicios</a></li>
                         <li><a class="waves-effect waves-light purple-text" href="#about">Nosotros</a></li>  
-                        <li><a class="dropdown-button waves-light purple-text" href="#!" data-activates="dropdown1">Clientes<i class="material-icons right">arrow_drop_down</i></a></li>
-                        <li><a href="#"><i class="material-icons purple-text">shopping_cart</i> </a></li>
+                        <li><a class="dropdown-button waves-effect clearfix purple-text" data-activates="dropdown1">Clientes<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a href="#"><i class="material-icons purple-text">shopping_cart</i></a></li>
                     </ul> 
 
                 </div>    
             </nav>
         </div>
         <ul id="nav-mobile" class="side-nav">
-            <li><a class="modal-trigger" href="#modal1">Iniciar Sesion</a></li>
-            <li><a class="modal-trigger" href="#modal2">Registrarse</a></li>
-            <div class="divider"></div>
-            <li><a href="#home"><i class="material-icons">home</i>Inicio</a></li>
-            <li><a href="#productos"><i class="material-icons">store_mall_directory</i>Productos y Servicios</a></li>
-            <li><a href="#about"><i class="material-icons">business</i>Nosotros</a></li>              
-            <li><a href="#"><i class="material-icons">shopping_cart</i></a></li>
+            <li><a class="modal-trigger purple-text" href="#modal1">Iniciar Sesion</a></li>
+            <li><a class="modal-trigger purple-text" href="#modal2">Registrarse</a></li>
+            <div class="divider purple-text"></div>
+            <li><a href="#home" class="purple-text"><i class="material-icons purple-text">home</i>Inicio</a></li>
+            <li><a href="#productos" class="purple-text"><i class="material-icons purple-text">store_mall_directory</i>Productos y Servicios</a></li>
+            <li><a href="#about" class="purple-text"><i class="material-icons purple-text">business</i>Nosotros</a></li>              
+            <li><a href="#" class="purple-text"><i class="material-icons purple-text">shopping_cart</i></a></li>
         </ul>   
         <main>
 
@@ -65,7 +75,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="">
                 <div class="slider scrollspy" id="home">
                     <ul class="slides">
-
                         <li>
                             <img width="100%" src="<?php echo base_url(); ?>/lib/img/img1-1.jpg">
 
@@ -87,13 +96,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <li>
                             <img width="100%" src="<?php echo base_url(); ?>/lib/img/img4.jpg"> <!-- random image -->
                             <div class="caption right-align">
-                                <h3>Tercera Noticia</h3>
-                                <h5 class="light grey-text text-lighten-3">Texto para tercera noticia</h5>
-                                <a class="btn waves-effect white grey-text darken-text-2">quiero saber más</a>
+                                <blockquote class="right-align">
+                                    <h3>Tercera Noticia</h3>
+                                    <h5 class="light grey-text text-lighten-3">Texto para tercera noticia</h5>
+                                    <a class="btn waves-effect white grey-text darken-text-2">quiero saber más</a>
+                                </blockquote>
+
                             </div>
                         </li>
                         <li>
-                            <img width="100%" src="<?php echo base_url(); ?>/lib/img/img3.png"> <!-- random image -->
+                            <img width="100%" src="<?php echo base_url(); ?>/lib/img/img3.png"> 
                             <div class="caption center-align">
                                 <h3>Cuarta Noticia</h3>
                                 <h5 class="light grey-text text-lighten-3">Texto para cuarta noticia</h5>
@@ -110,7 +122,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 <div class="container">
                     <div class="row ">
                         <div class="center">
-                            <img class="responsive-img circle" width="25%" src="<?php echo base_url(); ?>lib/img/logo3.jpg">
+                            <img class="responsive-img circle" width="25%" src="<?php echo base_url(); ?>lib/img/logo.png">
                             <h4>Iniciar Sesión</h4>
                         </div>
                         <form name="formlogin">
@@ -137,75 +149,77 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
             <!-- Modal Registrar -->
             <div id="modal2" class="modal modal-fixed-footer">
-                <div class="row">  
-                    <form action="" name="formreg" method="POST" id="formreg">
-                        <div>
-                            <div class="col s12"> 
-                                <h4>Datos de registro</h4>
-                                <div class="col s6">
-                                    <div class="input-field">
-                                        <i class="material-icons prefix">account_circle</i>
-                                        <label for="rut">RUT: </label>                           
-                                        <input type="text" name="rut" id="rutusuario2">
-                                        <input id="rutok" value="rutok" hidden="true">
-                                    </div>
-
-                                    <div class="input-field">
-                                        <i class="material-icons prefix">face</i>
-                                        <label for="nombre">Nombre: </label>
-                                        <input type="text" name="nombre" id="nombre"/>
-                                    </div>
-
-                                    <div class="input-field">
-                                        <i class="material-icons prefix">face</i>
-                                        <label for="apellido">Apellido: </label>
-                                        <input type="text" name="apellido"  id="apellido"/>
-                                    </div>
-                                    <div class="input-field">
-                                        <i class="material-icons prefix">location_on</i>
-                                        <label for="direccion">Direccion: </label>
-                                        <input type="text" name="direccion" id="direccion"/>
-                                    </div>
-
+                <form action="" name="formreg" method="POST" id="formreg">
+                    <div class="modal-content">
+                        <h4>Datos de registro</h4>
+                        <div class="divider purple"></div>
+                        <div class="row">
+                            <div class="col s12 m6">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">account_circle</i>
+                                    <label for="rut">RUT: </label>                           
+                                    <input type="text" name="rut" id="rutusuario2">
+                                    <input id="rutok" value="rutok" hidden="true">
                                 </div>
-                                <div class="col s6">
-                                    <div class="input-field">
-                                        <i class="material-icons prefix">call</i>
-                                        <label for="telefono">Telefono: </label>
-                                        <input type="text" name="telefono" id="telefono"/>
-                                    </div>
 
-                                    <div class="input-field">
-                                        <i class="material-icons prefix">mail</i>
-                                        <label for="correo">Correo: </label>
-                                        <input type="text" name="correo" id="correo"/>
-                                    </div>
-
-                                    <div class="input-field">
-                                        <i class="material-icons prefix">vpn_key</i>
-                                        <label for="contraseña1">Contraseña: </label>
-                                        <input type="password" name="contraseña1" id="contraseña1"/>
-                                    </div>
-                                    <div class="input-field">
-                                        <i class="material-icons prefix">vpn_key</i>
-                                        <label for="confirContraseña">Confirmar Contraseña: </label>
-                                        <input type="password" name="confirContraseña" id="contraseña2"/>
-                                    </div>
-
+                                <div class="input-field">
+                                    <i class="material-icons prefix">face</i>
+                                    <label for="nombre">Nombre: </label>
+                                    <input type="text" name="nombre" id="nombre"/>
                                 </div>
-                            </div>                      
-                        </div> 
-                        <div class="modal-footer">                      
-                            <input type="submit" name="bt" id="btnregistrar" value="Registrarse" class="btn"/>
+
+                                <div class="input-field">
+                                    <i class="material-icons prefix">face</i>
+                                    <label for="apellido">Apellido: </label>
+                                    <input type="text" name="apellido"  id="apellido"/>
+                                </div>
+                                <div class="input-field">
+                                    <i class="material-icons prefix">location_on</i>
+                                    <label for="direccion">Direccion: </label>
+                                    <input type="text" name="direccion" id="direccion"/>
+                                </div>
+
+                            </div>
+                            <div class="col s12 m6">
+                                <div class="input-field">
+                                    <i class="material-icons prefix">call</i>
+                                    <label for="telefono">Telefono: </label>
+                                    <input type="text" name="telefono" id="telefono"/>
+                                </div>
+
+                                <div class="input-field">
+                                    <i class="material-icons prefix">mail</i>
+                                    <label for="correo">Correo: </label>
+                                    <input type="text" name="correo" id="correo"/>
+                                </div>
+
+                                <div class="input-field">
+                                    <i class="material-icons prefix">vpn_key</i>
+                                    <label for="contraseña1">Contraseña: </label>
+                                    <input type="password" name="contraseña1" id="contraseña1"/>
+                                </div>
+                                <div class="input-field">
+                                    <i class="material-icons prefix">vpn_key</i>
+                                    <label for="confirContraseña">Confirmar Contraseña: </label>
+                                    <input type="password" name="confirContraseña" id="contraseña2"/>
+                                </div>
+                            </div>
                         </div>
-                    </form> 
-                </div>
+                    </div>
+
+                    <div class="modal-footer">                      
+                        <input type="submit" name="bt" id="btnregistrar" value="Registrarse" class="btn"/>
+                    </div>
+                </form> 
             </div>
+
             <div class="container">
                 <div class="section">
-                    <div class="divider"></div>
-                    <h4 class="center">Productos destacados</h4>
-                    <div class="divider"></div>
+                    <div class="divider light-green darken-4"></div>
+                    <div class="card light-green lighten-5">
+                        <h4 class="center light-green-text darken-4" >PRODUCTOS DESTACADOS</h4>
+                    </div>
+                    <div class="divider light-green darken-4"></div>
                     <!--   Icon Section   -->
                     <div class="row">
                         <div class="col s12 m4">
@@ -252,16 +266,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 </div>
                 <br><br>
             </div>
-            <!--            VISTA DE PRODUCTOS-->
+            <!--            VISTA DE PRODUCTOS y SERVICIOS-->
             <div class="container scrollspy" id="productos">
                 <div class="row">
-                    <div class="divider"></div>
-                    <h4 class="center">PRODUCTOS Y SERVICIOS</h4>
-                    <div class="divider"></div>
+                    <div class="divider light-green darken-4"></div>
+                    <div class="card light-green lighten-5">
+                        <h4 class="center light-green-text darken-4">PRODUCTOS Y SERVICIOS</h4>
+                    </div>
+                    <div class="divider light-green darken-4"></div>
                     <br>
+                    <div id="moduloverprodpag" class="row card-panel scrollspy">
+                        <?php include ('modulos/verprodpag.php'); ?>
+                    </div>  
 
                     <nav class="row">
-                        <div class="nav-wrapper teal">
+                        <div class="nav-wrapper light-green darken-4">
                             <div class="input-field">
                                 <input id="search" type="search" required placeholder="Que buscas??">
                                 <label class="label-icon" for="search"><i class="material-icons">search</i></label>
@@ -270,157 +289,69 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </div>
                     </nav>
 
-                    <div class="col s6 m4">
-                        <div class="card hoverable">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="<?php echo base_url(); ?>lib/img/aromaterapia1.png">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title activator grey-text text-darken-4">PRODUCTO<i class="material-icons right">more_vert</i></span>
-                                <p><a href="#">Esto es un producto</a></p>
-                            </div>
-                            <div class="card-reveal">
-                                <span class="card-title grey-text text-darken-4">PRODUCTO<i class="material-icons right">close</i></span>
-                                <p>Aqui va la descripcion de un producto, Aqui va la descripcion de un producto, Aqui va la descripcion de un producto,.</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" class="btn-floating waves-effect waves-light  green accent-4"><i class="large material-icons">add</i></a>
-                            </div>
+                    <div class="col s12 m6">
+                        <h5>Productos</h5>
+                        <div class="col s6 m6">
+                            <p>
+                                <input type="checkbox" id="catpro1" />
+                                <label for="catpro1">Categoria Prod 1</label>
+                            </p> 
+                            <p>
+                                <input type="checkbox" id="catpro2" />
+                                <label for="catpro2">Categoria Prod 2</label>
+                            </p> 
+                        </div>
+                        <div class="col s6 m6">
+                            <p>
+                                <input type="checkbox" id="catpro3" />
+                                <label for="catpro3">Categoria Prod 3</label>
+                            </p> 
+                            <p>
+                                <input type="checkbox" id="catpro4" />
+                                <label for="catpro4">categoria Prod 4</label>
+                            </p> 
                         </div>
                     </div>
-                    <div class="col s6 m4">
-                        <div class="card hoverable">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="<?php echo base_url(); ?>lib/img/aromaterapia1.png">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title activator grey-text text-darken-4">PRODUCTO<i class="material-icons right">more_vert</i></span>
-                                <p><a href="#">Esto es un producto</a></p>
-                            </div>
-                            <div class="card-reveal">
-                                <span class="card-title grey-text text-darken-4">PRODUCTO<i class="material-icons right">close</i></span>
-                                <p>Aqui va la descripcion de un producto, Aqui va la descripcion de un producto, Aqui va la descripcion de un producto,.</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" class="btn-floating waves-effect waves-light  green accent-4"><i class="large material-icons">add</i></a>
-                            </div>
+                    <div class="col s12 m6">
+                        <h5>Servicios</h5>
+                        <div class="col s6 m6">
+                            <p>
+                                <input type="checkbox" id="catserv1" />
+                                <label for="catserv1">Categoria Serv 1</label>
+                            </p> 
+                            <p>
+                                <input type="checkbox" id="catserv2" />
+                                <label for="catserv2">Categoria Serv 2</label>
+                            </p> 
                         </div>
-                    </div>   
-                    <div class="col s6 m4">
-                        <div class="card hoverable">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="<?php echo base_url(); ?>lib/img/aromaterapia1.png">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title activator grey-text text-darken-4">PRODUCTO<i class="material-icons right">more_vert</i></span>
-                                <p><a href="#">Esto es un producto</a></p>
-                            </div>
-                            <div class="card-reveal">
-                                <span class="card-title grey-text text-darken-4">PRODUCTO<i class="material-icons right">close</i></span>
-                                <p>Aqui va la descripcion de un producto, Aqui va la descripcion de un producto, Aqui va la descripcion de un producto,.</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" class="btn-floating waves-effect waves-light  green accent-4"><i class="large material-icons">add</i></a>
-                            </div>
+                        <div class="col s6 m6">
+                            <p>
+                                <input type="checkbox" id="catserv3" />
+                                <label for="catserv3">Categoria Serv 3</label>
+                            </p> 
+                            <p>
+                                <input type="checkbox" id="catserv4" />
+                                <label for="catserv4">Categoria Serv 4</label>
+                            </p> 
                         </div>
-                    </div>  
-                    <div class="col s6 m4">
-                        <div class="card hoverable">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="<?php echo base_url(); ?>lib/img/aromaterapia1.png">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title activator grey-text text-darken-4">PRODUCTO<i class="material-icons right">more_vert</i></span>
-                                <p><a href="#">Esto es un producto</a></p>
-                            </div>
-                            <div class="card-reveal">
-                                <span class="card-title grey-text text-darken-4">PRODUCTO<i class="material-icons right">close</i></span>
-                                <p>Aqui va la descripcion de un producto, Aqui va la descripcion de un producto, Aqui va la descripcion de un producto,.</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" class="btn-floating waves-effect waves-light  green accent-4"><i class="large material-icons">add</i></a>
-                            </div>
-                        </div>
-                    </div>   
-                    <div class="col s6 m4">
-                        <div class="card hoverable">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="<?php echo base_url(); ?>lib/img/aromaterapia1.png">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title activator grey-text text-darken-4">PRODUCTO<i class="material-icons right">more_vert</i></span>
-                                <p><a href="#">Esto es un producto</a></p>
-                            </div>
-                            <div class="card-reveal">
-                                <span class="card-title grey-text text-darken-4">PRODUCTO<i class="material-icons right">close</i></span>
-                                <p>Aqui va la descripcion de un producto, Aqui va la descripcion de un producto, Aqui va la descripcion de un producto,.</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" class="btn-floating waves-effect waves-light  green accent-4"><i class="large material-icons">add</i></a>
-                            </div>
-                        </div>
-                    </div> 
-                    <div class="col s6 m4">
-                        <div class="card hoverable">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="<?php echo base_url(); ?>lib/img/aromaterapia1.png">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title activator grey-text text-darken-4">PRODUCTO<i class="material-icons right">more_vert</i></span>
-                                <p><a href="#">Esto es un producto</a></p>
-                            </div>
-                            <div class="card-reveal">
-                                <span class="card-title grey-text text-darken-4">PRODUCTO<i class="material-icons right">close</i></span>
-                                <p>Aqui va la descripcion de un producto, Aqui va la descripcion de un producto, Aqui va la descripcion de un producto,.</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" class="btn-floating waves-effect waves-light  green accent-4"><i class="large material-icons">add</i></a>
-                            </div>
-                        </div>
-                    </div>  
-                    <div class="col s6 m4">
-                        <div class="card hoverable">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="<?php echo base_url(); ?>lib/img/aromaterapia1.png">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title activator grey-text text-darken-4">PRODUCTO<i class="material-icons right">more_vert</i></span>
-                                <p><a href="#">Esto es un producto</a></p>
-                            </div>
-                            <div class="card-reveal">
-                                <span class="card-title grey-text text-darken-4">PRODUCTO<i class="material-icons right">close</i></span>
-                                <p>Aqui va la descripcion de un producto, Aqui va la descripcion de un producto, Aqui va la descripcion de un producto,.</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" class="btn-floating waves-effect waves-light  green accent-4"><i class="large material-icons">add</i></a>
-                            </div>
-                        </div>
-                    </div>   
-                    <div class="col s6 m4">
-                        <div class="card hoverable">
-                            <div class="card-image waves-effect waves-block waves-light">
-                                <img class="activator" src="<?php echo base_url(); ?>lib/img/aromaterapia1.png">
-                            </div>
-                            <div class="card-content">
-                                <span class="card-title activator grey-text text-darken-4">PRODUCTO<i class="material-icons right">more_vert</i></span>
-                                <p><a href="#">Esto es un producto</a></p>
-                            </div>
-                            <div class="card-reveal">
-                                <span class="card-title grey-text text-darken-4">PRODUCTO<i class="material-icons right">close</i></span>
-                                <p>Aqui va la descripcion de un producto, Aqui va la descripcion de un producto, Aqui va la descripcion de un producto,.</p>
-                            </div>
-                            <div class="card-action">
-                                <a href="#" class="btn-floating waves-effect waves-light  green accent-4"><i class="large material-icons">add</i></a>
-                            </div>
-                        </div>
-                    </div>  
+                    </div>
 
+
+                    <!---------------------------MOSTRAR PRODUCTOS-------------------------------->
+                    <div class="col s12">            
+
+                        <ul class="row" id="list-product">
+                        </ul>
+
+                    </div>  
+                  
                 </div>
+
 
             </div>
 
             <div class="fixed-action-btn">
-                <a class="btn-floating btn-large teal hide-on-med-and-down">
+                <a class="btn-floating btn-large teal hide-on-med-and-down amber darken-3">
                     <i class="large material-icons">menu</i>
                 </a>
                 <ul>
@@ -431,21 +362,25 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
 
         </main>
-        <footer class="page-footer yellow">
+        <footer class="page-footer amber">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12 scrollspy" id="about">
                         <h5 class="white-text">Acerca de Nosotros</h5>
-                        <p class="text-lighten-4">Nuestro objetivo, es acercar a un sin número de terapias Complementarias, y a los mejores terapeutas, para así aportar un granito de arena en el logro de un Equilibrio en tu salud y la de todos aquellos que trabajamos para ello.</p>
+                        <p class="purple-text">Nuestro objetivo, es acercar a un sin número de terapias Complementarias, y a los mejores terapeutas, para así aportar un granito de arena en el logro de un Equilibrio en tu salud y la de todos aquellos que trabajamos para ello.</p>
 
-                        <p class="text-lighten-4"><i class="material-icons">call</i> 73 - 2 46 21 28 / +569 - 9265 9369</p>
+                        <p class="purple-text"><i class="material-icons">call</i> 73 - 2 46 21 28 / +569 - 9265 9369</p>
 
-                        <p class="text-lighten-4"><i class="material-icons">mail</i> vidaysalud@centrodemedicinacomplementaria.cl</p>
+                        <p class="purple-text"><i class="material-icons">mail</i> vidaysalud@centrodemedicinacomplementaria.cl</p>
 
-                        <p class="text-lighten-4"> Lunes a Viernes 9:00 - 13:00, 15:00 - 19:00<br>
+                        <p class="purple-text"> Lunes a Viernes 9:00 - 13:00, 15:00 - 19:00<br>
                             Sabados 9:00 - 13:00
                         </p>
-
+                        <div>
+                            <a href="https://www.facebook.com/vidaysaludparral/" class="btn-floating facebook center-align">
+                                f
+                            </a>
+                        </div>
                     </div>
                     <div class="col l6 s12">
                         <div id="google-map-tab" class="col s12 center-align">
@@ -465,7 +400,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="<?php echo base_url(); ?>lib/js/materialize.js"></script>
+        <script src="<?php echo base_url(); ?>lib/js/materialize.min.js"></script>
         <script src="<?php echo base_url(); ?>lib/js/jquery.rut.js"></script>
         <script src="<?php echo base_url(); ?>lib/js/init.js"></script>
         <script type="text/javascript">
@@ -478,6 +413,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $('.slider').slider();
                 $('ul.tabs').tabs();
                 $(".dropdown-button").dropdown({hover: true});
+
 
                 //                Fin de inicio materialize
 
@@ -495,13 +431,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $("#ircontacto").click(function () {
                     $("#contacto").focus();
                 });
+                verProductos();
+                ocultar();
 
                 //Inicio de Sesion
                 $("#login").click(function (e) {
                     e.preventDefault();
                     var rutusuario = $("#rutusuario").val();
                     var contraseña = $("#contraseña").val();
-                    if (rutusuario == "" || contraseña == "") {
+                    if (rutusuario === "" || contraseña === "") {
                         Materialize.toast("Faltan Campos", "1000");
                     } else {
                         $.ajax({
@@ -509,10 +447,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             type: 'post', dataType: 'json',
                             data: {"rutusuario": rutusuario, "contraseña": contraseña}
                         }).success(function (obj) {
-                            if (obj[1] == "administrador") {
+                            if (obj[1] === "administrador") {
                                 window.location.href = "<?PHP echo site_url() ?>/AdminController";
                                 Materialize.toast("Administrador", 1000);
-                            } else if (obj[1] == "cliente") {
+                            } else if (obj[1] === "cliente") {
                                 window.location.href = "<?PHP echo site_url() ?>/ClientController";
                                 Materialize.toast("Cliente", 1000);
                             } else {
@@ -537,8 +475,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     var contraseña = $("#contraseña1").val();
                     var contraseña2 = $("#contraseña2").val();
                     var rutok = $("#rutok").val();
-                    if (rut == "" || nombre == "" || apellido == "" || direccion == "" || telefono == "" ||
-                            correo == "" || contraseña == "" || contraseña2 == "") {
+                    if (rut === "" || nombre === "" || apellido === "" || direccion === "" || telefono === "" ||
+                            correo === "" || contraseña === "" || contraseña2 === "") {
                         Materialize.toast("Faltan Campos", 1000);
                     } else if (contraseña != contraseña2) {
                         Materialize.toast("Contraseña no coincide", 1000);
@@ -578,8 +516,65 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 });
                 //----------FIN REGISTRAR----------
 
+                function verProductos() {
+                    var url = "<?php echo site_url() ?>/getAllProd";
+
+                    $.getJSON(url, function (result) {
+                        $.each(result, function (i, o) {
+                            var fila = "<li class='col l4 s12 m4'>";
+                            fila += "<div class='card hoverable'>";
+                            fila += "<div class='card-image waves-effect waves-block waves-light'><a href='#' class='btn-floating btn-large btn-price waves-effect waves-light  pink darken-1'>$" + o.precio + "</a><img class='activator' src='<?php echo base_url(); ?>lib/img/aromaterapia1.png'></div>";
+                            fila += "<div class='card-content'><span class='card-title activator grey-text text-darken-4'>" + o.nombre + "<i class='material-icons cyan-text right'>info</i></span><p><a href='#'>Ver mas detalle</a></p></div>";
+                            fila += "<div class='card-action  right-align'><a href='#' class='btn-floating waves-effect waves-light  green accent-4'><i class='large material-icons'>add</i></a>";
+                            fila += '<button id="btnverprod" value="'
+                                    + o.idproducto + '|'
+                                    + o.nombre + '|'
+                                    + o.idsubcategoria + '|'
+                                    + o.descripcion + '|'
+                                    + o.precio + '|'
+                                    + o.stock +
+                                    '" class="btn-floating waves-effect waves-light" ><i class="material-icons">search</i></button>';
+                            fila += "</div>";
+                            fila += "<div class='card-reveal'><span class='card-title grey-text text-darken-4'>" + o.nombre + "<i class='material-icons right'>close</i></span><p>" + o.descripcion + "<br><br><p> Stock: " + o.stock + "</p></p></div>";
+                            fila += "</div></li>";
+                            $("#list-product").append(fila);
+                        });
+                    });
+
+                    $("body").on("click", "#btnverprod", function (e) {
+                        e.preventDefault();
+
+                        $("#verid").empty();
+                        $("#vernombre").empty();
+                        $("#vercat").empty();
+                        $("#verstock").empty();
+                        $("#verprec").empty();
+                        $("#verdescrip").empty();
+                        var datos = $(this).val();
+                        var fila = datos.split("|");
+                        $("#verid").append("ID: " + fila[0]);
+                        $("#vernombre").append(fila[1]);
+                        $("#vercat").append("Categoria: " + fila[2]);
+                        $("#verstock").append("Stock: " + fila[5]);
+                        $("#verprec").append("Precio: $" + fila[4]);
+                        $("#verdescrip").append(fila[3]);
+                        $("#moduloverprodpag").show();
+                        location.href = "#moduloverprodpag";
+                    });
+                }
+
+                function  ocultar() {
+                    $("#moduloverprodpag").hide();
+                }
+                $("#cerrarver").click(function (e) {
+                    e.preventDefault();
+                    ocultar();
+                    location.href="#list-product";
+                });
+
             });
         </script>
+
 
     </body>
 </html>

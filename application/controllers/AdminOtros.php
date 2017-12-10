@@ -8,8 +8,12 @@ class AdminOtros extends CI_Controller {
         $this->load->model('ClientModel');
     }
 
-    public function index() {
-        $this->load->view('Admin_otros');
+    public function index() {       
+        if ($this->session->userdata("administrador")) {
+          $this->load->view('Admin_otros');
+        } else {
+            redirect('welcome');
+        }
     }
 
     public function getClientes() {

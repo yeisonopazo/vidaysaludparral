@@ -27,96 +27,100 @@
 
     <body>
         <!-- NAV-->
+        <div class="navbar-fixed">
+            <nav class="nav-extended grey lighten-5" role="navigation">
+                <div class="nav-wrapper container">
+                    <a id="logo-container" href="<?PHP echo site_url() ?>/welcome" class="brand-logo center-on-small-only"><img width="340" src="<?php echo base_url(); ?>/lib/img/logo3.png"></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a class="waves-effect waves-light purple-text" href="<?PHP echo site_url() ?>/logout">Salir</a></li>
+                        <li><a href="#"><i class="material-icons purple-text">shopping_cart</i> </a></li>
+                        <li><a href="#"><i class="material-icons purple-text">notifications</i> </a></li>
 
-        <nav class="teal nav-extended " role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Vida y Salud Parral</a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a class="waves-effect waves-light" href="<?PHP echo site_url() ?>/welcome">Salir</a></li>
+                    </ul>
 
-                    <li><a href="#"><i class="material-icons">shopping_cart</i> </a></li>
-                    <li><a href="#"><i class="material-icons">notifications</i> </a></li>
+                    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                </div>
 
-                </ul>
-                <ul id="nav-mobile" class="side-nav">
-                    <li><a class="waves-effect waves-light" href="<?PHP echo site_url() ?>/welcome">Salir</a></li>
-
-                    <li><a href="#"><i class="material-icons">shopping_cart</i> </a></li>
-                    <li><a href="#"><i class="material-icons">notifications</i> </a></li>
-                </ul>
-                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-            </div>
-
-            <div class="nav-content container">
-                <ul class="tabs tabs-transparent">
-                    <li class="tab"><a  href="#home">Resumen</a></li>
-                    <li class="tab"><a class="waves-effect waves-light" target="_self" href="<?PHP echo site_url() ?>/AdminController">Gestion Productos</a></li>
-                    <li class="tab"><a class="active" href="#gservicios">Gestion Servicios</a></li>
-                    <li class="tab"><a class="waves-effect waves-light" href="#gventas">Gestion Ventas</a></li>
-                    <li class="tab"><a class="waves-effect waves-light" target="_self" href="<?PHP echo site_url() ?>/AdminNotice">Noticias</a></li>
-                    <li class="tab"><a class="waves-effect waves-light" target="_self" href="<?PHP echo site_url() ?>/AdminOtros"><i class="material-icons  left">build</i></a></li>
-                </ul>
-            </div>
-        </nav>
-
+                <div class="nav-content container">
+                    <ul class="tabs tabs-transparent">
+                        <li class="tab"><a  class="waves-effect waves-light purple-text" href="#home">Resumen</a></li>
+                        <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/AdminController">Gestion Productos</a></li>
+                        <li class="tab"><a class="waves-effect waves-light purple-text active" href="#gservicios">Gestion Servicios</a></li>
+                        <li class="tab"><a class="waves-effect waves-light purple-text" href="#gventas">Gestion Ventas</a></li>
+                        <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/AdminNotice">Noticias</a></li>
+                        <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/AdminOtros"><i class="material-icons  left">build</i></a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+        <ul id="nav-mobile" class="side-nav">    
+            <li><a class="waves-effect waves-light purple-text" href="<?PHP echo site_url() ?>/logout">Salir</a></li>
+            <li><a href="#"><i class="material-icons purple-text">shopping_cart</i> </a></li>
+            <li><a href="#"><i class="material-icons purple-text">notifications</i> </a></li>
+        </ul>
+        <br>
+        <br>
         <main>
             <div class="container">
                 <div>
                     <div id="home" class="col s12">
-                        <h3>Resumen</h3>
+                        <div class="card light-green lighten-5">
+                            <h4 class="center light-green-text darken-4" >Resumen</h4>
+                        </div>
+                        <div class="divider light-green darken-4"></div>
                     </div>
                     <div id="gproductos" class="col s12">
-
-                        <div class="">
-                            <div class="row">
-                                <!--         -----------------MODAL ENCARGADO----------------------------->
-                                <div id="modalprov" class="modal modal-fixed-footer">
-                                    <div class="modal-content">
-                                        <h5>Agregar Encargado</h5>
-                                        <form id="formprov">
-                                            <div class="col s12">
-                                                <div class="input-field">
-                                                    <i class="material-icons prefix">account_circle</i>
-                                                    <label for="rutprov">RUT: </label>                           
-                                                    <input type="text" name="rutprov" required id="rutprov">
-                                                </div>
-
-                                                <div class="input-field">
-                                                    <i class="material-icons prefix">face</i>
-                                                    <label for="nombreprov">Nombre: </label>
-                                                    <input type="text" name="nombreprov" required id="nombreprov"/>
-                                                </div>
-                                                <div class="input-field">
-                                                    <i class="material-icons prefix">location_on</i>
-                                                    <label for="direccionprov">Direccion: </label>
-                                                    <input type="text" name="direccionprov" required id="direccionprov"/>
-                                                </div>
-                                                <div class="input-field col s12 m4">
-                                                    <i class="material-icons prefix">location_on</i>
-                                                    <label for="telefonoprov">Telefono: </label>
-                                                    <input type="text" name="telefonoprov" required id="telefonoprov"/>
-                                                </div>
-                                                <div class="input-field col s12 m8">
-                                                    <i class="material-icons prefix">mail</i>
-                                                    <label for="emailprov">Email: </label>
-                                                    <input type="text" name="emailprov" required id="emailprov"/>
-                                                </div>
+                        <div class="row">
+                            <!--         -----------------MODAL ENCARGADO----------------------------->
+                            <div id="modalprov" class="modal modal-fixed-footer">
+                                <div class="modal-content">
+                                    <h5>Agregar Encargado</h5>
+                                    <form id="formprov">
+                                        <div class="col s12">
+                                            <div class="input-field">
+                                                <i class="material-icons prefix">account_circle</i>
+                                                <label for="rutprov">RUT: </label>                           
+                                                <input type="text" name="rutprov" required id="rutprov">
                                             </div>
-                                        </form>
 
-                                    </div>
-                                    <div class="modal-footer">                                      
-                                        <input type="submit" class="btn btn-primary" id="btnaddprov" value="Agregar Encargado"/>
-                                    </div>
+                                            <div class="input-field">
+                                                <i class="material-icons prefix">face</i>
+                                                <label for="nombreprov">Nombre: </label>
+                                                <input type="text" name="nombreprov" required id="nombreprov"/>
+                                            </div>
+                                            <div class="input-field">
+                                                <i class="material-icons prefix">location_on</i>
+                                                <label for="direccionprov">Direccion: </label>
+                                                <input type="text" name="direccionprov" required id="direccionprov"/>
+                                            </div>
+                                            <div class="input-field col s12 m4">
+                                                <i class="material-icons prefix">location_on</i>
+                                                <label for="telefonoprov">Telefono: </label>
+                                                <input type="text" name="telefonoprov" required id="telefonoprov"/>
+                                            </div>
+                                            <div class="input-field col s12 m8">
+                                                <i class="material-icons prefix">mail</i>
+                                                <label for="emailprov">Email: </label>
+                                                <input type="text" name="emailprov" required id="emailprov"/>
+                                            </div>
+                                        </div>
+                                    </form>
+
                                 </div>
-                                <!-------------------------FIN MODAL AGREGAR ENCARGADO-------->
-
+                                <div class="modal-footer">                                      
+                                    <input type="submit" class="btn btn-primary" id="btnaddprov" value="Agregar Encargado"/>
+                                </div>
                             </div>
+                            <!-------------------------FIN MODAL AGREGAR ENCARGADO-------->
+
                         </div>
+
                     </div>
                     <div id="gservicios" class="col s12">                    
-                        <div class="card-panel teal darken-3 text-primary">
-                            <h3>Servicios</h3>
+                        <div class="card light-green lighten-5">
+                            <h4 class="center light-green-text darken-4" >Servicios</h4>
                         </div>
+                        <div class="divider light-green darken-4"></div>
 
                         <div class="card-panel">
 
@@ -137,7 +141,7 @@
                                 <?php include ('modulos/verservice.php'); ?>
                             </div>
 
-                            <nav class="row hoverable teal darken-3">
+                            <nav class="row hoverable">
                                 <div class="nav-wrapper">
                                     <div class="input-field">
                                         <input id="search" type="search" required placeholder="Buscar Servicio">
@@ -178,7 +182,10 @@
                         </div>
                     </div>
                     <div id="gventas" class="col s12">
-                        <h3>Gestion de ventas</h3>
+                       <div class="card light-green lighten-5">
+                            <h4 class="center light-green-text darken-4" >Gestion Ventas</h4>
+                        </div>
+                        <div class="divider light-green darken-4"></div>
 
                     </div>
                     <div id="noticias" class="col s12">
@@ -199,33 +206,13 @@
                 </div>
             </div>
         </main>
-        <footer class="page-footer teal">
+        <footer class="page-footer amber">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
                         <h5 class="white-text">Acerca De</h5>
-                        <p class="grey-text text-lighten-4">Nuestro objetivo, es acercar a un sin número de terapias Complementarias, y a los mejores terapeutas, para así aportar un granito de arena en el logro de un Equilibrio en tu salud y la de todos aquellos que trabajamos para ello.</p>
-
-
-                    </div>
-                    <div class="col l3 s12">
-                        <h5 class="white-text">Settings</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">Link 1</a></li>
-                            <li><a class="white-text" href="#!">Link 2</a></li>
-                            <li><a class="white-text" href="#!">Link 3</a></li>
-                            <li><a class="white-text" href="#!">Link 4</a></li>
-                        </ul>
-                    </div>
-                    <div class="col l3 s12">
-                        <h5 class="white-text">Connect</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">Link 1</a></li>
-                            <li><a class="white-text" href="#!">Link 2</a></li>
-                            <li><a class="white-text" href="#!">Link 3</a></li>
-                            <li><a class="white-text" href="#!">Link 4</a></li>
-                        </ul>
-                    </div>
+                        <p class="purple-text">Nuestro objetivo, es acercar a un sin número de terapias Complementarias, y a los mejores terapeutas, para así aportar un granito de arena en el logro de un Equilibrio en tu salud y la de todos aquellos que trabajamos para ello.</p>
+                    </div>                    
                 </div>
             </div>
             <div class="footer-copyright">

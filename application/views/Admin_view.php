@@ -27,48 +27,52 @@
 
     <body>
         <!-- NAV-->
+        <div class="navbar-fixed">
+            <nav class="nav-extended grey lighten-5" role="navigation">
+                <div class="nav-wrapper container">
+                    <a id="logo-container" href="<?PHP echo site_url() ?>/welcome" class="brand-logo center-on-small-only"><img width="340" src="<?php echo base_url(); ?>/lib/img/logo3.png"></a>
+                    <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <ul class="right hide-on-med-and-down">
+                        <li><a class="waves-effect waves-light purple-text" href="<?PHP echo site_url() ?>/logout">Salir</a></li>
+                        <li><a href="#"><i class="material-icons purple-text">shopping_cart</i> </a></li>
+                        <li><a href="#"><i class="material-icons purple-text">notifications</i> </a></li>
+                    </ul>
+                </div>
+                <div class="nav-content container">                
+                    <ul class="tabs tabs-transparent">
+                        <li class="tab"><a class="waves-effect waves-light purple-text" href="#home">Resumen</a></li>
+                        <li class="tab"><a class="waves-effect waves-light purple-text active"  href="#gproductos">Gestion Productos</a></li>
+                        <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/AdminServ">Gestion Servicios</a></li>
+                        <li class="tab"><a class="waves-effect waves-light purple-text"  href="#gventas">Gestion Ventas</a></li>
+                        <li class="tab"><a class="waves-effect waves-light purple-text"  target="_self" href="<?PHP echo site_url() ?>/AdminNotice">Noticias</a></li>
+                        <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/AdminOtros"><i class="material-icons left">build</i></a></li>
+                    </ul>       
+                </div>
+            </nav>
+        </div>
+        <ul id="nav-mobile" class="side-nav">
+            <li><a class="waves-effect waves-light purple-text" href="<?PHP echo site_url() ?>/logout">Salir</a></li>
 
-        <nav class="teal nav-extended" role="navigation">
-            <div class="nav-wrapper container"><a id="logo-container" href="#" class="brand-logo">Vida y Salud Parral</a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a class="waves-effect waves-light" href="<?PHP echo site_url() ?>/welcome">Salir</a></li>
-
-                    <li><a href="#"><i class="material-icons">shopping_cart</i> </a></li>
-                    <li><a href="#"><i class="material-icons">notifications</i> </a></li>
-
-                </ul>
-                <ul id="nav-mobile" class="side-nav">
-                    <li><a class="waves-effect waves-light" href="<?PHP echo site_url() ?>/welcome">Salir</a></li>
-
-                    <li><a href="#"><i class="material-icons">shopping_cart</i> </a></li>
-                    <li><a href="#"><i class="material-icons">notifications</i> </a></li>
-                </ul>
-                <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
-            </div>
-
-            <div class="nav-content container">                
-                <ul class="tabs tabs-transparent">
-                    <li class="tab"><a class="waves-effect waves-light" href="#home">Resumen</a></li>
-                    <li class="tab"><a class="waves-effect waves-light active"  href="#gproductos">Gestion Productos</a></li>
-                    <li class="tab"><a class="waves-effect waves-light" target="_self" href="<?PHP echo site_url() ?>/AdminServ">Gestion Servicios</a></li>
-                    <li class="tab"><a class="waves-effect waves-light"  href="#gventas">Gestion Ventas</a></li>
-                    <li class="tab"><a class="waves-effect waves-light"  target="_self" href="<?PHP echo site_url() ?>/AdminNotice">Noticias</a></li>
-                    <li class="tab"><a class="waves-effect waves-light" target="_self" href="<?PHP echo site_url() ?>/AdminOtros"><i class="material-icons left">build</i></a></li>
-                </ul>       
-            </div>
-        </nav>
-
+            <li><a href="#"><i class="material-icons purple-text">shopping_cart</i> </a></li>
+            <li><a href="#"><i class="material-icons purple-text">notifications</i> </a></li>
+        </ul>
+        <br>
+        <br>
 
         <main>
             <div class="container">
                 <div>
                     <div id="home" class="col s12">
-                        <h3>Resumen</h3>
+                        <div class="card light-green lighten-5">
+                            <h4 class="center light-green-text darken-4" >Resumen</h4>
+                        </div>
+                        <div class="divider light-green darken-4"></div>
                     </div>
                     <div id="gproductos" class="col s12">
-                        <div class="card-panel teal darken-3 text-primary">
-                            <h4> Productos</h4>
+                        <div class="card light-green lighten-5">
+                            <h4 class="center light-green-text darken-4" >Productos</h4>
                         </div>
+                        <div class="divider light-green darken-4"></div>
                         <div class="card-panel">
 
                             <div class="row"> 
@@ -130,7 +134,7 @@
                             <!-------------------------FIN MODAL AGREGAR PROVEEDOR-------->
 
 
-                            <nav class="row hoverable teal">
+                            <nav class="row hoverable">
                                 <div class="nav-wrapper">
                                     <div class="input-field">
                                         <input id="search" type="search" required placeholder="Buscar Producto">
@@ -173,10 +177,10 @@
 
                     <div id="gventas" class="col s12">
                         <h3>Gestion de ventas</h3>
-                     
+
                     </div>
                     <div id="noticias" class="col s12">
-                       
+
                     </div>
                 </div>
 
@@ -193,33 +197,16 @@
                 </div>
             </div>
         </main>
-        <footer class="page-footer teal">
+        <footer class="page-footer amber">
             <div class="container">
                 <div class="row">
                     <div class="col l6 s12">
                         <h5 class="white-text">Acerca De</h5>
-                        <p class="grey-text text-lighten-4">Nuestro objetivo, es acercar a un sin número de terapias Complementarias, y a los mejores terapeutas, para así aportar un granito de arena en el logro de un Equilibrio en tu salud y la de todos aquellos que trabajamos para ello.</p>
+                        <p class="purple-text">Nuestro objetivo, es acercar a un sin número de terapias Complementarias, y a los mejores terapeutas, para así aportar un granito de arena en el logro de un Equilibrio en tu salud y la de todos aquellos que trabajamos para ello.</p>
 
 
                     </div>
-                    <div class="col l3 s12">
-                        <h5 class="white-text">Settings</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">Link 1</a></li>
-                            <li><a class="white-text" href="#!">Link 2</a></li>
-                            <li><a class="white-text" href="#!">Link 3</a></li>
-                            <li><a class="white-text" href="#!">Link 4</a></li>
-                        </ul>
-                    </div>
-                    <div class="col l3 s12">
-                        <h5 class="white-text">Connect</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">Link 1</a></li>
-                            <li><a class="white-text" href="#!">Link 2</a></li>
-                            <li><a class="white-text" href="#!">Link 3</a></li>
-                            <li><a class="white-text" href="#!">Link 4</a></li>
-                        </ul>
-                    </div>
+                   
                 </div>
             </div>
             <div class="footer-copyright">
@@ -294,9 +281,9 @@
                     ocultar();
                     $("#moduloaddserv").show();
                 });
-                
+
                 $("#rutprov").rut({validateOn: 'change keyup'});
-                
+
                 //////AGREGAR SUB-CATEGORIA//////////
                 $("#btnaddsubcat").click(function (e) {
                     e.preventDefault();
@@ -404,7 +391,7 @@
                     $("#subcat").append("<option value='0' disabled selected>Selecciona una categoria</option>");
                     $.getJSON(url, function (result) {
                         $.each(result, function (i, o) {
-                            if (o.nombre == "Productos") {
+                            if (o.nombre === "Productos") {
                                 var fila = "<tr><td>" + o.idcategoria + "</td>";
                                 fila += "<td>" + o.nombre + "</td>";
                                 fila += "<td>" + o.idsubcategoria + "</td>";
@@ -432,7 +419,7 @@
                     $("#idcat").append("<option value='0' disabled selected>Selecciona una categoria</option>");
                     $.getJSON(url, function (datos) {
                         $.each(datos, function (i, o) {
-                            if (o.nombre=="Productos"){
+                            if (o.nombre == "Productos") {
                                 var x = "<option value='" + o.idcategoria + "'>" + o.nombre + "</option>";
                                 $("#idcat").append(x);
                                 $('select').material_select();

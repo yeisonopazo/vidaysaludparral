@@ -8,7 +8,12 @@ class AdminController extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('Admin_view');
+   
+        if ($this->session->userdata("administrador")) {
+                $this->load->view('Admin_view');
+        } else {
+            redirect('welcome');
+        }
     }
 
     public function insertarProducto() {

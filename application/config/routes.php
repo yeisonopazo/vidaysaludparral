@@ -10,6 +10,8 @@ $route['translate_uri_dashes'] = FALSE;
 //login
 $route["iniciar"] = "welcome/iniciar";
 $route["user"] = "welcome/user";
+$route["logout"] = "welcome/logout";
+$route["getAllProd"]="welcome/getProductos";
 //cliente
 $route["addClient"] = "ClientController/insertarCliente";
 $route["getSesion"] = "ClientController/getSesion";

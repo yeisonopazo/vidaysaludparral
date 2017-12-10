@@ -7,6 +7,7 @@ class Welcome extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model("LoginModel");
+        $this->load->model("AdminModel");
     }
 
     public function index() {
@@ -17,7 +18,7 @@ class Welcome extends CI_Controller {
         $rutusuario = $this->input->post("rutusuario");
         $contraseña = $this->input->post("contraseña");
 
-        $X = $this->LoginModel->iniciar($rutusuario, $contraseña);
+        $X = $this->LoginModel->iniciar($rutusuario, md5($contraseña));
         If (count($X) >= 0) {
             If ($X[0]->idperfil == 1) {
                 $this->session->set_userdata("cliente", $X);
@@ -30,9 +31,18 @@ class Welcome extends CI_Controller {
             Echo json_encode(array("msg", "Usuario no registrador"));
         }
     }
+    
+    public function logout(){
+        $this->session->sess_destroy();
+        redirect('welcome');
+    }
 
     public function user() {
         echo json_encode($this->LoginModel->verUser());
+    }
+
+    public function getProductos() {
+        echo json_encode($this->AdminModel->getProductos());
     }
 
 }

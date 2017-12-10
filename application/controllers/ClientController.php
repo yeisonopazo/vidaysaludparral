@@ -8,7 +8,11 @@ class ClientController extends CI_Controller {
     }
 
     public function index() {
-        $this->load->view('Cliente_view');
+        if ($this->session->userdata("cliente")) {
+            $this->load->view('Cliente_view');
+        } else {
+            redirect('welcome');
+        }
     }
 
     public function insertarCliente() {
@@ -20,13 +24,14 @@ class ClientController extends CI_Controller {
         $correo = $this->input->post("correo");
         $contraseña = $this->input->post("contraseña");
         $idperfil = $this->input->post("idperfil");
-        $this->ClientModel->insertarCliente($rutusuario, $nombre, $apellido, $direccion, $telefono, $correo, $contraseña, $idperfil);
+        $this->ClientModel->insertarCliente($rutusuario, $nombre, $apellido, $direccion, $telefono, $correo, md5($contraseña), $idperfil);
         echo json_encode(array("msg" => "Registrado"));
     }
 
     public function getSesion() {
         echo json_encode($this->session->userdata("cliente"));
     }
+
     public function getUser() {
         $rutusuario = $this->input->post("rutusuario");
         echo json_encode($this->ClientModel->getUser($rutusuario));
@@ -40,7 +45,7 @@ class ClientController extends CI_Controller {
         $telefono = $this->input->post("telefono");
         $correo = $this->input->post("correo");
         $contraseña = $this->input->post("contraseña");
-        $this->ClientModel->actualizarCliente($rutusuario, $nombre, $apellido, $direccion, $telefono, $correo, $contraseña);
+        $this->ClientModel->actualizarCliente($rutusuario, $nombre, $apellido, $direccion, $telefono, $correo, md5($contraseña));
         echo json_encode(array("msg" => "Actualizado!"));
     }
 
