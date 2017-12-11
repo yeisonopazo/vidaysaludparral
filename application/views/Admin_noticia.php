@@ -45,7 +45,7 @@
                         <li class="tab"><a class="waves-effect waves-light purple-text" href="#home">Resumen</a></li>
                         <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/AdminController">Gestion Productos</a></li>
                         <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/AdminServ">Gestion Servicios</a></li>
-                        <li class="tab"><a class="waves-effect waves-light purple-text" href="#gventas">Gestion Ventas</a></li>
+                        <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/VentasController">Gestion Ventas</a></li>
                         <li class="tab"><a class="waves-effect waves-light purple-text active" href="#noticias">Noticias</a></li>
                         <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/AdminOtros"><i class="material-icons left">build</i></a></li>
                     </ul>
@@ -75,16 +75,10 @@
                         </div>
                     </div>
                     <div id="gproductos" class="col s12">
-
                     </div>
                     <div id="gservicios" class="col s12">
                     </div>
                     <div id="gventas" class="col s12">
-                        <div class="card light-green lighten-5">
-                            <h4 class="center light-green-text darken-4" >Gestion Ventas</h4>
-                        </div>
-                        <div class="divider light-green darken-4"></div>
-
                     </div>
                     <div id="noticias" class="col s12">
                         <div class="card light-green lighten-5">
@@ -125,7 +119,7 @@
                                     <div class=" col s12 m2">
                                         <div class="input-field">
                                             <label for="fecha">Fecha:</label>
-                                            <input type="text" id="fechanoti" name="fecha" class="datepicker">
+                                            <input type="datetime-local" id="fechanoti" name="fecha" class="datepicker">
                                         </div>
                                     </div>
                                     <div class=" col s12 m5">
@@ -147,7 +141,7 @@
                                 </div>
                             </form>
                         </div>  
-                        <div id="gnoti" class=" col s12 ">
+                        <div id="gnoti" class="card-panel col s12 ">
                             <table id="tablanoti" class="bordered">
                                 <thead>
                                     <tr>
@@ -176,6 +170,8 @@
                                 <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
                             </ul>
                         </div>
+                        
+
                     </div>
                 </div>
             </div>
@@ -256,7 +252,7 @@
                     today: 'Hoy',
                     clear: 'Limpiar',
                     close: 'Ok',
-                    format: "dd-mm-yyyy",
+                    format: "yyyy-mm-dd",
                     closeOnSelect: false // Close upon selecting a date,
 
                 });
@@ -332,20 +328,18 @@
                     $("#tbodynoti").empty();
                     $.getJSON(url, function (result) {
                         $.each(result, function (i, o) {
+                            var img = btoa(o.imagen);
                             var fila = "<tr><td>" + o.idnoticia + "</td>";
                             fila += "<td>" + o.descripcion + "</td>";
                             fila += "<td>" + o.descripcion + "</td>";
                             fila += "<td>" + o.fecha + "</td>";
-                            fila += "<td><img src='data:image/jpeg;base64,'></td>";
+                            fila += "<td><img src='data:image/jpeg;base64," + img + "' alt=''></td>";
                             fila += "<td>" + o.autor + "</td>";
                             fila += "<td>" + o.referencia + "</td>";
                             $("#tbodynoti").append(fila);
                         });
                     });
                 }
-
-
-
                 function ocultar() {
                     $("#moduloaddprod").hide();
                     $("#modulocat").hide();

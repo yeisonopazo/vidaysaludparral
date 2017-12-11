@@ -27,6 +27,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
     </style>
+
+    <?php
+    $cart = $this->session->userdata("carro");
+    ?>
     <body>
 
         <div id="loader-wrapper">
@@ -42,21 +46,22 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <li><a class="waves-effect waves-light modal-trigger purple-text" href="#modal2">Registrarse</a></li>
             <li class="divider"></li>
 
-        </ul> 
+        </ul>
+        <ul id="dropdown2" class="dropdown-content">
+
+        </ul>
         <div class="navbar-fixed">
             <nav class="grey lighten-5" role="navigation">
                 <div class="nav-wrapper container">
                     <a href="#" data-activates="nav-mobile" class="button-collapse purple-text"><i class="material-icons">menu</i></a>
                     <a id="logo-container" href="" class="brand-logo center-on-small-only"><img width="340" src="<?php echo base_url(); ?>/lib/img/logo3.png"></a>
                     <ul class="right hide-on-med-and-down ">
-                        <li></li>
-                        <li><a class="waves-effect waves-light purple-text" href="#home">Home</a></li>
-                        <li><a class="waves-effect waves-light purple-text" href="#productos">Productos y Servicios</a></li>
-                        <li><a class="waves-effect waves-light purple-text" href="#about">Nosotros</a></li>  
-                        <li><a class="dropdown-button waves-effect clearfix purple-text" data-activates="dropdown1">Clientes<i class="material-icons right">arrow_drop_down</i></a></li>
-                        <li><a href="#"><i class="material-icons purple-text">shopping_cart</i></a></li>
+                        <li><a class="waves-effect  purple-text" href="#home">Home</a></li>
+                        <li><a class="waves-effect  purple-text" href="#productos">Productos y Servicios</a></li>
+                        <li><a class="waves-effect  purple-text" href="#about">Nosotros</a></li>  
+                        <li><a class="dropdown-button waves-effect clearfix purple-text" data-beloworigin="true" data-activates="dropdown1">Clientes<i class="material-icons right">arrow_drop_down</i></a></li>
+                        <li><a href="#" class="dropdown-button waves-effect waves-light purple-text" data-beloworigin="true" data-activates="dropdown2"><i class="material-icons left">shopping_cart</i><span id="carro" class="badge purple white-text"></span></a></li>
                     </ul> 
-
                 </div>    
             </nav>
         </div>
@@ -344,7 +349,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         </ul>
 
                     </div>  
-                  
+
                 </div>
 
 
@@ -412,28 +417,34 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $('.carousel').carousel('next', 3);
                 $('.slider').slider();
                 $('ul.tabs').tabs();
-                $(".dropdown-button").dropdown({hover: true});
-
-
+                $(".dropdown-button").dropdown({
+                    inDuration: 300,
+                    outDuration: 225,
+                    constrainWidth: false, // Does not change width of dropdown to that of the activator
+                    hover: true, // Activate on hover
+                    gutter: 0, // Spacing from edge
+                    belowOrigin: false, // Displays dropdown below the button
+                    alignment: 'left', // Displays dropdown with edge aligned to the left of button
+                    stopPropagation: false
+                });
                 //                Fin de inicio materialize
 
                 //VALIDA RUT
                 $("#rutusuario2").rut().on('rutValido', function (e, rut, dv) {
                     //  Materialize.toast("El rut " + rut + "-" + dv + " es correcto");
                     $("#rutok").val("rutok");
-                });//
+                }); //
                 $("#rutusuario2").rut().on('rutInvalido', function (e) {
                     // Materialize.toast("El rut " + $(this).val() + " es inválido", "4000");
                     $("#rutok").val("invalido");
                 });
                 $("#rutusuario").rut({validateOn: 'change keyup'});
-
                 $("#ircontacto").click(function () {
                     $("#contacto").focus();
                 });
                 verProductos();
                 ocultar();
-
+                carro();
                 //Inicio de Sesion
                 $("#login").click(function (e) {
                     e.preventDefault();
@@ -510,7 +521,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             }
 
                         });
-
                     }
 
                 });
@@ -518,15 +528,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
                 function verProductos() {
                     var url = "<?php echo site_url() ?>/getAllProd";
-
                     $.getJSON(url, function (result) {
                         $.each(result, function (i, o) {
                             var fila = "<li class='col l4 s12 m4'>";
                             fila += "<div class='card hoverable'>";
                             fila += "<div class='card-image waves-effect waves-block waves-light'><a href='#' class='btn-floating btn-large btn-price waves-effect waves-light  pink darken-1'>$" + o.precio + "</a><img class='activator' src='<?php echo base_url(); ?>lib/img/aromaterapia1.png'></div>";
                             fila += "<div class='card-content'><span class='card-title activator grey-text text-darken-4'>" + o.nombre + "<i class='material-icons cyan-text right'>info</i></span><p><a href='#'>Ver mas detalle</a></p></div>";
-                            fila += "<div class='card-action  right-align'><a href='#' class='btn-floating waves-effect waves-light  green accent-4'><i class='large material-icons'>add</i></a>";
-                            fila += '<button id="btnverprod" value="'
+                            fila += "<div class='card-action  right-align'><button id='addcarro' value='" + o.idproducto + '|' + o.nombre + '|'+ o.precio+"' class='btn-floating waves-effect waves-light  green accent-4'><i class='large material-icons'>add_shopping_cart</i></button>";
+                                    fila += '<button id="btnverprod" value="'
                                     + o.idproducto + '|'
                                     + o.nombre + '|'
                                     + o.idsubcategoria + '|'
@@ -540,10 +549,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             $("#list-product").append(fila);
                         });
                     });
-
                     $("body").on("click", "#btnverprod", function (e) {
                         e.preventDefault();
-
                         $("#verid").empty();
                         $("#vernombre").empty();
                         $("#vercat").empty();
@@ -569,9 +576,40 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $("#cerrarver").click(function (e) {
                     e.preventDefault();
                     ocultar();
-                    location.href="#list-product";
+                    location.href = "#list-product";
                 });
-
+///////////////////////carro
+                $("body").on("click", "#addcarro", function (e) {
+                    e.preventDefault();
+                    var datos = $(this).val();
+                    $.ajax({
+                        url: '<?php echo site_url() ?>/addCarro',
+                        type: 'post',
+                        dataType: 'json',
+                        data: {"idproducto": datos}
+                    }).success(function (o) {
+                        Materialize.toast("Se agrego" + datos, 1000);
+                        carro();
+                    }).fail(function (o) {
+                        Materialize.toast("Error", 1000);
+                    });
+                });
+                function carro() {
+                    var url = "<?php echo site_url() ?>/getCarro";
+                    var url2 = "<?php echo site_url() ?>/clearCarro";
+                    $("#dropdown2").empty();
+                    $.getJSON(url, function (result) {
+                        $.each(result, function (i, o) {
+                            var fila = "<li><a>" + o.idproducto + "</a></li>";
+                            $("#dropdown2").append(fila);
+                        });
+                        var fila = "<li><a id='clearcarro' href='" + url2 + "'><i class='material-icons red-text'>remove_shopping_cart</i></a></li>";
+                        $("#dropdown2").append(fila);
+                        var suma = result.length;
+                        $("#carro").empty();
+                        $("#carro").append(suma);
+                    });
+                }
             });
         </script>
 

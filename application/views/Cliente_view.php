@@ -21,11 +21,11 @@
             flex: 1 0 auto;
         }
     </style>
-    <body>
+      <body>
         <nav class="nav-extended grey lighten-5" role="navigation">
             <div class="nav-wrapper container">
-                <a id="logo-container" href="<?PHP echo site_url() ?>/welcome" class="brand-logo center-on-small-only"><img width="340" src="<?php echo base_url(); ?>/lib/img/logo3.png"></a>
-                <ul class="right hide-on-med-and-down">
+                <a id="logo-container" href="<?PHP echo site_url() ?>/welcome" class="brand-logo center-on-small-only"><img width="340" src="<?php echo base_url(); ?>/lib/img/logo3.png"></a>                
+                <ul class="right hide-on-med-and-down">                    
                     <li><a id="saludo1" class="purple-text" href=""></a></li>
                     <li><a class="waves-effect waves-light purple-text" href="<?PHP echo site_url() ?>/logout">Salir</a></li>
                     <li><a href="#"><i class="material-icons purple-text">shopping_cart</i> </a></li>
@@ -193,8 +193,8 @@
                 //                Fin de inicio materialize
 
                 getSesion();
-
-
+                
+                
                 function getSesion() {
                     var url = "<?php echo site_url() ?>/getSesion";
                     $.getJSON(url, function (result) {
@@ -204,7 +204,6 @@
                         });
                     });
                 }
-
                 function getUser() {
                     var rut = $("#rutusuario").val();
                     $("#saludo1").empty();

@@ -32,7 +32,9 @@
                 <div class="nav-wrapper container">
                     <a id="logo-container" href="<?PHP echo site_url() ?>/welcome" class="brand-logo center-on-small-only"><img width="340" src="<?php echo base_url(); ?>/lib/img/logo3.png"></a>
                     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <input type="text" name="rut" id="rutusuario" hidden>
                     <ul class="right hide-on-med-and-down">
+                        <li><a id="saludo1" class="purple-text" href=""></a></li>
                         <li><a class="waves-effect waves-light purple-text" href="<?PHP echo site_url() ?>/logout">Salir</a></li>
                         <li><a href="#"><i class="material-icons purple-text">shopping_cart</i> </a></li>
                         <li><a href="#"><i class="material-icons purple-text">notifications</i> </a></li>
@@ -43,7 +45,7 @@
                         <li class="tab"><a class="waves-effect waves-light purple-text" href="#home">Resumen</a></li>
                         <li class="tab"><a class="waves-effect waves-light purple-text active"  href="#gproductos">Gestion Productos</a></li>
                         <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/AdminServ">Gestion Servicios</a></li>
-                        <li class="tab"><a class="waves-effect waves-light purple-text"  href="#gventas">Gestion Ventas</a></li>
+                        <li class="tab"><a class="waves-effect waves-light purple-text"  target="_self" href="<?PHP echo site_url() ?>/VentasController">Gestion Ventas</a></li>
                         <li class="tab"><a class="waves-effect waves-light purple-text"  target="_self" href="<?PHP echo site_url() ?>/AdminNotice">Noticias</a></li>
                         <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/AdminOtros"><i class="material-icons left">build</i></a></li>
                     </ul>       
@@ -176,7 +178,7 @@
                     </div>
 
                     <div id="gventas" class="col s12">
-                        <h3>Gestion de ventas</h3>
+
 
                     </div>
                     <div id="noticias" class="col s12">
@@ -206,7 +208,7 @@
 
 
                     </div>
-                   
+
                 </div>
             </div>
             <div class="footer-copyright">
@@ -265,6 +267,7 @@
                 getCategorias();
                 verProveedores();
                 verProductos();
+                getSesion();
 
                 $("#btnshowcat").click(function (e) {
                     e.preventDefault();
@@ -399,7 +402,7 @@
                                 fila += '<td><button id="editprov" class="btn-floating waves-effect waves-light" ><i class="material-icons">edit</i></button></td></tr>';
                                 $("#tablacateg").append(fila);
 
-                                if (o.nombre == "Productos") {
+                                if (o.nombre === "Productos") {
                                     var subcat = "<option value='" + o.idsubcategoria + "'>" + o.subcategoria + "</option>";
                                     $("#subcat").append(subcat);
                                     $("#upsubcat").append(subcat);
@@ -419,7 +422,7 @@
                     $("#idcat").append("<option value='0' disabled selected>Selecciona una categoria</option>");
                     $.getJSON(url, function (datos) {
                         $.each(datos, function (i, o) {
-                            if (o.nombre == "Productos") {
+                            if (o.nombre === "Productos") {
                                 var x = "<option value='" + o.idcategoria + "'>" + o.nombre + "</option>";
                                 $("#idcat").append(x);
                                 $('select').material_select();
@@ -437,7 +440,7 @@
                     $("#selectprov").append("<option value='0' selected disabled>Seleccione Proveedor</option>");
                     $.getJSON(url, function (datos) {
                         $.each(datos, function (i, o) {
-                            if (o.idperfil == 4) {
+                            if (o.idperfil === 4) {
                                 var x = "<option value='" + o.rutencargado + "'>" + o.nombre + "</option>";
                                 $("#selectprov").append(x);
                                 $("#upselectprov").append(x);
@@ -456,7 +459,7 @@
                     $.getJSON(url, function (result) {
                         $.each(result, function (i, o) {
 
-                            if (o.nombcateg == "Productos") {
+                            if (o.nombcateg === "Productos") {
                                 var fila = "<tr><td>" + o.idproducto + "</td>";
                                 fila += "<td>" + o.nombre + "</td>";
                                 fila += "<td>" + o.nombresubcat + "</td>";
@@ -494,7 +497,7 @@
                     $("#upstockprod").val(fila[5]);
                     $("#upselectprov").val(fila[6]);
                     $("#moduloverproducto").show();
-                    document.getElementById('moduloverproducto').focus;
+                    location.href = "#moduloverproducto";
 
                 });
 
@@ -526,6 +529,38 @@
                         });
                     }
                 });
+
+
+                function getSesion() {
+                    var url = "<?php echo site_url() ?>/getAdmin";
+                    $.getJSON(url, function (result) {
+                        $.each(result, function (i, o) {
+                            $("#rutusuario").val(o.rutusuario);
+                            getUser();
+                        });
+                    });
+                }
+
+                function getUser() {
+                    var rut = $("#rutusuario").val();
+                    $("#saludo1").empty();
+                    $("#saludo2").empty();
+                    $.ajax({
+                        url: '<?php echo site_url() ?>/getUser',
+                        type: "POST",
+                        dataType: 'json',
+                        data: {"rutusuario": rut}
+                    }).success(function (obj) {
+                        $("#saludo1").empty();
+                        $("#saludo2").empty();
+                        $.each(obj, function (i, u) {
+                            $("#saludo1").append("Bienvenida " + u.nombre + " " + u.apellido + "!");
+                            $("#saludo2").append("Bienvenida " + u.nombre + " " + u.apellido + "!");
+
+                        });
+                    });
+
+                }
             });
         </script>
 

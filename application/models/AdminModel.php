@@ -40,14 +40,6 @@ class AdminModel extends CI_Model {
         $this->db->update("producto", $datos);
     }
 
-    //    function getVentas() {
-//        $this->db->select("v.fecha, u.nombre, p.nombre as producto, p.precio, dv.cantidad, v.total");
-//        $this->db->from("detalleventa dv");
-//        $this->db->join("venta v", " dv.idventa=v.idventa");
-//        $this->db->join("usuario u", "v.rut= u.rut");
-//        $this->db->join("producto p", "dv.idproducto= p.idproducto");
-//        return $this->db->get()->result();
-//    }
     function getProductos() {
         $this->db->select("p.idproducto, p.nombre,"
                 . "sub.idsubcategoria, sub.nombre as nombresubcat,"
@@ -111,5 +103,38 @@ class AdminModel extends CI_Model {
     function getNoticias() {
         return $this->db->get("noticia")->result();
     }
+
+    //////////////////////////VENTAS//////////////////////////////////////////
+    function insertarDetalleVenta($idventa, $idproducto, $cantidad, $precio, $total) {
+        $datos = array("idventa" => $idventa,
+            "idproducto" => $idproducto,
+            "cantidad" => $cantidad,
+            "precio" => $precio,
+            "total" => $total);
+        $this->db->insert("detalleventa", $datos);
+    }
+
+    function getDetalleVentas($idventa) {
+        $this->db->where("idventa", $idventa);
+        return $this->db->get("detalleventa")->result();
+    }
+
+    function insertarVenta($rutusuario, $fechaventa, $subtotal, $total, $comprobante, $observacion, $estado) {
+        $datos = array("rutusuario" => $rutusuario,
+            "fechaventa" => $fechaventa,
+            "subtotal" => $subtotal,
+            "total" => $total,
+            "comprobante" => $comprobante,
+            "observacion" => $observacion,
+            "estado" => $estado);
+
+        $this->db->insert("venta", $datos);
+    }
+
+    function getVentas() {
+        return $this->db->get("venta")->result();
+    }
+    
+    
 
 }

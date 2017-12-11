@@ -44,7 +44,7 @@
                         <li class="tab"><a class="waves-effect waves-light purple-text" href="#home">Resumen</a></li>
                         <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/AdminController">Gestion Productos</a></li>
                         <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/AdminServ">Gestion Servicios</a></li>
-                        <li class="tab"><a class="waves-effect waves-light purple-text" href="#gventas">Gestion Ventas</a></li>
+                        <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/VentasController">Gestion Ventas</a></li>
                         <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/AdminNotice">Noticias</a></li>
                         <li class="tab"><a class="waves-effect waves-light purple-text active" href="#gotros"><i class="material-icons left">build</i></a></li>
                     </ul>
@@ -78,10 +78,6 @@
                     </div>
                     <div id="gventas" class="col s12">
 
-                        <div class="light-green lighten-5">
-                            <h4 class="center light-green-text darken-4" >Gestion Ventas</h4>
-                        </div>
-                        <div class="divider light-green darken-4"></div>
                     </div>
                     <div id="noticias" class="col s12">
 

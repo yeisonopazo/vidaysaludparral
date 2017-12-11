@@ -34,9 +34,23 @@ class ClientModel extends CI_Model {
         $this->db->where("rutusuario", $rutusuario);
         return $this->db->get("usuario")->result();
     }
-    function getClientes(){
-        $this->db->where("idperfil",1);
+
+    function getClientes() {
+        $this->db->where("idperfil", 1);
         return $this->db->get("usuario")->result();
     }
+
+    //////////////////////Ventas//////////////////////
+    function getVentasCliente($rutusuario) {
+        $this->db->where("rutusuario", $rutusuario);
+        return $this->db->get("venta")->result();
+    }
+
+    function getDetalleVentas($idventa) {
+        $this->db->where("idventa", $idventa);
+        return $this->db->get("detalleventa")->result();
+    }
+    
+    
 
 }

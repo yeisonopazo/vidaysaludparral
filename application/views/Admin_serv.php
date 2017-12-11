@@ -46,7 +46,7 @@
                         <li class="tab"><a  class="waves-effect waves-light purple-text" href="#home">Resumen</a></li>
                         <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/AdminController">Gestion Productos</a></li>
                         <li class="tab"><a class="waves-effect waves-light purple-text active" href="#gservicios">Gestion Servicios</a></li>
-                        <li class="tab"><a class="waves-effect waves-light purple-text" href="#gventas">Gestion Ventas</a></li>
+                        <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/VentasController">Gestion Ventas</a></li>
                         <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/AdminNotice">Noticias</a></li>
                         <li class="tab"><a class="waves-effect waves-light purple-text" target="_self" href="<?PHP echo site_url() ?>/AdminOtros"><i class="material-icons  left">build</i></a></li>
                     </ul>
@@ -54,6 +54,7 @@
             </nav>
         </div>
         <ul id="nav-mobile" class="side-nav">    
+            <li><a id="saludo2" class="purple-text" href=""></a></li>
             <li><a class="waves-effect waves-light purple-text" href="<?PHP echo site_url() ?>/logout">Salir</a></li>
             <li><a href="#"><i class="material-icons purple-text">shopping_cart</i> </a></li>
             <li><a href="#"><i class="material-icons purple-text">notifications</i> </a></li>
@@ -182,10 +183,6 @@
                         </div>
                     </div>
                     <div id="gventas" class="col s12">
-                       <div class="card light-green lighten-5">
-                            <h4 class="center light-green-text darken-4" >Gestion Ventas</h4>
-                        </div>
-                        <div class="divider light-green darken-4"></div>
 
                     </div>
                     <div id="noticias" class="col s12">
@@ -494,6 +491,7 @@
                     $("#upselectencarg").val(fila[7]);
                     //   $("#upselectencarg").show();
                     $("#moduloverservicio").show();
+                    location.href = "#moduloverservicio";
                 });
 
                 $("#btnupserv1").click(function (e) {

@@ -1,19 +1,26 @@
 <?php
 
+defined('BASEPATH') OR exit('No direct script access allowed');
+
 class AdminController extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
         $this->load->model('AdminModel');
+        $this->load->model('ClientModel');
     }
 
     public function index() {
-   
+
         if ($this->session->userdata("administrador")) {
-                $this->load->view('Admin_view');
+            $this->load->view('Admin_view');
         } else {
             redirect('welcome');
         }
+    }
+
+    public function getSesionAdmin() {
+        echo json_encode($this->session->userdata("administrador"));
     }
 
     public function insertarProducto() {
@@ -22,9 +29,9 @@ class AdminController extends CI_Controller {
         $descripcion = $this->input->post("descripcion");
         $precio = $this->input->post("precio");
         $stock = $this->input->post("stock");
-        $fecha=$this->input->post("fecha");
+        $fecha = $this->input->post("fecha");
         $rutencargado = $this->input->post("rutencargado");
-        
+
         $this->AdminModel->insertarProducto($nombre, $idcat, $descripcion, $precio, $stock, $fecha, $rutencargado);
         echo json_encode(array("msg" => "Producto Agregado"));
     }
@@ -37,7 +44,7 @@ class AdminController extends CI_Controller {
         $precio = $this->input->post("precio");
         $stock = $this->input->post("stock");
         $rutencargado = $this->input->post("rutencargado");
-        
+
         $this->AdminModel->actualizarProducto($idproducto, $nombre, $idcategoria, $descripcion, $precio, $stock, $rutencargado);
         echo json_encode(array("msg" => "Actualizado!"));
     }
@@ -81,6 +88,8 @@ class AdminController extends CI_Controller {
     public function getProveedores() {
         echo json_encode($this->AdminModel->getProveedores());
     }
+
+    
 
 
 }
