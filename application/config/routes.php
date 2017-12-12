@@ -17,6 +17,9 @@ $route["addClient"] = "ClientController/insertarCliente";
 $route["getSesion"] = "ClientController/getSesion";
 $route["getUser"] = "ClientController/getUser";
 $route["updateClient"] = "ClientController/actualizarCliente";
+$route["getVentas"] = "ClientController/getVentas";
+$route["getDVenta"] = "ClientController/getDetalleVentas";
+
 $route["getClient"] = "AdminOtros/getClientes";
 
 //ADMIN
@@ -50,4 +53,5 @@ $route["getDetailV"]="VentasController/getDetalleVentas";
 $route["addCarro"]="VentasController/addCarro";
 $route["getCarro"]="VentasController/getCarro";
 $route["clearCarro"]="VentasController/limpiar";
+$route["clearCarro2"]="VentasController/limpiar2";
 

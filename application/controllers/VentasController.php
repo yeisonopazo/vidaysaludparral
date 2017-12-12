@@ -48,12 +48,17 @@ class VentasController extends CI_Controller {
     }
 
     public function getDetalleVentas() {
-        echo json_encode($this->AdminModel->getDetalleVentas());
+        $idventa= $this->input->post("idventa");
+        echo json_encode($this->AdminModel->getDetalleVentas($idventa));
     }
 
     public function addCarro() {
         $idproducto = $this->input->post("idproducto");
-        $nuevo = array("idproducto" => $idproducto);
+        $nombre = $this->input->post("nombre");
+        $cantidad = $this->input->post("cantidad");
+        $precio = $this->input->post("precio");
+        $total = $this->input->post("total");
+        $nuevo = array("idproducto" => $idproducto, "nombre" => $nombre, "cantidad" => $cantidad, "precio" => $precio, "total" => $total);
         if ($this->session->userdata("carro")) {
             $carro = $this->session->userdata("carro");
             $carro[] = $nuevo;
@@ -75,6 +80,12 @@ class VentasController extends CI_Controller {
         $this->session->set_userdata("carro", $carro);
         echo json_encode(array("msg", "ok"));
         redirect('welcome');
+    }
+
+    public function limpiar2() {
+        $carro = array();
+        $this->session->set_userdata("carro", $carro);
+        echo json_encode(array("msg", "Canasta Limpia"));       
     }
 
 }

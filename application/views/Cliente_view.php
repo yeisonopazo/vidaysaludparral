@@ -21,7 +21,7 @@
             flex: 1 0 auto;
         }
     </style>
-      <body>
+    <body>
         <nav class="nav-extended grey lighten-5" role="navigation">
             <div class="nav-wrapper container">
                 <a id="logo-container" href="<?PHP echo site_url() ?>/welcome" class="brand-logo center-on-small-only"><img width="340" src="<?php echo base_url(); ?>/lib/img/logo3.png"></a>                
@@ -43,9 +43,8 @@
 
             <div class="nav-content container">
                 <ul class="tabs tabs-transparent">
-                    <li class="tab"><a class="waves-effect waves-light purple-text active"  href="#home">Resumen</a></li>
-                    <li class="tab"><a class="waves-effect waves-light purple-text" href="#mispedidos">Mis Pedidos</a></li>
-                    <li class="tab"><a class="waves-effect waves-light purple-text" href="#misservicios">Mis Servicios</a></li>
+                    <li class="tab"><a class="waves-effect waves-light purple-text active" href="#micanasta">Mi Canasta</a></li>
+                    <li class="tab"><a class="waves-effect waves-light purple-text" href="#misservicios">Mis Pedidos</a></li>
                     <li class="tab"><a class="waves-effect waves-light purple-text" href="#misdatos">Mis Datos</a></li>
                 </ul>
             </div>
@@ -53,30 +52,113 @@
         </nav>
         <main>
             <div class="container">
-                <div id="home" class="col s12">
-                       <div class="card light-green lighten-5">
-                            <h4 class="center light-green-text darken-4" >Resumen</h4>
-                        </div>
-                        <div class="divider light-green darken-4"></div>
-                </div>
-                <div id="mispedidos" class="col s12">
+
+                <div id="micanasta" class="col s12">
                     <div class="card light-green lighten-5">
-                        <h4 class="center light-green-text darken-4" >Mis Productos</h4>
+                        <h4 class="center light-green-text darken-4" >Mi Canasta</h4>
                     </div>
                     <div class="divider light-green darken-4"></div>
+                    <div class="card">
+                        <div class="card-panel">
+                            <div class="row">
+
+                                <div class="input-field col s3" id="divrutcompra">                                  
+                                    <label class="active" for="rut">Pedido a RUT: </label>                           
+                                    <input type="text" value=" " name="rut" id="rutcompra" disabled>
+                                </div>
+
+                                <table id="tablacarro" class="bordered responsive-table" >
+                                    <thead>
+                                        <tr>
+                                            <th>ID Producto</th>
+                                            <th>Nombre</th>                                        
+                                            <th>Cantidad</th>
+                                            <th>Precio Unidad</th>
+                                            <th>Total</th>                                  
+                                        </tr>
+                                    </thead>
+                                    <tbody id="tbodycarro">
+
+                                    </tbody>
+                                </table>
+                                <p class="center" id="estadocarro"></p>
+                                <div id="botones">   
+                                    <div class="right-align blue lighten-5">
+                                        <span class=""><b>TOTAL A PAGAR:</b></span><samp id="totalt"></samp>
+                                    </div>
+                                    <div class="divider black"></div>
+                                    <div class="input-field">
+                                        <label for="observacion" class="active">Observacion:</label>
+                                        <textarea class="materialize-textarea" required  id="observacion" ></textarea>
+                                    </div>
+                                    <div class="right">
+                                        <a id="btnclearcarro" href="" class="red-text"><i class="material-icons left red-text"> remove_shopping_cart</i>Limpiar canasta</a>
+                                        <button type="submit" name="btcomprar" id="btcomprar" class="waves-effect btn"><i class="material-icons left"> system_update_alt</i>Solicitar Pedido</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
                 <div id="misservicios" class="col s12">
                     <div class="card light-green lighten-5">
-                        <h4 class="center light-green-text darken-4">Mis Servicios</h4>
+                        <h4 class="center light-green-text darken-4">Mis Pedidos</h4>
                     </div>
                     <div class="divider light-green darken-4"></div>
+                    <div class="card-panel" id="verdetalle">
+                        <div class="row">
+                            <div class="col s3">                                  
+                                <b><span id="nropedido"></span></b>
+
+                            </div>
+
+                            <table id="tabladetalle" class="bordered responsive-table" >
+                                <thead>
+                                    <tr>
+                                        <th>ID Producto</th>
+                                        <th>Nombre</th>                                        
+                                        <th>Cantidad</th>
+                                        <th>Precio Unidad</th>
+                                        <th>Total</th>                                  
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodydetalle">
+                                </tbody>
+                            </table>                            
+                            <div id="botones">   
+                                <div class="right-align blue lighten-5">
+                                    <b><span>TOTAL: $</span><samp id="totalventa"></samp></b>
+                                </div>
+                                <div class="divider black"></div>
+                                <div>
+                                    <p><b>Observaciones: </b><p>
+                                    <p id="observacionventa" ></p>
+                                </div>
+                                <div class="right">
+                                    <a id="btncerrardetalle" href="#">Cerrar</a>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
+
+                    <div class="card-panel">
+                        <ul class="collection" id="list-pedidos">                            
+                        </ul>
+
+                    </div>
                 </div>
                 <!--            -------------MOSTRAR Y ACTUALIZAR DATOS CLIENTE-------->
                 <div id="misdatos" class="col s12">
-                       <div class="card light-green lighten-5">
-                            <h4 class="center light-green-text darken-4" >Mis datos</h4>
-                        </div>
-                        <div class="divider light-green darken-4"></div>
+                    <div class="card light-green lighten-5">
+                        <h4 class="center light-green-text darken-4" >Mis datos</h4>
+                    </div>
+                    <div class="divider light-green darken-4"></div>
 
                     <div class="card-panel"> 
                         <div class="row">
@@ -155,11 +237,12 @@
                             Sabados 9:00 - 13:00
                         </p>
                         <div>
-                            <a href="https://www.facebook.com/vidaysaludparral/" class="btn-floating facebook center-align">
+                            <a href="https://www.facebook.com/vidaysaludparral/" class="btn-floating facebook  center-align">
                                 f
                             </a>
 
                         </div>
+
                     </div>
                     <div class="col l6 s12">
                         <div id="google-map-tab" class="col s12 center-align">
@@ -179,7 +262,7 @@
 
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-        <script src="<?php echo base_url(); ?>lib/js/materialize.js"></script>
+        <script src="<?php echo base_url(); ?>lib/js/materialize.min.js"></script>
         <script src="<?php echo base_url(); ?>lib/js/init.js"></script>
         <script type="text/javascript">
             $(function () {
@@ -187,20 +270,28 @@
                 $('.modal').modal();
                 $('.button-collapse').sideNav();
                 $('.carousel.carousel-slider').carousel({fullWidth: true});
-                $('.carousel').carousel('next', 3);
-                $('.slider').slider();
                 $('.scrollspy').scrollSpy();
                 //                Fin de inicio materialize
+                $("#botones").hide();
+                $("#divrutcompra").hide();
+                $("#verdetalle").hide();
 
                 getSesion();
-                
-                
+                carro();
+
+                $("#btncerrardetalle").click(function (e) {
+                    e.preventDefault();
+                    $("#verdetalle").hide();
+                });
+
                 function getSesion() {
                     var url = "<?php echo site_url() ?>/getSesion";
                     $.getJSON(url, function (result) {
                         $.each(result, function (i, o) {
                             $("#rutusuario").val(o.rutusuario);
+                            $("#rutcompra").val(o.rutusuario);
                             getUser();
+                            ventas();
                         });
                     });
                 }
@@ -226,6 +317,7 @@
                             $("#correo").val(u.correo);
                             $("#contraseña").val(u.contraseña);
                             $("#confirContraseña").val(u.contraseña);
+
                         });
                     });
 
@@ -261,6 +353,106 @@
                         });
                     }
                 });
+                $("#btnclearcarro").click(function (e) {
+                    e.preventDefault();
+                    var url = "<?php echo site_url() ?>/clearCarro2";
+                    $.getJSON(url, function (result) {
+                        Materialize.toast("Canasta Limpia", "1000");
+                        carro();
+
+                    });
+                });
+
+
+                function carro() {
+                    var url = "<?php echo site_url() ?>/getCarro";
+                    var totalventa = 0;
+                    $.getJSON(url, function (result) {
+                        if (result.length <= 0) {
+                            $("#estadocarro").empty();
+                            $("#tbodycarro").empty();
+                            $("#botones").hide();
+                            $("#divrutcompra").hide();
+                            $("#estadocarro").append("No tiene Productos o Servicios en la canasta");
+                        } else {
+                            $.each(result, function (i, o) {
+                                totalventa = parseInt(o.precio) + parseInt(totalventa);
+                                $("#estadocarro").empty();
+                                var fila = "<tr><td>" + o.idproducto + "</td>";
+                                fila += "<td>" + o.nombre + "</td>";
+                                fila += "<td>1</td>";
+                                fila += "<td>" + o.precio + "</td>";
+                                fila += "<td>" + o.precio + "</td></tr>";
+                                $("#tbodycarro").append(fila);
+                                $("#botones").show();
+
+                            });
+                            $("#divrutcompra").show();
+                            $("#totalt").append("<b> $" + totalventa + "</b>");
+
+                        }
+                    });
+                }
+
+
+
+                function ventas() {
+                    $("#list-pedidos").empty();
+                    var rut = $("#rutusuario").val();
+                    $.ajax({
+                        url: '<?php echo site_url() ?>/getVentas',
+                        type: "POST",
+                        dataType: 'json',
+                        data: {"rutusuario": rut}
+                    }).success(function (obj) {
+                        $.each(obj, function (i, o) {
+                            var fila = "<li class='collection-item avatar hovered'>";
+                            fila += "<button id='subircomprobante' value='" + o.idventa + "' class='circle btn-floating'><i class='material-icons'>image</i></button>";
+                            fila += "<span class='title'>ID Pedido: " + o.idventa + "</span>";
+                            fila += "<p>Fecha de la Venta: " + o.fechaventa + "<br>";
+                            fila += "<a href='#'>Total de la venta: $" + o.total + "</a></p>";
+                            fila += "<button class='btn-floating secondary-content' id='verdetalleventa' value='" + o.idventa + '|' + o.observacion + "'><i class='material-icons'>search</i></button>";
+                            fila += "<span class='right'><b>Estado: " + o.estado + "</b></span></li>";
+                            $("#list-pedidos").append(fila);
+                        });
+                    });
+                }
+
+                $("body").on("click", "#verdetalleventa", function (e) {
+                    e.preventDefault();
+                    $("#observacionventa").empty();
+                    $("#nropedido").empty();
+                    $("#tbodydetalle").empty();
+                    $("#totalventa").empty();
+                    var datos = $(this).val();
+                    var fila = datos.split("|");
+                    var totalventa = 0;
+                    $("#observacionventa").append(fila[1]);
+                    $("#nropedido").append("Nro. de pedido: " + fila[0]);
+                    $.ajax({
+                        url: '<?php echo site_url() ?>/getDVenta',
+                        type: "POST",
+                        dataType: 'json',
+                        data: {"idventa": fila[0]}
+                    }).success(function (obj) {
+                        $.each(obj, function (i, o) {
+                            totalventa = parseInt(o.total) + parseInt(totalventa);
+                            var fila = "<tr><td>" + o.idproducto + "</td>";
+                            fila += "<td>" + o.nombre + "</td>";
+                            fila += "<td>" + o.cantidad + "</td>";
+                            fila += "<td>" + o.precio + "</td>";
+                            fila += "<td>" + o.total + "</td></tr>";
+                            $("#tbodydetalle").append(fila);
+                        });
+
+                        $("#totalventa").append(totalventa);
+                        $("#verdetalle").show();
+                    });
+
+
+                });
+
+
             });
         </script>
 

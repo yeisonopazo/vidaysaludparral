@@ -28,15 +28,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     </style>
 
-    <?php
-    $cart = $this->session->userdata("carro");
-    ?>
     <body>
 
         <div id="loader-wrapper">
 
             <div id="loader"></div>
-
             <div class="loader-section section-left"></div>
             <div class="loader-section section-right"></div>
         </div>
@@ -60,7 +56,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                         <li><a class="waves-effect  purple-text" href="#productos">Productos y Servicios</a></li>
                         <li><a class="waves-effect  purple-text" href="#about">Nosotros</a></li>  
                         <li><a class="dropdown-button waves-effect clearfix purple-text" data-beloworigin="true" data-activates="dropdown1">Clientes<i class="material-icons right">arrow_drop_down</i></a></li>
-                        <li><a href="#" class="dropdown-button waves-effect waves-light purple-text" data-beloworigin="true" data-activates="dropdown2"><i class="material-icons left">shopping_cart</i><span id="carro" class="badge purple white-text"></span></a></li>
+                        <li><a href="#" class="dropdown-button waves-effect waves-light purple-text" data-beloworigin="true" data-activates="dropdown2"><i class="material-icons left">shopping_cart</i><span id="carro" class="badge purple white-text">0</span></a></li>
                     </ul> 
                 </div>    
             </nav>
@@ -534,8 +530,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             fila += "<div class='card hoverable'>";
                             fila += "<div class='card-image waves-effect waves-block waves-light'><a href='#' class='btn-floating btn-large btn-price waves-effect waves-light  pink darken-1'>$" + o.precio + "</a><img class='activator' src='<?php echo base_url(); ?>lib/img/aromaterapia1.png'></div>";
                             fila += "<div class='card-content'><span class='card-title activator grey-text text-darken-4'>" + o.nombre + "<i class='material-icons cyan-text right'>info</i></span><p><a href='#'>Ver mas detalle</a></p></div>";
-                            fila += "<div class='card-action  right-align'><button id='addcarro' value='" + o.idproducto + '|' + o.nombre + '|'+ o.precio+"' class='btn-floating waves-effect waves-light  green accent-4'><i class='large material-icons'>add_shopping_cart</i></button>";
-                                    fila += '<button id="btnverprod" value="'
+                            fila += "<div class='card-action  right-align'><button id='addcarro' value='" + o.idproducto + '|' + o.nombre + '|' + o.precio + "' class='btn-floating waves-effect waves-light  green accent-4'><i class='large material-icons'>add_shopping_cart</i></button>";
+                            fila += '<button id="btnverprod" value="'
                                     + o.idproducto + '|'
                                     + o.nombre + '|'
                                     + o.idsubcategoria + '|'
@@ -582,13 +578,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $("body").on("click", "#addcarro", function (e) {
                     e.preventDefault();
                     var datos = $(this).val();
+                    var fila = datos.split("|");
+
                     $.ajax({
                         url: '<?php echo site_url() ?>/addCarro',
                         type: 'post',
                         dataType: 'json',
-                        data: {"idproducto": datos}
+                        data: {"idproducto": fila[0], "nombre": fila[1], "precio": fila[2]}
                     }).success(function (o) {
-                        Materialize.toast("Se agrego" + datos, 1000);
+                        Materialize.toast("Se agrego" + fila[1] + " $" + fila[2], 1000);
                         carro();
                     }).fail(function (o) {
                         Materialize.toast("Error", 1000);
@@ -597,13 +595,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 function carro() {
                     var url = "<?php echo site_url() ?>/getCarro";
                     var url2 = "<?php echo site_url() ?>/clearCarro";
+                    var url3 = "<?PHP echo site_url() ?>/ClientController";
                     $("#dropdown2").empty();
                     $.getJSON(url, function (result) {
                         $.each(result, function (i, o) {
-                            var fila = "<li><a>" + o.idproducto + "</a></li>";
+                            var fila = "<li><a>" + o.nombre + " " + o.precio + "</a></li>";
                             $("#dropdown2").append(fila);
                         });
-                        var fila = "<li><a id='clearcarro' href='" + url2 + "'><i class='material-icons red-text'>remove_shopping_cart</i></a></li>";
+                        var fila = "<li><a id='ircarro' href='" + url3 + "'><i class='material-icons'>shopping_basket</i></a></li>";
+                        fila += "<li><a class='left' id='clearcarro' href='" + url2 + "'><i class='material-icons red-text left-aling'>remove_shopping_cart</i></a></li>";
+
                         $("#dropdown2").append(fila);
                         var suma = result.length;
                         $("#carro").empty();

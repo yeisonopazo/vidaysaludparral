@@ -51,4 +51,14 @@ class ClientController extends CI_Controller {
         echo json_encode(array("msg" => "Actualizado!"));
     }
 
+    public function getDetalleVentas() {
+        $idventa= $this->input->post("idventa");
+        echo json_encode($this->ClientModel->getDetalleVentas($idventa));
+    }
+
+    public function getVentas() {
+        $rutusuario= $this->input->post("rutusuario");
+        echo json_encode($this->ClientModel->getVentasCliente($rutusuario));
+    }
+
 }
