@@ -16,11 +16,11 @@
             </div>
             <div class="input-field">
                 <label for="precioprod">Precio:</label>
-                <input type="text" required name="precioprod" id="precioprod">
+                <input type="number" required name="precioprod" id="precioprod">
             </div>
             <div class="input-field">
                 <label for="stockprod">Stock:</label>
-                <input type="text" name="stockprod" required id="stockprod">
+                <input type="number" name="stockprod" required id="stockprod">
             </div>
             <div class="col s9">
                 <select id="selectprov" required name="selectprov">                    

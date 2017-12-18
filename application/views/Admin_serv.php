@@ -18,6 +18,9 @@
             display: flex;
             min-height: 100vh;
             flex-direction: column;
+            background-image: url("<?php echo base_url(); ?>/lib/img/flores.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         main {
@@ -145,8 +148,8 @@
                             <nav class="row hoverable">
                                 <div class="nav-wrapper">
                                     <div class="input-field">
-                                        <input id="search" type="search" required placeholder="Buscar Servicio">
-                                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                        <input id="busqueda" type="search" required placeholder="Buscar Servicio">
+                                        <label class="label-icon" for="busqueda"><i class="material-icons">search</i></label>
                                         <i class="material-icons">close</i>
                                     </div>
                                 </div>
@@ -159,6 +162,7 @@
                                             <th>ID</th>
                                             <th>Nombre</th>
                                             <th>Categoria</th>
+                                            <th>Imagen</th>
                                             <th>Descripcion</th>
                                             <th>Precio</th>
                                             <th>Disponibilidad</th>
@@ -302,6 +306,7 @@
                             data: {"nombre": nombre}
                         }).success(function (o) {
                             Materialize.toast("Categoria agregada", 1000);
+                            Materialize.toast(o.msg, 2000);
                             $('#formcat').each(function () {
                                 this.reset();
                             });
@@ -368,6 +373,45 @@
                             $("#addproduct2").show();
                         }).fail(function () {
                             Materialize.toast("Error", 1000);
+                        });
+                    }
+                });
+                $("#btnaddserv2").click(function (e) {
+                    e.preventDefault();
+                    var form = $("#formimgserv")[0];
+                    var data = new FormData(form);
+                    var imagen = $("#imagen").val();
+                    var id = $("#idproducto").val();
+                    if (imagen == "" || id == "") {
+                        Materialize.toast("ingrese una imagen", 1000);
+                    } else {
+                        $.ajax({
+                            url: '<?php echo site_url() ?>/upImg',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: data,
+                            enctype: 'multipart/form-data',
+                            processData: false,
+                            contentType: false,
+                            cache: false,
+                            timeout: 600000,
+                            success: function (o) {
+                                Materialize.toast(o.msg, 1000);
+                                verServicios();
+                                $('#formimgserv').each(function () {
+                                    this.reset();
+                                });
+                                ocultar();
+                                $("#imagen").empty();
+
+
+                            }, error: function () {
+                                Materialize.toast("Error 500", 1000);
+                                $('#formimgserv').each(function () {
+                                    this.reset();
+                                });
+                            }
+
                         });
                     }
                 });
@@ -452,7 +496,8 @@
                             if (o.idcategoria != 1) {
                                 var fila = "<tr><td>" + o.idproducto + "</td>";
                                 fila += "<td>" + o.nombre + "</td>";
-                                fila += "<td>" + o.nombcateg + "</td>";
+                                fila += "<td>" + o.nombresubcat + "</td>";
+                                fila += "<td><img height='100' src='data:image/jpeg;base64," + o.imagen + "'/></td>";
                                 fila += '<td><button id="servver" value="'
                                         + o.idproducto + '|'
                                         + o.nombre + '|'
@@ -461,8 +506,8 @@
                                         + o.precio + '|'
                                         + o.stock + '|'
                                         + o.fecha + '|'
-                                        + o.proveedor +
-                                        '" class="btn-floating waves-effect waves-light" ><i class="material-icons">search</i></button></td>';
+                                        + o.proveedor + '|'
+                                        + o.imagen + '" class="btn-floating waves-effect waves-light" ><i class="material-icons">search</i></button></td>';
                                 fila += "<td>" + o.precio + "</td>";
                                 fila += "<td>" + o.stock + "</td>";
                                 fila += "<td>" + o.fecha + "</td>";
@@ -472,6 +517,50 @@
                         });
                     });
                 }
+
+                $("#busqueda").keyup(function (e) {
+                    e.preventDefault();
+                    var consulta = $("#busqueda").val();
+                    if (consulta == "") {
+                        $("#tbodyserv").empty();
+                        verServicios();
+                    } else {
+                        $.ajax({
+                            url: '<?php echo site_url() ?>/buscarP',
+                            type: "POST",
+                            dataType: 'json',
+                            data: {"nombre": consulta}
+                        }).success(function (obj) {
+                            $("#tbodyserv").empty();
+                            $.each(obj, function (i, o) {
+                                if (o.idcategoria != 1) {
+                                    var fila = "<tr><td>" + o.idproducto + "</td>";
+                                    fila += "<td>" + o.nombre + "</td>";
+                                    fila += "<td>" + o.nombresubcat + "</td>";
+                                    fila += "<td><img height='100' src='data:image/jpeg;base64," + o.imagen + "'/></td>";
+                                    fila += '<td><button id="servver" value="'
+                                            + o.idproducto + '|'
+                                            + o.nombre + '|'
+                                            + o.categoria + '|'
+                                            + o.descripcion + '|'
+                                            + o.precio + '|'
+                                            + o.stock + '|'
+                                            + o.fecha + '|'
+                                            + o.proveedor + '|'
+                                            + o.imagen + '" class="btn-floating waves-effect waves-light" ><i class="material-icons">search</i></button></td>';
+                                    fila += "<td>" + o.precio + "</td>";
+                                    fila += "<td>" + o.stock + "</td>";
+                                    fila += "<td>" + o.fecha + "</td>";
+                                    fila += "<td>" + o.nombreprov + "</td>";
+                                    $("#tbodyserv").append(fila);
+                                }
+                            });
+
+                        }).fail(function () {
+                            Materialize.toast("Error", 1000);
+                        });
+                    }
+                });
                 ///VER Y EDITAR SERVICIOS///
                 $("body").on("click", "#servver", function (e) {
                     e.preventDefault();
@@ -482,6 +571,7 @@
                     var datos = $(this).val();
                     var fila = datos.split("|");
                     $("#upidserv").val(fila[0]);
+                    $("#idproducto").val(fila[0]);
                     $("#upnombreserv").val(fila[1]);
                     $("#upsubcatserv").val(fila[2]);
                     $("#updescripcionserv").val(fila[3]);
@@ -489,6 +579,10 @@
                     $("#upstockserv").val(fila[5]);
                     $("#upfechaserv").val(fila[6]);
                     $("#upselectencarg").val(fila[7]);
+                    $("#verimagen").empty();
+                    var fila = "<img  width='100%' src='data:image/jpeg;base64," + fila[8] + "'/>";
+                    //  var img = "<label for='input-file-now'></label><input type='file' id='input-file-now' class='dropify' data-default-file='data:image/jpeg;base64," + fila[8] + "'/>";
+                    $("#verimagen").append(fila);
                     //   $("#upselectencarg").show();
                     $("#moduloverservicio").show();
                     location.href = "#moduloverservicio";

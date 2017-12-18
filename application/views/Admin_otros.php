@@ -14,10 +14,13 @@
         <link href="<?php echo base_url(); ?>lib/css/dropify.min.css" type="text/css" rel="stylesheet"/>
     </head>
     <style>
-        body {
+         body {
             display: flex;
             min-height: 100vh;
             flex-direction: column;
+            background-image: url("<?php echo base_url(); ?>/lib/img/flores.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         main {
@@ -119,7 +122,7 @@
                                 </nav>
                                 <!---------------------------------CLIENTES--------------------------------->
                                 <div id="gclient" class=" col s12 ">
-                                    <table id="tablaclient" class="bordered">
+                                    <table id="tablaclient" class="bordered responsive-table">
                                         <thead>
                                             <tr>
                                                 <th>RUT</th>
@@ -160,7 +163,7 @@
                                 </nav>
 
                                 <div id="gencargados" class=" col s12 ">
-                                    <table id="tablaencarg" class=" bordered">
+                                    <table id="tablaencarg" class=" bordered responsive-table">
                                         <thead>
                                             <tr>
                                                 <th>RUT</th>
@@ -199,7 +202,7 @@
                                 </nav>
 
                                 <div id="gproveed" class=" col s12 ">
-                                    <table id="tablaprov" class="bordered">
+                                    <table id="tablaprov" class="bordered responsive-table">
                                         <thead>
                                             <tr>
                                                 <th>RUT</th>

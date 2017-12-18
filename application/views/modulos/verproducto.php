@@ -20,14 +20,14 @@
             </div>
             <div class="input-field">
                 <label class="active" for="upprecioprod">Precio:</label>
-                <input type="text" value=" "  required name="upprecioprod" id="upprecioprod">
+                <input type="number" value="0"  required name="upprecioprod" id="upprecioprod">
             </div>
             <div class="input-field">
                 <label class="active" for="upstockprod">Stock:</label>
-                <input type="text" value=" "  name="upstockprod" required id="upstockprod">
+                <input type="number" value="0"  name="upstockprod" required id="upstockprod">
             </div>
             <div class="col s9">
-                <select id="upselectprov" required name="selectprov">                    
+                <select id="upselectprov" required name="upselectprov">                    
                 </select>
             </div>
             <div class="col s3">
@@ -40,9 +40,9 @@
     <div id="verprod2" class="col s12 m8">
         <div class="row">
             <h5 >Agregar Imagenes</h5>
-            <div class="dropify-preview col s6 m6">
+            <div class="dropify-preview col s6 m6 materialboxed" id="verimagenp">
                 <label for="input-file-now"></label>
-                <input type="file" id="input-file-now" class="dropify" />
+                <input type="file" id="input-imagen" class="dropify" />
 
             </div>
             <div class="dropify-preview col s6 m6">
@@ -61,7 +61,7 @@
             </div>
         </div>
         <div class="row">
-            <input type="submit" class="btn right" id="btnupprodut2" value="Finalizar" />
+            <input type="submit" class="btn right" id="btnupprodut2" value="Actualizar Imagen" />
         </div>
     </div>
 

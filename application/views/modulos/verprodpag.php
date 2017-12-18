@@ -3,8 +3,8 @@
     <div class="row">
         <form id="formverprod" name="formverprod">
             <a href="#" class="btn white brown right tooltipped" data-position="bottom" data-delay="50" data-tooltip="Cerrar" id="cerrarver"><i class="material-icons  grey-text darken-4">close</i></a>
-            <div class="col m6 s12">
-                <img width="100%" id="" src='<?php echo base_url(); ?>lib/img/aromaterapia1.png'>
+            <div id="idimagprod" class="col m6 s12 materialboxed">
+            
             </div>
             <div class="col m6 s12">
                 <h4><a id="vernombre">Producto Nombre</a></h4>

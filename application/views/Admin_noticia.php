@@ -18,6 +18,9 @@
             display: flex;
             min-height: 100vh;
             flex-direction: column;
+            background-image: url("<?php echo base_url(); ?>/lib/img/flores.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         main {
@@ -65,14 +68,20 @@
             <div class="container">
                 <div>
                     <div id="home" class="col s12">
-                        <div class="card light-green lighten-5">
-                            <h4 class="center light-green-text darken-4" >Resumen</h4>
-                        </div>
-                        <div class="divider light-green darken-4"></div>
-
                         <div class="card-panel">
-                            <canvas id="myChart" width="400" height="200"></canvas>
+                            <div class="card light-green lighten-5">
+                                <h4 class="center light-green-text darken-4" >Resumen</h4>
+                            </div>
+                            <div class="divider light-green darken-4"></div>
+
+                            <div class="card-panel">
+                                <canvas id="myChart" width="400" height="200"></canvas>
+                            </div>
+                            <div class="row">
+                                <a href="" class="btn-floating right">  <i class="material-icons">cloud_download</i></a>
+                            </div>
                         </div>
+
                     </div>
                     <div id="gproductos" class="col s12">
                     </div>
@@ -86,7 +95,7 @@
                         </div>
                         <div class="divider light-green darken-4"></div>
                         <div class="card-panel">
-                            <form id="formnoti">
+                            <form id="formnoti" class="scrollspy">
                                 <div class="row">
                                     <h5>Agregar una Noticia</h5>
                                     <div class="input-field col s12">
@@ -97,7 +106,7 @@
                                     <div class="col s12 m6" id="imgnoti">
                                         <div class="dropify-preview" >
                                             <label for="input-file-now"></label>
-                                            <input  type="file" id="input-file-now" name="file" class="dropify" />
+                                            <input  type="file" id="file" name="file" class="dropify" />
                                         </div>
                                         <br>
                                         <!--                                        <div id="otraimg" class="dropify-preview" >
@@ -142,17 +151,17 @@
                             </form>
                         </div>  
                         <div id="gnoti" class="card-panel col s12 ">
-                            <table id="tablanoti" class="bordered">
+                            <table id="tablanoti" class="bordered responsive-table">
                                 <thead>
                                     <tr>
                                         <th>ID</th>
                                         <th>Titulo</th>
-                                        <th>Descripcion</th>
                                         <th>Fecha</th>
+
                                         <th>Imagen</th>
                                         <th>Autor</th>
                                         <th>Referencia</th>
-                                        <th><button class="btn-floating waves-effect waves-light" ><i class="material-icons">add</i></button></th>
+                                        <th><a class="btn-floating waves-effect waves-light" href="#formnoti"  ><i class="material-icons">add</i></a></th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbodynoti">
@@ -170,7 +179,30 @@
                                 <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
                             </ul>
                         </div>
-                        
+                        <div id="modalpublicar" class="modal modal-fixed-footer">
+                            <div class="modal-content">
+                                <h5>Publicar Noticia</h5>
+                                <form id="formpublicnoti">
+                                    <div class="col s12 m6">
+
+                                        <p>Seleccione una posicion para la Noticia:</p><b><span id="notititulo"></span></b>
+                                        <input type="text" id="idnoticia" hidden>
+                                        <div class="input-field col s12 m6">                                            
+                                            <select class="icons" id="notiposicion"> 
+
+                                            </select> 
+
+                                        </div>
+
+
+                                    </div>
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">                                      
+                                <input type="submit" class="btn btn-primary" id="btnpublicar" value="Publicar Noticia"/>
+                            </div>
+                        </div> 
 
                     </div>
                 </div>
@@ -211,7 +243,7 @@
                 </div>
             </div>
         </footer>
-
+        <img height="" width="">
 
         <!--  Scripts-->
         <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
@@ -237,6 +269,7 @@
                 $('.scrollspy').scrollSpy();
                 $('select').material_select();
                 $('ul.tabs').tabs();
+                $('.materialboxed').materialbox();
                 $('.dropify').dropify({
                     messages: {
                         'default': 'Arrastre y suelte una Imagen aquí o haga clic',
@@ -258,7 +291,7 @@
                 });
                 ocultar();
                 verNoticias();
-
+                verPaginaPosicion();
                 $("#volver").click(function () {
                     ocultar();
                 });
@@ -304,42 +337,99 @@
                     e.preventDefault();
                     var form = $("#formnoti")[0];
                     var data = new FormData(form);
-                    $.ajax({
-                        url: '<?php echo site_url() ?>/addNoti',
-                        type: 'POST',
-                        dataType: 'json',
-                        data: data,
-                        enctype: 'multipart/form-data',
-                        processData: false,
-                        contentType: false,
-                        cache: false,
-                        timeout: 600000,
-                        success: function (o) {
-                            Materialize.toast(o.msg, 1000);
-                            verNoticias();
-                        }, error: function () {
-                            Materialize.toast(o.msg, 1000);
-                        }
+                    var titulo = $("#titulonoti").val();
+                    var descripcion = $("#descripnoti").val();
+                    var fecha = $("#fechanoti").val();
+                    var imagen = $("#file").val();
+                    var autor = $("#autornoti").val();
+                    var referencia = $("#refernoti").val();
+                    if (titulo == "" || descripcion == "" || fecha == 0 ||
+                            autor == "" || referencia == 0 || imagen == "") {
+                        Materialize.toast("Faltan Campos", 1000);
+                    } else {
+                        $.ajax({
+                            url: '<?php echo site_url() ?>/addNoti',
+                            type: 'POST',
+                            dataType: 'json',
+                            data: data,
+                            enctype: 'multipart/form-data',
+                            processData: false,
+                            contentType: false,
+                            cache: false,
+                            timeout: 600000,
+                            success: function (o) {
+                                Materialize.toast(o.msg, 1000);
+                                verNoticias();
+                            }, error: function () {
+                                Materialize.toast("Error 500", 1000);
+                            }
 
-                    });
+                        });
+                    }
                 });
                 function verNoticias() {
                     var url = "<?php echo site_url() ?>/getNoti";
                     $("#tbodynoti").empty();
                     $.getJSON(url, function (result) {
                         $.each(result, function (i, o) {
-                            var img = btoa(o.imagen);
                             var fila = "<tr><td>" + o.idnoticia + "</td>";
-                            fila += "<td>" + o.descripcion + "</td>";
-                            fila += "<td>" + o.descripcion + "</td>";
+                            fila += "<td>" + o.titulo + "</td>";
                             fila += "<td>" + o.fecha + "</td>";
-                            fila += "<td><img src='data:image/jpeg;base64," + img + "' alt=''></td>";
+                            fila += "<td><img  src='data:image/jpeg;base64," + o.imagen + "'  width='100%'></td>";
                             fila += "<td>" + o.autor + "</td>";
                             fila += "<td>" + o.referencia + "</td>";
+                            fila += "<td><button id='btnpubli' class='btn-floating amber modal-trigger' value='" + o.idnoticia + '|' + o.titulo + "' href='#modalpublicar'><i class='material-icons'>cloud_upload</i></button></td><tr>";
                             $("#tbodynoti").append(fila);
                         });
                     });
                 }
+
+                $("body").on("click", "#btnpubli", function (e) {
+                    e.preventDefault();
+                    $("#notititulo").empty();
+                    var datos = $(this).val();
+                    var fila = datos.split("|");
+                    $("#idnoticia").val(fila[0]);
+                    $("#notititulo").append(fila[1]);
+                });
+                $("#btnpublicar").click(function (e) {
+                    e.preventDefault();
+                    var pag = document.getElementById('notiposicion').value;
+                    var idnoti = $("#idnoticia").val();
+                    alert(idnoti);
+                    if (pag == 0) {
+                        Materialize.toast("Debe seleccionar una posicion", 1000);
+                    } else {
+                        $.ajax({
+                            url: '<?php echo site_url() ?>/publi',
+                            type: 'post',
+                            dataType: 'json',
+                            data: {"idpagina": pag, "idnoticia": idnoti}
+                        }).success(function (o) {
+                            Materialize.toast(o.msg, 1000);
+//                            $('#formnoti').each(function () {
+//                                this.reset();
+//                            });
+
+                        }).fail(function () {
+                            Materialize.toast("Error al publicar", 1000);
+                        });
+
+                    }
+                });
+                function verPaginaPosicion() {
+                    var url = "<?php echo site_url() ?>/getPag";
+                    $("#notiposicion").empty();
+                    $("#notiposicion").append("<option value='0' selected disabled>Elegir Posicion de noticia</option>");
+                    $.getJSON(url, function (result) {
+                        $.each(result, function (i, o) {
+                            var x = "<option value='" + o.idpagina + "'>" + o.nombre + "</option>";
+                            $("#notiposicion").append(x);
+                            $('select').material_select();
+                        });
+                    });
+                }
+
                 function ocultar() {
                     $("#moduloaddprod").hide();
                     $("#modulocat").hide();
@@ -360,7 +450,6 @@
                     datasets: [{
                             label: "Pedidos",
                             data: [12, 19, 3, 5, 2, 3, 0],
-
                             borderColor: [
                                 'rgba(255,99,132,1)',
                                 'rgba(54, 162, 235, 1)',

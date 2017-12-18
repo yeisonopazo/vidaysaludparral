@@ -47,10 +47,11 @@ class ClientModel extends CI_Model {
     }
 
     function getDetalleVentas($idventa) {
-        $this->db->where("idventa", $idventa);
-        return $this->db->get("detalleventa")->result();
+        $this->db->where("dv.idventa", $idventa);
+        $this->db->Select("p.idproducto, p.nombre, dv.cantidad, dv.precio, dv.total");
+        $this->db->from("detalleventa dv");
+        $this->db->join("producto p", "p.idproducto=dv.idproducto");
+        return $this->db->get()->result();
     }
-    
-    
 
 }

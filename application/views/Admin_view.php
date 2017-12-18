@@ -18,6 +18,9 @@
             display: flex;
             min-height: 100vh;
             flex-direction: column;
+            background-image: url("<?php echo base_url(); ?>/lib/img/flores.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         main {
@@ -139,20 +142,21 @@
                             <nav class="row hoverable">
                                 <div class="nav-wrapper">
                                     <div class="input-field">
-                                        <input id="search" type="search" required placeholder="Buscar Producto">
-                                        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                                        <input id="busqueda" type="search" required placeholder="Buscar Producto">
+                                        <label class="label-icon" for="busqueda"><i class="material-icons">search</i></label>
                                         <i class="material-icons">close</i>
                                     </div>
                                 </div>
                             </nav>
 
-                            <div class="col s12 ">
+                            <div class="col s12">
                                 <table id="tablaproduct" class="responsive-table bordered">
                                     <thead>
                                         <tr>
                                             <th>ID</th>
                                             <th>Nombre</th>
                                             <th>Categoria</th>
+                                            <th>Imagen</th>
                                             <th>Descripcion</th>
                                             <th>Precio</th>
                                             <th>Stock</th>
@@ -240,6 +244,7 @@
                 $('.scrollspy').scrollSpy();
                 $('select').material_select();
                 $('ul.tabs').tabs();
+                $('.materialboxed').materialbox();
                 $('.dropify').dropify({
                     messages: {
                         'default': 'Arrastre y suelte un archivo aquí o haga clic',
@@ -285,6 +290,12 @@
                 });
 
                 $("#rutprov").rut({validateOn: 'change keyup'});
+
+
+                $("#btnaddprodut2").click(function (e) {
+                    e.preventDefault();
+                  
+                });
 
                 //////AGREGAR SUB-CATEGORIA//////////
                 $("#btnaddsubcat").click(function (e) {
@@ -347,6 +358,7 @@
                     var precio = $("#precioprod").val();
                     var stock = $("#stockprod").val();
                     var rutProv = document.getElementById("selectprov").value;
+                    var datenow = Date.now();
                     if (nombre == "" || categoria == 0 || descripcion == "" ||
                             precio == "" || stock == "" || rutProv == 0) {
                         Materialize.toast("Faltan Campos", 1000);
@@ -356,7 +368,7 @@
                             type: 'post',
                             dataType: 'json',
                             data: {"nombre": nombre, "idcategoria": categoria, "descripcion": descripcion,
-                                "precio": precio, "stock": stock, "fecha": "17-11-2017", "rutencargado": rutProv}
+                                "precio": precio, "stock": stock, "fecha": datenow, "rutencargado": rutProv}
                         }).success(function (o) {
                             Materialize.toast("Registro OK", 1000);
                             $('#formprod').each(function () {
@@ -439,7 +451,7 @@
                     $("#selectprov").append("<option value='0' selected disabled>Seleccione Proveedor</option>");
                     $.getJSON(url, function (datos) {
                         $.each(datos, function (i, o) {
-                            if (o.idperfil === 4) {
+                            if (o.idperfil == 4) {
                                 var x = "<option value='" + o.rutencargado + "'>" + o.nombre + "</option>";
                                 $("#selectprov").append(x);
                                 $("#upselectprov").append(x);
@@ -457,11 +469,11 @@
                     $("#tbodyproduct").empty();
                     $.getJSON(url, function (result) {
                         $.each(result, function (i, o) {
-
                             if (o.nombcateg === "Productos") {
                                 var fila = "<tr><td>" + o.idproducto + "</td>";
                                 fila += "<td>" + o.nombre + "</td>";
                                 fila += "<td>" + o.nombresubcat + "</td>";
+                                fila += "<td><img height='100' src='data:image/jpeg;base64," + o.imagen + "'/></td>";
                                 fila += '<td><button id="prodver" value="'
                                         + o.idproducto + '|'
                                         + o.nombre + '|'
@@ -469,7 +481,8 @@
                                         + o.descripcion + '|'
                                         + o.precio + '|'
                                         + o.stock + '|'
-                                        + o.rutproveedor +
+                                        + o.rutencargado + '|'
+                                        + o.imagen +
                                         '" class="btn-floating waves-effect waves-light" ><i class="material-icons">search</i></button></td>';
                                 fila += "<td>" + o.precio + "</td>";
                                 fila += "<td>" + o.stock + "</td>";
@@ -479,6 +492,49 @@
                         });
                     });
                 }
+                $("#busqueda").keyup(function (e) {
+                    e.preventDefault();
+                    var consulta = $("#busqueda").val();
+                    if (consulta == "") {
+                        $("#tbodyproduct").empty();
+                        verProductos();
+                    } else {
+                        $.ajax({
+                            url: '<?php echo site_url() ?>/buscarP',
+                            type: "POST",
+                            dataType: 'json',
+                            data: {"nombre": consulta}
+                        }).success(function (obj) {
+                            $("#tbodyproduct").empty();
+                            $.each(obj, function (i, o) {
+                                if (o.nombcateg === "Productos") {
+                                    var fila = "<tr><td>" + o.idproducto + "</td>";
+                                    fila += "<td>" + o.nombre + "</td>";
+                                    fila += "<td>" + o.nombresubcat + "</td>";
+                                    fila += "<td><img height='100' src='data:image/jpeg;base64," + o.imagen + "'/></td>";
+                                    fila += '<td><button id="prodver" value="'
+                                            + o.idproducto + '|'
+                                            + o.nombre + '|'
+                                            + o.idsubcategoria + '|'
+                                            + o.descripcion + '|'
+                                            + o.precio + '|'
+                                            + o.stock + '|'
+                                            + o.rutencargado + '|'
+                                            + o.imagen +
+                                            '" class="btn-floating waves-effect waves-light" ><i class="material-icons">search</i></button></td>';
+                                    fila += "<td>" + o.precio + "</td>";
+                                    fila += "<td>" + o.stock + "</td>";
+                                    fila += "<td>" + o.nombreprov + "</td>";
+                                    $("#tbodyproduct").append(fila);
+                                }
+                            });
+
+                        }).fail(function () {
+                            Materialize.toast("Error", 1000);
+                        });
+                    }
+                });
+
                 ///VER Y EDITAR PRODUCTOS///
                 $("body").on("click", "#prodver", function (e) {
                     e.preventDefault();
@@ -495,6 +551,9 @@
                     $("#upprecioprod").val(fila[4]);
                     $("#upstockprod").val(fila[5]);
                     $("#upselectprov").val(fila[6]);
+                    $("#verimagenp").empty();
+                    var fila = "<img  width='100%' class='materialboxed' src='data:image/jpeg;base64," + fila[7] + "'/>";
+                    $("#verimagenp").append(fila);
                     $("#moduloverproducto").show();
                     location.href = "#moduloverproducto";
 

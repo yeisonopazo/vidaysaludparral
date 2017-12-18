@@ -17,11 +17,11 @@
             </div>
             <div class="input-field">
                 <label for="precioserv">Precio:</label>
-                <input type="text" required name="precioserv" id="precioserv">
+                <input type="number" required name="precioserv" id="precioserv">
             </div>
             <div class="input-field">
                 <label for="stockserv">Cupos:</label>
-                <input type="text" name="stockserv" required id="stockserv">
+                <input type="number" name="stockserv" required id="stockserv">
             </div>
             <div class="input-field">
                 <label for="fecha">Fecha de el evento:</label>

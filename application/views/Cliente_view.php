@@ -15,6 +15,9 @@
             display: flex;
             min-height: 100vh;
             flex-direction: column;
+            background-image: url("<?php echo base_url(); ?>/lib/img/flores.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         main {
@@ -54,14 +57,16 @@
             <div class="container">
 
                 <div id="micanasta" class="col s12">
-                    <div class="card light-green lighten-5">
-                        <h4 class="center light-green-text darken-4" >Mi Canasta</h4>
+                    <div class="card light-green lighten-5"  >
+                        <br>
+                        <h5 class="center light-green-text darken-4">Mi Canasta</h5>
+                        <br>
                     </div>
                     <div class="divider light-green darken-4"></div>
                     <div class="card">
                         <div class="card-panel">
                             <div class="row">
-
+                                <button id="getfecha" class="btn">fecha</button>
                                 <div class="input-field col s3" id="divrutcompra">                                  
                                     <label class="active" for="rut">Pedido a RUT: </label>                           
                                     <input type="text" value=" " name="rut" id="rutcompra" disabled>
@@ -83,13 +88,15 @@
                                 </table>
                                 <p class="center" id="estadocarro"></p>
                                 <div id="botones">   
-                                    <div class="right-align blue lighten-5">
-                                        <span class=""><b>TOTAL A PAGAR:</b></span><samp id="totalt"></samp>
+                                    <div class="right-align amber row">
+                                        <div class="col s7"></div>
+                                        <div class="col s3"> <span class=""><b>TOTAL A PAGAR:</b></span></div>
+                                        <div class="col s2"><b> <input type="text" class="black-text" id="totalt" disabled></b></div>
                                     </div>
-                                    <div class="divider black"></div>
-                                    <div class="input-field">
+                                    <div class="row"><div class="divider black"></div></div> 
+                                    <div class="input-field col s12">
                                         <label for="observacion" class="active">Observacion:</label>
-                                        <textarea class="materialize-textarea" required  id="observacion" ></textarea>
+                                        <textarea class="materialize-textarea" required  id="observacion" placeholder="Coloca la direccion donde sera enviado el producto" ></textarea>
                                     </div>
                                     <div class="right">
                                         <a id="btnclearcarro" href="" class="red-text"><i class="material-icons left red-text"> remove_shopping_cart</i>Limpiar canasta</a>
@@ -103,7 +110,9 @@
                 </div>
                 <div id="misservicios" class="col s12">
                     <div class="card light-green lighten-5">
-                        <h4 class="center light-green-text darken-4">Mis Pedidos</h4>
+                        <br>
+                        <h5 class="center light-green-text darken-4">Mis Pedidos</h5>
+                        <br>
                     </div>
                     <div class="divider light-green darken-4"></div>
                     <div class="card-panel" id="verdetalle">
@@ -141,12 +150,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
-
-
-
                     <div class="card-panel">
                         <ul class="collection" id="list-pedidos">                            
                         </ul>
@@ -156,7 +159,9 @@
                 <!--            -------------MOSTRAR Y ACTUALIZAR DATOS CLIENTE-------->
                 <div id="misdatos" class="col s12">
                     <div class="card light-green lighten-5">
-                        <h4 class="center light-green-text darken-4" >Mis datos</h4>
+                        <br>
+                        <h5 class="center light-green-text darken-4" >Mis datos</h5>
+                        <br>
                     </div>
                     <div class="divider light-green darken-4"></div>
 
@@ -191,7 +196,7 @@
                                     <div class="input-field">
                                         <i class="material-icons prefix">call</i>
                                         <label for="telefono">Telefono: </label>
-                                        <input type="text" value=" " name="telefono" id="telefono"/>
+                                        <input type="number" value="0" name="telefono" id="telefono"/>
                                     </div>
 
                                     <div class="input-field">
@@ -267,7 +272,9 @@
         <script type="text/javascript">
             $(function () {
                 //                Inicio de Materialize
+                $('select').material_select();
                 $('.modal').modal();
+                $('ul.tabs').tabs();
                 $('.button-collapse').sideNav();
                 $('.carousel.carousel-slider').carousel({fullWidth: true});
                 $('.scrollspy').scrollSpy();
@@ -275,15 +282,12 @@
                 $("#botones").hide();
                 $("#divrutcompra").hide();
                 $("#verdetalle").hide();
-
                 getSesion();
                 carro();
-
                 $("#btncerrardetalle").click(function (e) {
                     e.preventDefault();
                     $("#verdetalle").hide();
                 });
-
                 function getSesion() {
                     var url = "<?php echo site_url() ?>/getSesion";
                     $.getJSON(url, function (result) {
@@ -295,6 +299,13 @@
                         });
                     });
                 }
+
+                $("#getfecha").click(function (e) {
+                    e.preventDefault();
+                    var f = new Date();
+                    var fecha = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate() + " " + f.getHours() + ":" + f.getMinutes() + ":" + f.getSeconds();
+                    alert(fecha);
+                });
                 function getUser() {
                     var rut = $("#rutusuario").val();
                     $("#saludo1").empty();
@@ -315,12 +326,10 @@
                             $("#direccion").val(u.direccion);
                             $("#telefono").val(u.telefono);
                             $("#correo").val(u.correo);
-                            $("#contraseña").val(u.contraseña);
-                            $("#confirContraseña").val(u.contraseña);
-
+                            $("#contraseña").val("");
+                            $("#confirContraseña").val("");
                         });
                     });
-
                 }
                 //                ----------ACTUALIZAR CUENTA--------
                 $("#btupdate").click(function (e) {
@@ -333,10 +342,12 @@
                     var correo = $("#correo").val();
                     var contraseña = $("#contraseña").val();
                     var confirContraseña = $("#confirContraseña").val();
-                    if (rut == "" || nombre == "" || apellido == "" || direccion == "" || telefono == "" || correo == "" || contraseña == "" || confirContraseña == "") {
-                        Materialize.toast("faltan campos", "1000");
+                    if (rut == "" || nombre == "" || apellido == "" || direccion == "" || telefono == "" || correo == "") {
+                        Materialize.toast("faltan campos", "2000");
+                    } else if (confirContraseña == "" || contraseña == "") {
+                        Materialize.toast("Ingrese su contraseña para actualizar datos o una nueva", "2000");
                     } else if (contraseña != confirContraseña) {
-                        Materialize.toast("Contraseña no coincide", "1000");
+                        Materialize.toast("Contraseña no coincide", "2000");
                     } else {
                         $.ajax({
                             url: "<?php echo site_url() ?>/updateClient",
@@ -359,11 +370,36 @@
                     $.getJSON(url, function (result) {
                         Materialize.toast("Canasta Limpia", "1000");
                         carro();
-
                     });
                 });
-
-
+                $("#btcomprar").click(function (e) {
+                    e.preventDefault();
+                    var rut = $("#rutcompra").val();
+                    var descrip = $("#observacion").val();
+                    var total = $("#totalt").val();
+                    var f = new Date();
+                    var fecha = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate() + " " + f.getHours() + ":" + f.getMinutes() + ":" + f.getSeconds();
+                    if (descrip == "") {
+                        Materialize.toast("Completa el campo de observacion", 2000);
+                        document.getElementById("observacion").focus();
+                    } else {
+                        $.ajax({
+                            url: "<?php echo site_url() ?>/addVent",
+                            type: "post",
+                            dataType: "json",
+                            data: {"rutusuario": rut, "fechaventa": fecha, "subtotal": total, "total": total, "observacion": descrip,
+                                "estado": "pendiente"
+                            }
+                        }).success(function (obj) {
+                            getUser();
+                            ventas();
+                            Materialize.toast("Pedido Agregado, completa el pago y estaremos en contacto contigo", "3000");
+                            $('ul.tabs').tabs('select_tab', 'misservicios');
+                        }).fail(function () {
+                            Materialize.toast("error");
+                        });
+                    }
+                });
                 function carro() {
                     var url = "<?php echo site_url() ?>/getCarro";
                     var totalventa = 0;
@@ -375,27 +411,64 @@
                             $("#divrutcompra").hide();
                             $("#estadocarro").append("No tiene Productos o Servicios en la canasta");
                         } else {
+                            $("#tbodycarro").empty();
                             $.each(result, function (i, o) {
-                                totalventa = parseInt(o.precio) + parseInt(totalventa);
+                                totalventa = parseInt(o.subtotal) + parseInt(totalventa);
                                 $("#estadocarro").empty();
-                                var fila = "<tr><td>" + o.idproducto + "</td>";
-                                fila += "<td>" + o.nombre + "</td>";
-                                fila += "<td>1</td>";
-                                fila += "<td>" + o.precio + "</td>";
-                                fila += "<td>" + o.precio + "</td></tr>";
+                                var fila = "<tr><td>" + o.id + "</td>";
+                                fila += "<td>" + o.name + "</td>";
+                                fila += "<td><button id='nomas' value='" + o.id + "' class='btn-floating grey lighten-4 grey-text'><i class='material-icons grey-text'>remove_shopping_cart</i></button>";
+                                fila += "<b>" + o.qty + "</b>";
+                                fila += "<button id='addmas' value='" + o.id + "' class='btn-floating small'><i class='material-icons'>add_shopping_cart</i></button></td>";
+                                fila += "<td>" + o.price + "</td>";
+                                fila += "<td>" + o.subtotal + "</td></tr>";
                                 $("#tbodycarro").append(fila);
                                 $("#botones").show();
-
                             });
                             $("#divrutcompra").show();
-                            $("#totalt").append("<b> $" + totalventa + "</b>");
-
+                            $("#totalt").val(totalventa);
                         }
                     });
                 }
+                $("body").on("click", "#nomas", function (e) {
+                    e.preventDefault();
+                    var datos = $(this).val();
+                    var fila = datos.split("|");
+                    $.ajax({
+                        url: '<?php echo site_url() ?>/clearProC',
+                        type: 'post',
+                        dataType: 'json',
+                        data: {"idproducto": fila[0]}
+                    }).success(function (o) {
+                        Materialize.toast("Elimino un Item", 1000);
+                        carro();
+                    }).fail(function (o) {
+                        Materialize.toast(o.msg, 1000);
+                    });
+                });
+                $("body").on("click", "#addmas", function (e) {
+                    e.preventDefault();
+                    var datos = $(this).val();
+                    var fila = datos.split("|");
+                    $.ajax({
+                        url: '<?php echo site_url() ?>/addCarro',
+                        type: 'post',
+                        dataType: 'json',
+                        data: {"idproducto": fila[0]}
+                    }).success(function (o) {
+                        if (o.msg == "ok") {
+                            Materialize.toast("Se agrego un item", 1000);
+                            carro();
+                        } else {
+                            Materialize.toast("Sin Stock", 2000);
+                            carro();
+                        }
+                    }).fail(function (o) {
+                        Materialize.toast(o.msg, 1000);
+                    });
+                });
 
-
-
+           
                 function ventas() {
                     $("#list-pedidos").empty();
                     var rut = $("#rutusuario").val();
@@ -444,15 +517,10 @@
                             fila += "<td>" + o.total + "</td></tr>";
                             $("#tbodydetalle").append(fila);
                         });
-
                         $("#totalventa").append(totalventa);
                         $("#verdetalle").show();
                     });
-
-
                 });
-
-
             });
         </script>
 

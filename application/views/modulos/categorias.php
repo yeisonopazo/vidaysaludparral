@@ -20,7 +20,7 @@
                 <input type="text" name="subcat" required id="nombresubcat"/>
             </div>
             <select id="idcat" required name="idcat">
-                
+
             </select>
             <input type="submit" id="btnaddsubcat" value="Agregar Sub-Categoria" class="btn small"/>
         </form> 
@@ -28,6 +28,15 @@
 </div>
 <div class="row col s12 m8">
     <div id="tablcat" >
+        <nav class="row hoverable">
+            <div class="nav-wrapper">
+                <div class="input-field">
+                    <input id="searchcatg" type="search" required placeholder="Buscar Categoria">
+                    <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+                    <i class="material-icons">close</i>
+                </div>
+            </div>
+        </nav>
         <table class="bordered">
             <thead>
                 <tr>

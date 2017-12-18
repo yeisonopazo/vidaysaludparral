@@ -50,13 +50,40 @@ class AdminController extends CI_Controller {
     }
 
     public function getProductos() {
-        echo json_encode($this->AdminModel->getProductos());
+        $productos = $this->AdminModel->getProductos();
+        $data = array();
+        foreach ($productos as $n) {
+
+            array_push($data, array("idproducto" => $n->idproducto, "nombre" => $n->nombre,
+                "idsubcategoria" => $n->idsubcategoria,
+                "nombresubcat" => $n->nombresubcat, "idcategoria" => $n->idcategoria, "nombcateg" => $n->nombcateg,
+                "descripcion" => $n->descripcion, "precio" => $n->precio, "stock" => $n->stock, "fecha" => $n->fecha,
+                "rutencargado" => $n->rutencargado,
+                "nombreprov" => $n->nombreprov, "imagen" => base64_encode($n->imagen)));
+        }
+        echo json_encode($data);
+    }
+
+    public function buscarProducto() {
+        $nombre = $this->input->post("nombre");
+        $productos = $this->AdminModel->buscarProducto($nombre);
+        $data = array();
+        foreach ($productos as $n) {
+
+            array_push($data, array("idproducto" => $n->idproducto, "nombre" => $n->nombre,
+                "idsubcategoria" => $n->idsubcategoria,
+                "nombresubcat" => $n->nombresubcat, "idcategoria" => $n->idcategoria, "nombcateg" => $n->nombcateg,
+                "descripcion" => $n->descripcion, "precio" => $n->precio, "stock" => $n->stock, "fecha" => $n->fecha,
+                "rutencargado" => $n->rutencargado,
+                "nombreprov" => $n->nombreprov, "imagen" => base64_encode($n->imagen)));
+        }
+        echo json_encode($data);
     }
 
     public function insertarCategoria() {
         $nombre = $this->input->post("nombre");
         $this->AdminModel->insertarCategoria($nombre);
-        echo json_encode(array("msg" => "Categoria agregada"));
+        echo json_encode(array("msg" => "ok"));
     }
 
     public function getCategorias() {
@@ -88,8 +115,5 @@ class AdminController extends CI_Controller {
     public function getProveedores() {
         echo json_encode($this->AdminModel->getProveedores());
     }
-
-    
-
 
 }

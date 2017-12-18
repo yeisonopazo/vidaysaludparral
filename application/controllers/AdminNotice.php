@@ -10,9 +10,9 @@ class AdminNotice extends CI_Controller {
     }
 
     public function index() {
-     
-       if ($this->session->userdata("administrador")) {
-             $this->load->view('Admin_noticia');
+
+        if ($this->session->userdata("administrador")) {
+            $this->load->view('Admin_noticia');
         } else {
             redirect('welcome');
         }
@@ -38,7 +38,26 @@ class AdminNotice extends CI_Controller {
     }
 
     public function getNoticias() {
-        echo json_encode($this->AdminModel->getNoticias());
+        $noticias = $this->AdminModel->getNoticias();
+        $data = array();
+
+        foreach ($noticias as $n) {
+
+            array_push($data, array("idnoticia" => $n->idnoticia, "titulo" => $n->titulo, "descripcion" => $n->descripcion,
+                "fecha" => $n->fecha, "imagen" => base64_encode($n->imagen), "autor" => $n->autor, "referencia" => $n->referencia));
+        }
+        echo json_encode($data);
+    }
+
+    public function publicarNoti() {
+        $idpagina = $this->input->post("idpagina");
+        $idnoticia = $this->input->post("idnoticia");
+        $this->AdminModel-> publicarNoti($idpagina, $idnoticia);
+        echo json_encode(array("msg" => "Noticia publicada!"));
+    }
+
+    public function getPagina() {
+        echo json_encode($this->AdminModel->getPagina());
     }
 
 }

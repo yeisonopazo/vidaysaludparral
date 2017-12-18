@@ -18,6 +18,9 @@
             display: flex;
             min-height: 100vh;
             flex-direction: column;
+            background-image: url("<?php echo base_url(); ?>/lib/img/flores.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
         }
 
         main {
@@ -82,6 +85,42 @@
                         <h4 class="center light-green-text darken-4" >Gestion Ventas</h4>
                     </div>
                     <div class="divider light-green darken-4"></div>
+                    <div class="card-panel" id="verdetalle">
+                        <div class="row">
+                            <div class="col s3">                                  
+                                <b><span id="nropedido"></span></b>
+
+                            </div>
+
+                            <table id="tabladetalle" class="bordered responsive-table" >
+                                <thead>
+                                    <tr>
+                                        <th>ID Producto</th>
+                                        <th>Nombre</th>                                        
+                                        <th>Cantidad</th>
+                                        <th>Precio Unidad</th>
+                                        <th>Total</th>                                  
+                                    </tr>
+                                </thead>
+                                <tbody id="tbodydetalle">
+                                </tbody>
+                            </table>                            
+                            <div id="botones">   
+                                <div class="right-align amber">
+                                    <b><span>TOTAL: $</span><samp id="totalventa"></samp></b>
+                                </div>
+                                <div class="divider black"></div>
+                                <div>
+                                    <p><b>Observaciones: </b><p>
+                                    <p id="observacionventa" ></p>
+                                </div>
+                                <div class="right">
+                                    <a id="btncerrardetalle" href="#">Cerrar</a>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="card-panel">
                         <nav class="row hoverable">
                             <div class="nav-wrapper">
@@ -189,6 +228,11 @@
                 });
                 //////////
                 verVentas();
+                $("#verdetalle").hide();
+                $("#btncerrardetalle").click(function (e) {
+                    e.preventDefault();
+                    $("#verdetalle").hide();
+                });
 
                 function verVentas() {
                     var url = "<?php echo site_url() ?>/getVent";
@@ -201,11 +245,47 @@
                             fila += "<td>" + "$" + o.total + "</td>";
                             fila += '<td><button id="prodver" value="' + o.comprobante + '" class="btn-floating waves-effect waves-light" ><i class="material-icons">search</i></button></td>';
                             fila += "<td>" + o.observacion + "</td>";
-                            fila += "<td>" + o.estado + "</td>";
+                            fila += "<td><div><select  class='browser-default' id='estado'>";
+                            fila += "<option value='" + o.estado + "'> " + o.estado + "</option>";
+                            fila += "<option value='" + o.estado + "'> pagado</option>";
+                            fila += "<option value='" + o.estado + "'> cancelado</option>";
+                            fila += "</select></div></td>";
+                            fila += "<td><button class='btn-floating secondary-content' id='verdetalleventa' value='" + o.idventa + '|' + o.observacion + "'><i class='material-icons'>search</i></button></td></tr>";
                             $("#tbodyventa").append(fila);
                         });
                     });
                 }
+                $("body").on("click", "#verdetalleventa", function (e) {
+                    e.preventDefault();
+                    $("#observacionventa").empty();
+                    $("#nropedido").empty();
+                    $("#tbodydetalle").empty();
+                    $("#totalventa").empty();
+                    var datos = $(this).val();
+                    var fila = datos.split("|");
+                    var totalventa = 0;
+                    $("#observacionventa").append(fila[1]);
+                    $("#nropedido").append("Nro. de pedido: " + fila[0]);
+                    $.ajax({
+                        url: '<?php echo site_url() ?>/getDVenta',
+                        type: "POST",
+                        dataType: 'json',
+                        data: {"idventa": fila[0]}
+                    }).success(function (obj) {
+                        $.each(obj, function (i, o) {
+                            totalventa = parseInt(o.total) + parseInt(totalventa);
+                            var fila = "<tr><td>" + o.idproducto + "</td>";
+                            fila += "<td>" + o.nombre + "</td>";
+                            fila += "<td>" + o.cantidad + "</td>";
+                            fila += "<td>" + o.precio + "</td>";
+                            fila += "<td>" + o.total + "</td></tr>";
+                            $("#tbodydetalle").append(fila);
+                        });
+                        $("#totalventa").append(totalventa);
+                        $("#verdetalle").show();
+                    });
+                });
+
 //camputar de un radio var radio = $("input:radio[name=radio1]:checked").val();
             });
         </script>

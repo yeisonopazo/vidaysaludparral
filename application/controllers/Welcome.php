@@ -31,8 +31,8 @@ class Welcome extends CI_Controller {
             Echo json_encode(array("msg", "Usuario no registrador"));
         }
     }
-    
-    public function logout(){
+
+    public function logout() {
         $this->session->sess_destroy();
         redirect('welcome');
     }
@@ -42,7 +42,15 @@ class Welcome extends CI_Controller {
     }
 
     public function getProductos() {
-        echo json_encode($this->AdminModel->getProductos());
+        $productos = $this->AdminModel->getProductos();
+        $data = array();
+        foreach ($productos as $n) {
+
+            array_push($data, array("idproducto" => $n->idproducto, "nombre" => $n->nombre, "idcategoria" => $n->idcategoria,
+                "descripcion" => $n->descripcion, "precio" => $n->precio, "stock" => $n->stock, "rutencargado" => $n->rutencargado,
+                "imagen" => base64_encode($n->imagen)));
+        }
+        echo json_encode($data);
     }
 
 }

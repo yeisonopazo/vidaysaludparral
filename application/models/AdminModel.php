@@ -40,16 +40,41 @@ class AdminModel extends CI_Model {
         $this->db->update("producto", $datos);
     }
 
+    function actualizarImagen($idprodserv, $imagen) {
+        $this->db->where("idprodserv", $idprodserv);
+        $datos = array("imagen" => $imagen);
+        $this->db->update("imagen", $datos);
+    }
+
     function getProductos() {
         $this->db->select("p.idproducto, p.nombre,"
                 . "sub.idsubcategoria, sub.nombre as nombresubcat,"
                 . "c.idcategoria, c.nombre nombcateg,"
                 . " p.descripcion, p.precio, p.stock, p.fecha,"
-                . " prov.rutencargado, prov.nombre as nombreprov");
+                . " prov.rutencargado, prov.nombre as nombreprov,"
+                . "i.imagen");
         $this->db->from("producto p");
         $this->db->join("subcategoria sub", "sub.idsubcategoria=p.idsubcategoria");
         $this->db->join("categoria c", "sub.idcategoria=c.idcategoria");
         $this->db->join("encargado prov", "p.rutencargado=prov.rutencargado");
+        $this->db->join("imagen i", "p.idproducto=i.idprodserv");
+        return $this->db->get()->result();
+    }
+
+    function buscarProducto($nombre) {
+
+        $this->db->select("p.idproducto, p.nombre,"
+                . "sub.idsubcategoria, sub.nombre as nombresubcat,"
+                . "c.idcategoria, c.nombre nombcateg,"
+                . " p.descripcion, p.precio, p.stock, p.fecha,"
+                . " prov.rutencargado, prov.nombre as nombreprov,"
+                . "i.imagen");
+        $this->db->from("producto p");
+        $this->db->join("subcategoria sub", "sub.idsubcategoria=p.idsubcategoria");
+        $this->db->join("categoria c", "sub.idcategoria=c.idcategoria");
+        $this->db->join("encargado prov", "p.rutencargado=prov.rutencargado");
+        $this->db->join("imagen i", "p.idproducto=i.idprodserv");
+        $this->db->like("p.nombre", $nombre);
         return $this->db->get()->result();
     }
 
@@ -104,6 +129,17 @@ class AdminModel extends CI_Model {
         return $this->db->get("noticia")->result();
     }
 
+    function publicarNoti($idpagina, $idnoticia) {
+        $this->db->where("idpagina", $idpagina);
+        $datos = array("idnoticia" => $idnoticia
+        );
+        $this->db->update("pagina", $datos);
+    }
+
+    function getPagina() {
+        return $this->db->get("pagina")->result();
+    }
+
     //////////////////////////VENTAS//////////////////////////////////////////
     function insertarDetalleVenta($idventa, $idproducto, $cantidad, $precio, $total) {
         $datos = array("idventa" => $idventa,
@@ -115,8 +151,11 @@ class AdminModel extends CI_Model {
     }
 
     function getDetalleVentas($idventa) {
-        $this->db->where("idventa", $idventa);
-        return $this->db->get("detalleventa")->result();
+        $this->db->where("dv.idventa", $idventa);
+        $this->db->Select("p.idproducto, p.nombre");
+        $this->db->from("detalleventa dv");
+        $this->db->join("producto p", "p.idproducto=dv.idproducto");
+        return $this->db->get()->result();
     }
 
     function insertarVenta($rutusuario, $fechaventa, $subtotal, $total, $comprobante, $observacion, $estado) {
@@ -127,14 +166,44 @@ class AdminModel extends CI_Model {
             "comprobante" => $comprobante,
             "observacion" => $observacion,
             "estado" => $estado);
-
         $this->db->insert("venta", $datos);
+        return $this->db->insert_id();
     }
 
     function getVentas() {
         return $this->db->get("venta")->result();
     }
-    
-    
+
+    function getImagenes($idprodserv) {
+        $this->db->where("idprodserv", $idprodserv);
+        return $this->db->get("imagen")->result();
+    }
+
+    function insertarImagen($nombre, $imagen, $idprodserv) {
+        $datos = array("nombre" => $nombre,
+            "imagen" => $imagen,
+            "idprodserv" => $idprodserv);
+        $this->db->insert("imagen", $datos);
+    }
+
+    /////actualizar carro
+
+    public function upcarro($idproducto, $cantidad) {
+        // Obtenemos el número total de items en el carro   
+//        $total = $this->session->total_items();
+
+        $this->session->where("idproducto", $idproducto);
+        $datos = array("cantidad" => $cantidad);
+        $this->sesion->update("carro", $datos);
+    }
+
+    function porId($id) {
+        $this->db->where('idproducto', $id);
+        $productos = $this->db->get('producto');
+        foreach ($productos->result() as $producto) {
+            $data[] = $producto;
+        }
+        return $producto;
+    }
 
 }
