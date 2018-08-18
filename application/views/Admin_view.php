@@ -69,13 +69,81 @@
                 <div>
                     <div id="home" class="col s12">
                         <div class="card light-green lighten-5">
-                            <h4 class="center light-green-text darken-4" >Resumen</h4>
+                            <br>
+                            <h5 class="center light-green-text darken-4" >Resumen</h5><br>
                         </div>
                         <div class="divider light-green darken-4"></div>
+                        <div class="card-panel">
+                            <div id="card-stats">
+                                <div class="row">
+                                    <div class="card-panel hoverable blue white-text col s12 m6 l3">
+                                        <div class="card">                                          
+                                                <div class="col s7 m7">
+                                                    <i class="material-icons">add_shopping_cart</i>
+                                                    <p>Pedidos</p>
+                                                </div>
+                                                <div class="col s5 m5 right-align">
+                                                    <h5 class="mb-0">690</h5>
+                                                    <p class="no-margin">Esta semana</p>
+                                                    <p>23</p>
+                                                </div>                                          
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m6 l3 card-panel hoverable red  white-text">
+                                        <div class="card">
+                                            <div class="padding-4">
+                                                <div class="col s7 m7">
+                                                    <i class="material-icons background-round mt-5">perm_identity</i>
+                                                    <p>Clientes</p>
+                                                </div>
+                                                <div class="col s5 m5 right-align">
+                                                    <h5 class="mb-0">23</h5>
+                                                    <p class="no-margin">Esta semana</p>
+                                                    <p>2</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m6 l3 card-panel hoverable amber  white-text">
+                                        <div class="card">
+                                            <div class="padding-4">
+                                                <div class="col s7 m7">
+                                                    <i class="material-icons background-round mt-5">timeline</i>
+                                                    <p>Ventas</p>
+                                                </div>
+                                                <div class="col s5 m5 right-align">
+                                                    <h5 class="mb-0">40</h5>
+                                                    <p class="no-margin">Esta semana</p>
+                                                    <p>5</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m6 l3 card-panel hoverable green white-text">
+                                        <div class="card">
+                                            <div class="padding-4">
+                                                <div class="col s7 m7">
+                                                    <i class="material-icons background-round mt-5">attach_money</i>
+                                                    <p>Ingresos</p>
+                                                </div>
+                                                <div class="col s5 m5 right-align">
+                                                    <h5 class="mb-0">$890,679</h5>
+                                                    <p class="no-margin">Esta semana</p>
+                                                  <p>$128,590</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                     <div id="gproductos" class="col s12">
                         <div class="card light-green lighten-5">
-                            <h4 class="center light-green-text darken-4" >Productos</h4>
+                            <br>
+                            <h5 class="center light-green-text darken-4" >Productos</h5>
+                            <br>
                         </div>
                         <div class="divider light-green darken-4"></div>
                         <div class="card-panel">
@@ -119,7 +187,7 @@
                                                 <input type="text" name="direccionprov" required id="direccionprov"/>
                                             </div>
                                             <div class="input-field col s12 m4">
-                                                <i class="material-icons prefix">location_on</i>
+                                                <i class="material-icons prefix">phone</i>
                                                 <label for="telefonoprov">Telefono: </label>
                                                 <input type="text" name="telefonoprov" required id="telefonoprov"/>
                                             </div>
@@ -272,6 +340,7 @@
                 verProveedores();
                 verProductos();
                 getSesion();
+                getfecha();
 
                 $("#btnshowcat").click(function (e) {
                     e.preventDefault();
@@ -294,7 +363,7 @@
 
                 $("#btnaddprodut2").click(function (e) {
                     e.preventDefault();
-                  
+
                 });
 
                 //////AGREGAR SUB-CATEGORIA//////////
@@ -352,32 +421,49 @@
                 //AGREGAR PRODUCTO///
                 $("#btnaddprodut1").click(function (e) {
                     e.preventDefault();
+                    var form = $("#formprod")[0];
+                    var data = new FormData(form);
                     var nombre = $("#nombreprod").val();
                     var categoria = document.getElementById("subcat").value;
                     var descripcion = $("#drescripcionprod").val();
                     var precio = $("#precioprod").val();
                     var stock = $("#stockprod").val();
                     var rutProv = document.getElementById("selectprov").value;
-                    var datenow = Date.now();
+                    var img = $("#input-file-now").val();
                     if (nombre == "" || categoria == 0 || descripcion == "" ||
-                            precio == "" || stock == "" || rutProv == 0) {
+                            precio == "" || stock == "" || rutProv == 0 || img == 0) {
                         Materialize.toast("Faltan Campos", 1000);
+                    } else if (parseInt(precio) < 0 || parseInt(stock) < 0) {
+                        Materialize.toast("Stock  y precio deben ser numericos", 2000);
+
                     } else {
+
                         $.ajax({
                             url: '<?php echo site_url() ?>/addProd',
-                            type: 'post',
+                            type: 'POST',
                             dataType: 'json',
-                            data: {"nombre": nombre, "idcategoria": categoria, "descripcion": descripcion,
-                                "precio": precio, "stock": stock, "fecha": datenow, "rutencargado": rutProv}
-                        }).success(function (o) {
-                            Materialize.toast("Registro OK", 1000);
-                            $('#formprod').each(function () {
-                                this.reset();
-                            });
-                            verProductos();
-                            $("#addproduct2").show();
-                        }).fail(function () {
-                            Materialize.toast("Error", 1000);
+                            data: data,
+                            enctype: 'multipart/form-data',
+                            processData: false,
+                            contentType: false,
+                            cache: false,
+                            timeout: 600000,
+                            success: function (o) {
+                                Materialize.toast("Producto agregado", 1000);
+                                $('#formprod').each(function () {
+                                    this.reset();
+                                });
+                                var drEvent = $('#input-file-now').dropify();
+                                drEvent = drEvent.data('dropify');
+                                drEvent.resetPreview();
+                                drEvent.clearElement();
+
+                                verProductos();
+                                ocultar();
+                            }, error: function () {
+                                Materialize.toast("Error", 1000);
+                            }
+
                         });
                     }
 
@@ -388,7 +474,7 @@
                 function ocultar() {
                     $("#moduloaddprod").hide();
                     $("#modulocat").hide();
-                    //                $("#addproduct2").hide();
+                    //               $("#addproduct2").hide();
                     $("#moduloverproducto").hide();
                     $("#moduloaddserv").hide();
                     $("#divcat").hide();
@@ -571,6 +657,9 @@
                     if (nombre == "" || categoria == 0 || descripcion == "" ||
                             precio == "" || stock == "" || rutProv == 0) {
                         Materialize.toast("Hay campos vacios o no seleccionados", 1000);
+                    } else if (parseInt(precio) < 0 || parseInt(stock) < 0) {
+                        Materialize.toast("Stock  y precio deben ser numericos", 2000);
+
                     } else {
                         $.ajax({
                             url: '<?php echo site_url() ?>/upProd',
@@ -618,6 +707,12 @@
                         });
                     });
 
+                }
+
+                function getfecha() {
+                    var f = new Date();
+                    var fecha = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate();
+                    $("#fecha").val(fecha);
                 }
             });
         </script>

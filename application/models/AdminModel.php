@@ -15,6 +15,7 @@ class AdminModel extends CI_Model {
             "fecha" => $fecha,
             "rutencargado" => $rutencargado);
         $this->db->insert("producto", $datos);
+        return $this->db->insert_id();
     }
 
     function actualizarProducto($idproducto, $nombre, $idcategoria, $descripcion, $precio, $stock, $rutencargado) {
@@ -128,6 +129,10 @@ class AdminModel extends CI_Model {
     function getNoticias() {
         return $this->db->get("noticia")->result();
     }
+    function buscarNoticia($titulo){        
+         $this->db->like("titulo", $titulo);
+         return $this->db->get("noticia")->result();
+    }
 
     function publicarNoti($idpagina, $idnoticia) {
         $this->db->where("idpagina", $idpagina);
@@ -138,6 +143,13 @@ class AdminModel extends CI_Model {
 
     function getPagina() {
         return $this->db->get("pagina")->result();
+    }
+
+    function getpagNoti() {
+        $this->db->Select("p.idpagina, p.nombre, n.idnoticia, n.titulo, n.descripcion, n.fecha, n.imagen, n.autor, n.referencia");
+        $this->db->from("pagina p");
+        $this->db->join("noticia n", "n.idnoticia=p.idnoticia");
+        return $this->db->get()->result();
     }
 
     //////////////////////////VENTAS//////////////////////////////////////////
@@ -174,6 +186,14 @@ class AdminModel extends CI_Model {
         return $this->db->get("venta")->result();
     }
 
+    function cambiarEstadoV($idventa, $estado) {
+        $this->db->where("idventa", $idventa);
+        $datos = array("estado" => $estado
+        );
+        $this->db->update("venta", $datos);
+    }
+
+///////IMAGENES
     function getImagenes($idprodserv) {
         $this->db->where("idprodserv", $idprodserv);
         return $this->db->get("imagen")->result();
@@ -189,8 +209,6 @@ class AdminModel extends CI_Model {
     /////actualizar carro
 
     public function upcarro($idproducto, $cantidad) {
-        // Obtenemos el número total de items en el carro   
-//        $total = $this->session->total_items();
 
         $this->session->where("idproducto", $idproducto);
         $datos = array("cantidad" => $cantidad);

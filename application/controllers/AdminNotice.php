@@ -40,9 +40,18 @@ class AdminNotice extends CI_Controller {
     public function getNoticias() {
         $noticias = $this->AdminModel->getNoticias();
         $data = array();
-
         foreach ($noticias as $n) {
+            array_push($data, array("idnoticia" => $n->idnoticia, "titulo" => $n->titulo, "descripcion" => $n->descripcion,
+                "fecha" => $n->fecha, "imagen" => base64_encode($n->imagen), "autor" => $n->autor, "referencia" => $n->referencia));
+        }
+        echo json_encode($data);
+    }
 
+    public function buscarNoticia() {
+        $titulo = $this->input->post("titulo");
+        $noticias = $this->AdminModel->buscarNoticia($titulo);
+        $data = array();
+        foreach ($noticias as $n) {
             array_push($data, array("idnoticia" => $n->idnoticia, "titulo" => $n->titulo, "descripcion" => $n->descripcion,
                 "fecha" => $n->fecha, "imagen" => base64_encode($n->imagen), "autor" => $n->autor, "referencia" => $n->referencia));
         }
@@ -52,7 +61,7 @@ class AdminNotice extends CI_Controller {
     public function publicarNoti() {
         $idpagina = $this->input->post("idpagina");
         $idnoticia = $this->input->post("idnoticia");
-        $this->AdminModel-> publicarNoti($idpagina, $idnoticia);
+        $this->AdminModel->publicarNoti($idpagina, $idnoticia);
         echo json_encode(array("msg" => "Noticia publicada!"));
     }
 

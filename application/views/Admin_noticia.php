@@ -35,7 +35,9 @@
                 <div class="nav-wrapper container">
                     <a id="logo-container" href="<?PHP echo site_url() ?>/welcome" class="brand-logo center-on-small-only"><img width="340" src="<?php echo base_url(); ?>/lib/img/logo3.png"></a>
                     <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="material-icons">menu</i></a>
+                    <input type="text" name="rut" id="rutusuario" hidden>
                     <ul class="right hide-on-med-and-down">
+                        <li><a id="saludo1" class="purple-text" href=""></a></li>
                         <li><a class="waves-effect waves-light purple-text" href="<?PHP echo site_url() ?>/logout">Salir</a></li>
                         <li><a href="#"><i class="material-icons purple-text">shopping_cart</i> </a></li>
                         <li><a href="#"><i class="material-icons purple-text">notifications</i> </a></li>
@@ -68,18 +70,75 @@
             <div class="container">
                 <div>
                     <div id="home" class="col s12">
+                        <div class="card light-green lighten-5">
+                            <br>
+                            <h5 class="center light-green-text darken-4" >Resumen</h5><br>
+                        </div>
+                        <div class="divider light-green darken-4"></div>
                         <div class="card-panel">
-                            <div class="card light-green lighten-5">
-                                <h4 class="center light-green-text darken-4" >Resumen</h4>
+                            <div id="card-stats">
+                                <div class="row">
+                                    <div class="card-panel hoverable blue white-text col s12 m6 l3">
+                                        <div class="card">                                          
+                                            <div class="col s7 m7">
+                                                <i class="material-icons">add_shopping_cart</i>
+                                                <p>Pedidos</p>
+                                            </div>
+                                            <div class="col s5 m5 right-align">
+                                                <h5 class="mb-0">690</h5>
+                                                <p class="no-margin">Esta semana</p>
+                                                <p>23</p>
+                                            </div>                                          
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m6 l3 card-panel hoverable red  white-text">
+                                        <div class="card">
+                                            <div class="padding-4">
+                                                <div class="col s7 m7">
+                                                    <i class="material-icons background-round mt-5">perm_identity</i>
+                                                    <p>Clientes</p>
+                                                </div>
+                                                <div class="col s5 m5 right-align">
+                                                    <h5 class="mb-0">23</h5>
+                                                    <p class="no-margin">Esta semana</p>
+                                                    <p>2</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m6 l3 card-panel hoverable amber  white-text">
+                                        <div class="card">
+                                            <div class="padding-4">
+                                                <div class="col s7 m7">
+                                                    <i class="material-icons background-round mt-5">timeline</i>
+                                                    <p>Ventas</p>
+                                                </div>
+                                                <div class="col s5 m5 right-align">
+                                                    <h5 class="mb-0">40</h5>
+                                                    <p class="no-margin">Esta semana</p>
+                                                    <p>5</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m6 l3 card-panel hoverable green white-text">
+                                        <div class="card">
+                                            <div class="padding-4">
+                                                <div class="col s7 m7">
+                                                    <i class="material-icons background-round mt-5">attach_money</i>
+                                                    <p>Ingresos</p>
+                                                </div>
+                                                <div class="col s5 m5 right-align">
+                                                    <h5 class="mb-0">$890,679</h5>
+                                                    <p class="no-margin">Esta semana</p>
+                                                    <p>$128,590</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="divider light-green darken-4"></div>
 
-                            <div class="card-panel">
-                                <canvas id="myChart" width="400" height="200"></canvas>
-                            </div>
-                            <div class="row">
-                                <a href="" class="btn-floating right">  <i class="material-icons">cloud_download</i></a>
-                            </div>
                         </div>
 
                     </div>
@@ -91,7 +150,8 @@
                     </div>
                     <div id="noticias" class="col s12">
                         <div class="card light-green lighten-5">
-                            <h4 class="center light-green-text darken-4" >Gestion Noticias</h4>
+                            <br>
+                            <h5 class="center light-green-text darken-4" >Gestion Noticias</h5><br>
                         </div>
                         <div class="divider light-green darken-4"></div>
                         <div class="card-panel">
@@ -106,17 +166,9 @@
                                     <div class="col s12 m6" id="imgnoti">
                                         <div class="dropify-preview" >
                                             <label for="input-file-now"></label>
-                                            <input  type="file" id="file" name="file" class="dropify" />
+                                            <input  type="file" id="file" name="file" class="dropify" data-max-file-size-preview="2M" data-allowed-file-extensions="jpg jpeg"/>
                                         </div>
                                         <br>
-                                        <!--                                        <div id="otraimg" class="dropify-preview" >
-                                                                                    <label for="input-file-now"></label>
-                                                                                    <input  type="file" id="input-file-now" class="dropify" />
-                                                                                </div>
-                                                                                <button type="submit" id="addimg" class="btn-floating waves-effect waves-light green"><i class="material-icons">add</i></button>-->
-
-
-
                                     </div>
                                     <div class="input-field col s12 m6">
                                         <label for="descripnoti">Descripcion </label>
@@ -149,7 +201,17 @@
                                     <input type="submit" class="btn btn-primary right" id="btnaddnoti" value="Agregar Noticia"/>
                                 </div>
                             </form>
-                        </div>  
+                        </div> 
+                        <nav class="row hoverable">
+                            <div class="nav-wrapper">
+                                <div class="input-field">
+                                    <input id="busqueda" type="search" required placeholder="Buscar Noticia">
+                                    <label class="label-icon" for="busqueda"><i class="material-icons">search</i></label>
+                                    <i class="material-icons">close</i>
+                                </div>
+                            </div>
+                        </nav>
+
                         <div id="gnoti" class="card-panel col s12 ">
                             <table id="tablanoti" class="bordered responsive-table">
                                 <thead>
@@ -217,24 +279,7 @@
 
 
                     </div>
-                    <div class="col l3 s12">
-                        <h5 class="white-text">Settings</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">Link 1</a></li>
-                            <li><a class="white-text" href="#!">Link 2</a></li>
-                            <li><a class="white-text" href="#!">Link 3</a></li>
-                            <li><a class="white-text" href="#!">Link 4</a></li>
-                        </ul>
-                    </div>
-                    <div class="col l3 s12">
-                        <h5 class="white-text">Connect</h5>
-                        <ul>
-                            <li><a class="white-text" href="#!">Link 1</a></li>
-                            <li><a class="white-text" href="#!">Link 2</a></li>
-                            <li><a class="white-text" href="#!">Link 3</a></li>
-                            <li><a class="white-text" href="#!">Link 4</a></li>
-                        </ul>
-                    </div>
+
                 </div>
             </div>
             <div class="footer-copyright">
@@ -278,6 +323,7 @@
                         'error': 'Ooops, sucedió algo mal.'
                     }
                 });
+
                 $('.tooltipped').tooltip({delay: 50});
                 $('.datepicker').pickadate({
                     selectMonths: true, // Creates a dropdown to control month
@@ -292,6 +338,7 @@
                 ocultar();
                 verNoticias();
                 verPaginaPosicion();
+                getSesion();
                 $("#volver").click(function () {
                     ocultar();
                 });
@@ -302,35 +349,6 @@
                 });
                 $('texarea').trigger('autoresize');
                 //AGREGAR NOTICIA///
-//                $("#btnaddnoti").click(function (e) {
-//                    e.preventDefault();
-//                    var titulo = $("#titulonoti").val();
-//                    var descripcion = $("#descripnoti").val();
-//                    var fecha = $("#fechanoti").val();
-//                    var imagen = "";
-//                    var autor = $("#autornoti").val();
-//                    var referencia = $("#refernoti").val();
-//                    if (titulo == "" || descripcion == "" || fecha == 0 ||
-//                             autor == "" || referencia == 0) {
-//                        Materialize.toast("Faltan Campos", 1000);
-//                    } else {
-//                        $.ajax({
-//                            url: '/addNoti',
-//                            type: 'post',
-//                            dataType: 'json',
-//                            data: {"titulo": titulo, "descripcion": descripcion, "fecha": fecha,
-//                                "imagen": imagen, "autor": autor, "referencia": referencia}
-//                        }).success(function (o) {
-//                            Materialize.toast("Noticia agregada!!", 1000);
-//                            $('#formnoti').each(function () {
-//                                this.reset();
-//                            });
-//                           
-//                        }).fail(function () {
-//                            Materialize.toast("Error al agregar noticia", 1000);
-//                        });
-//                    }
-//                });
 
 
                 $("#btnaddnoti").click(function (e) {
@@ -358,7 +376,10 @@
                             cache: false,
                             timeout: 600000,
                             success: function (o) {
-                                Materialize.toast(o.msg, 1000);
+                                Materialize.toast("Noticia agregada!!", 1000);
+                                $('#formnoti').each(function () {
+                                    this.reset();
+                                });
                                 verNoticias();
                             }, error: function () {
                                 Materialize.toast("Error 500", 1000);
@@ -384,6 +405,35 @@
                     });
                 }
 
+                $("#busqueda").keyup(function (e) {
+                    e.preventDefault();
+                    var consulta = $("#busqueda").val();
+                    if (consulta == "") {
+                        $("#tbodynoti").empty();
+                        verNoticias();
+                    } else {
+                        $.ajax({
+                            url: '<?php echo site_url() ?>/buscarNoti',
+                            type: "POST",
+                            dataType: 'json',
+                            data: {"titulo": consulta}
+                        }).success(function (obj) {
+                            $("#tbodynoti").empty();
+                            $.each(obj, function (i, o) {
+                                var fila = "<tr><td>" + o.idnoticia + "</td>";
+                                fila += "<td>" + o.titulo + "</td>";
+                                fila += "<td>" + o.fecha + "</td>";
+                                fila += "<td><img  src='data:image/jpeg;base64," + o.imagen + "'  width='100%'></td>";
+                                fila += "<td>" + o.autor + "</td>";
+                                fila += "<td>" + o.referencia + "</td>";
+                                fila += "<td><button id='btnpubli' class='btn-floating amber modal-trigger' value='" + o.idnoticia + '|' + o.titulo + "' href='#modalpublicar'><i class='material-icons'>cloud_upload</i></button></td><tr>";
+                                $("#tbodynoti").append(fila);
+                            });
+                        });
+                    }
+                });
+
+
                 $("body").on("click", "#btnpubli", function (e) {
                     e.preventDefault();
                     $("#notititulo").empty();
@@ -396,7 +446,6 @@
                     e.preventDefault();
                     var pag = document.getElementById('notiposicion').value;
                     var idnoti = $("#idnoticia").val();
-                    alert(idnoti);
                     if (pag == 0) {
                         Materialize.toast("Debe seleccionar una posicion", 1000);
                     } else {
@@ -407,10 +456,7 @@
                             data: {"idpagina": pag, "idnoticia": idnoti}
                         }).success(function (o) {
                             Materialize.toast(o.msg, 1000);
-//                            $('#formnoti').each(function () {
-//                                this.reset();
-//                            });
-
+                            $('#modalpublicar').modal('close');
                         }).fail(function () {
                             Materialize.toast("Error al publicar", 1000);
                         });
@@ -438,6 +484,35 @@
                     $("#moduloaddserv").hide();
                     $("#otraimg").hide();
                 }
+
+                function getSesion() {
+                    var url = "<?php echo site_url() ?>/getAdmin";
+                    $.getJSON(url, function (result) {
+                        $.each(result, function (i, o) {
+                            $("#rutusuario").val(o.rutusuario);
+                            getUser();
+                        });
+                    });
+                }
+
+                function getUser() {
+                    var rut = $("#rutusuario").val();
+                    $("#saludo1").empty();
+                    $("#saludo2").empty();
+                    $.ajax({
+                        url: '<?php echo site_url() ?>/getUser',
+                        type: "POST",
+                        dataType: 'json',
+                        data: {"rutusuario": rut}
+                    }).success(function (obj) {
+                        $("#saludo1").empty();
+                        $("#saludo2").empty();
+                        $.each(obj, function (i, u) {
+                            $("#saludo1").append("Bienvenida " + u.nombre + " " + u.apellido + "!");
+                            $("#saludo2").append("Bienvenida " + u.nombre + " " + u.apellido + "!");
+                        });
+                    });
+                }
             });
         </script>
         <script>
@@ -449,7 +524,7 @@
                     labels: ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"],
                     datasets: [{
                             label: "Pedidos",
-                            data: [12, 19, 3, 5, 2, 3, 0],
+                            data: [0, 1, 0, 0, 0, 0, 0],
                             borderColor: [
                                 'rgba(255,99,132,1)',
                                 'rgba(54, 162, 235, 1)',

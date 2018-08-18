@@ -33,8 +33,15 @@ class VentasController extends CI_Controller {
 
             $this->AdminModel->insertarDetalleVenta($idventa, $item['id'], $item['qty'], $item['price'], $item['subtotal']);
         }
-
+        $this->cart->destroy();
         echo json_encode(array("msg" => "Venta Agregada"));
+    }
+
+    public function cambiarEstadoV() {
+        $idventa = $this->input->post("idventa");
+        $estado = $this->input->post("estado");
+        $this->AdminModel->cambiarEstadoV($idventa, $estado);
+        echo json_encode(array("msg" => "Estado cambiado!"));
     }
 
     public function getVentas() {

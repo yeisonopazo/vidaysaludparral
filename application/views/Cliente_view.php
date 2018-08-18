@@ -66,7 +66,7 @@
                     <div class="card">
                         <div class="card-panel">
                             <div class="row">
-                                <button id="getfecha" class="btn">fecha</button>
+                              
                                 <div class="input-field col s3" id="divrutcompra">                                  
                                     <label class="active" for="rut">Pedido a RUT: </label>                           
                                     <input type="text" value=" " name="rut" id="rutcompra" disabled>
@@ -154,6 +154,22 @@
                         <ul class="collection" id="list-pedidos">                            
                         </ul>
 
+                    </div>
+                    <div class="card-panel">
+                        <p>
+                            <b>COMO PAGAR EN VIDA Y SALUD PARRAL</b><br>
+                            
+                            Para finalizar la compra debe realizar una t transferencia/deposito <br>
+                            por el monto de laventa, en el asunto debe espesificar el numero de pedido.<br>
+                            
+                            Nombre del banco: Banco Estado<br>
+                            Nombre del beneficiario : CENTRO DE MEDICINA COMPLEMENTARIA ISABEL RUIZ POBLETE E.I.R.L.<br>
+                            <b>Numero de cuenta : xxxxxxxxxxx</b><br>
+                            RUT: 76.710.860-5<br>
+                            Tipo de Cuenta: Chequera Electronica<br>
+                            <br>
+                            **Enviar Comprobante a: <b>pagos@vidaysaludparral.cl</b><br>
+                        </p>
                     </div>
                 </div>
                 <!--            -------------MOSTRAR Y ACTUALIZAR DATOS CLIENTE-------->
@@ -300,12 +316,7 @@
                     });
                 }
 
-                $("#getfecha").click(function (e) {
-                    e.preventDefault();
-                    var f = new Date();
-                    var fecha = f.getFullYear() + "-" + (f.getMonth() + 1) + "-" + f.getDate() + " " + f.getHours() + ":" + f.getMinutes() + ":" + f.getSeconds();
-                    alert(fecha);
-                });
+               
                 function getUser() {
                     var rut = $("#rutusuario").val();
                     $("#saludo1").empty();
@@ -468,7 +479,7 @@
                     });
                 });
 
-           
+
                 function ventas() {
                     $("#list-pedidos").empty();
                     var rut = $("#rutusuario").val();

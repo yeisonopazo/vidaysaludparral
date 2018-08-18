@@ -34,7 +34,9 @@
             <nav class="teal nav-extended grey lighten-5" role="navigation">
                 <div class="nav-wrapper container">
                     <a id="logo-container" href="<?PHP echo site_url() ?>/welcome" class="brand-logo center-on-small-only"><img width="340" src="<?php echo base_url(); ?>/lib/img/logo3.png"></a>
+                    <input type="text" name="rut" id="rutusuario" hidden>
                     <ul class="right hide-on-med-and-down">
+                         <li><a id="saludo1" class="purple-text" href=""></a></li>
                         <li><a class="waves-effect waves-light purple-text" href="<?PHP echo site_url() ?>/logout">Salir</a></li>
 
                         <li><a href="#"><i class="material-icons purple-text">shopping_cart</i> </a></li>
@@ -67,10 +69,76 @@
             <div class="container">
 
                 <div id="home" class="col s12">
-                    <div class="card light-green lighten-5">
-                        <h4 class="center light-green-text darken-4" >Resumen</h4>
-                    </div>
-                    <div class="divider light-green darken-4"></div>
+                        <div class="card light-green lighten-5">
+                            <br>
+                            <h5 class="center light-green-text darken-4" >Resumen</h5><br>
+                        </div>
+                        <div class="divider light-green darken-4"></div>
+                        <div class="card-panel">
+                            <div id="card-stats">
+                                <div class="row">
+                                    <div class="card-panel hoverable blue white-text col s12 m6 l3">
+                                        <div class="card">                                          
+                                                <div class="col s7 m7">
+                                                    <i class="material-icons">add_shopping_cart</i>
+                                                    <p>Pedidos</p>
+                                                </div>
+                                                <div class="col s5 m5 right-align">
+                                                    <h5 class="mb-0">690</h5>
+                                                    <p class="no-margin">Esta semana</p>
+                                                    <p>23</p>
+                                                </div>                                          
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m6 l3 card-panel hoverable red  white-text">
+                                        <div class="card">
+                                            <div class="padding-4">
+                                                <div class="col s7 m7">
+                                                    <i class="material-icons background-round mt-5">perm_identity</i>
+                                                    <p>Clientes</p>
+                                                </div>
+                                                <div class="col s5 m5 right-align">
+                                                    <h5 class="mb-0">23</h5>
+                                                    <p class="no-margin">Esta semana</p>
+                                                    <p>2</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m6 l3 card-panel hoverable amber  white-text">
+                                        <div class="card">
+                                            <div class="padding-4">
+                                                <div class="col s7 m7">
+                                                    <i class="material-icons background-round mt-5">timeline</i>
+                                                    <p>Ventas</p>
+                                                </div>
+                                                <div class="col s5 m5 right-align">
+                                                    <h5 class="mb-0">40</h5>
+                                                    <p class="no-margin">Esta semana</p>
+                                                    <p>5</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m6 l3 card-panel hoverable green white-text">
+                                        <div class="card">
+                                            <div class="padding-4">
+                                                <div class="col s7 m7">
+                                                    <i class="material-icons background-round mt-5">attach_money</i>
+                                                    <p>Ingresos</p>
+                                                </div>
+                                                <div class="col s5 m5 right-align">
+                                                    <h5 class="mb-0">$890,679</h5>
+                                                    <p class="no-margin">Esta semana</p>
+                                                  <p>$128,590</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                 </div>
                 <div id="gproductos" class="col s12">
 
@@ -82,7 +150,9 @@
                 <div id="gventas" class="col s12">
 
                     <div class="card light-green lighten-5">
-                        <h4 class="center light-green-text darken-4" >Gestion Ventas</h4>
+                        <br>
+                        <h5 class="center light-green-text darken-4" >Gestion Ventas</h5>
+                        <br>
                     </div>
                     <div class="divider light-green darken-4"></div>
                     <div class="card-panel" id="verdetalle">
@@ -140,8 +210,9 @@
                                         <th>Rut Usuario</th>                                        
                                         <th>Fecha de Compra</th>
                                         <th>Total</th>
-                                        <th>Observacion</th>
+                                        <th>Comprovante</th>
                                         <th>Estado</th>
+                                        <th>Ver detalle</th>
                                     </tr>
                                 </thead>
                                 <tbody id="tbodyventa">
@@ -158,6 +229,28 @@
                                 <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
                             </ul>
                         </div>
+
+                        <div id="modalestado" class="modal">
+                            <div class="modal-content">
+                                <h5>Cambiar estado de la venta</h5>
+                                <form id="formventa">
+                                    <div class="col s12 m6">
+                                        <input type="text" id="idventa" hidden>
+                                        <div class="col s12 m6">                                            
+                                            <select class="browser-default" id="estadoventa"> 
+                                                <option value="0">Seleccione un estado</option>
+                                                <option value="Pagado">Pagado</option>
+                                                <option value="Pendiente">Pendiente</option>
+                                                <option value="Cancelado">Cancelado</option>
+                                            </select> 
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">                                      
+                                <input type="submit" class="btn btn-primary" id="btnestado" value="Actualizar estado"/>
+                            </div>
+                        </div> 
                     </div>
                 </div>
                 <div id="noticias" class="col s12">
@@ -228,6 +321,7 @@
                 });
                 //////////
                 verVentas();
+                getSesion();
                 $("#verdetalle").hide();
                 $("#btncerrardetalle").click(function (e) {
                     e.preventDefault();
@@ -244,17 +338,46 @@
                             fila += "<td>" + o.fechaventa + "</td>";
                             fila += "<td>" + "$" + o.total + "</td>";
                             fila += '<td><button id="prodver" value="' + o.comprobante + '" class="btn-floating waves-effect waves-light" ><i class="material-icons">search</i></button></td>';
-                            fila += "<td>" + o.observacion + "</td>";
-                            fila += "<td><div><select  class='browser-default' id='estado'>";
-                            fila += "<option value='" + o.estado + "'> " + o.estado + "</option>";
-                            fila += "<option value='" + o.estado + "'> pagado</option>";
-                            fila += "<option value='" + o.estado + "'> cancelado</option>";
-                            fila += "</select></div></td>";
+
+                            fila += "<td>" + o.estado + " " + "<button class='btn-floating modal-trigger' href='#modalestado' id='editestado' value='" + o.idventa + "'><i class='material-icons'>edit</i></button> </td>";
                             fila += "<td><button class='btn-floating secondary-content' id='verdetalleventa' value='" + o.idventa + '|' + o.observacion + "'><i class='material-icons'>search</i></button></td></tr>";
                             $("#tbodyventa").append(fila);
                         });
                     });
                 }
+                $("body").on("click", "#editestado", function (e) {
+                    e.preventDefault();
+                    $("#idventa").empty();
+                    var datos = $(this).val();
+                    var fila = datos.split("|");
+                    $("#idventa").val(fila[0]);
+
+                });
+
+                $("#btnestado").click(function (e) {
+                    e.preventDefault();
+                    var estado = document.getElementById("estadoventa").value;
+                    var idventa = $("#idventa").val();
+                    if (estado == 0) {
+                        Materialize.toast("Debe seleccionar un estado", 1000);
+                    } else {
+                        $.ajax({
+                            url: '<?php echo site_url() ?>/cambEV',
+                            type: 'post',
+                            dataType: 'json',
+                            data: {"idventa": idventa, "estado": estado}
+                        }).success(function (o) {
+                            Materialize.toast(o.msg, 1000);
+                            verVentas();
+                            $('#modalestado').modal('close');
+                        }).fail(function () {
+                            Materialize.toast("Error al cambiar estado", 1000);
+                        });
+
+                    }
+
+                });
+
                 $("body").on("click", "#verdetalleventa", function (e) {
                     e.preventDefault();
                     $("#observacionventa").empty();
@@ -285,6 +408,39 @@
                         $("#verdetalle").show();
                     });
                 });
+
+                function getSesion() {
+                    var url = "<?php echo site_url() ?>/getAdmin";
+                    $.getJSON(url, function (result) {
+                        $.each(result, function (i, o) {
+                            $("#rutusuario").val(o.rutusuario);
+                            getUser();
+                        });
+                    });
+                }
+
+                function getUser() {
+                    var rut = $("#rutusuario").val();
+                    $("#saludo1").empty();
+                    $("#saludo2").empty();
+                    $.ajax({
+                        url: '<?php echo site_url() ?>/getUser',
+                        type: "POST",
+                        dataType: 'json',
+                        data: {"rutusuario": rut}
+                    }).success(function (obj) {
+                        $("#saludo1").empty();
+                        $("#saludo2").empty();
+                        $.each(obj, function (i, u) {
+                            $("#saludo1").append("Bienvenida " + u.nombre + " " + u.apellido + "!");
+                            $("#saludo2").append("Bienvenida " + u.nombre + " " + u.apellido + "!");
+
+                        });
+                    });
+
+                }
+
+
 
 //camputar de un radio var radio = $("input:radio[name=radio1]:checked").val();
             });

@@ -25,15 +25,22 @@ class AdminController extends CI_Controller {
 
     public function insertarProducto() {
         $nombre = $this->input->post("nombre");
-        $idcat = $this->input->post("idcategoria");
+        $idcat = $this->input->post("idsubcategoria");
         $descripcion = $this->input->post("descripcion");
         $precio = $this->input->post("precio");
         $stock = $this->input->post("stock");
         $fecha = $this->input->post("fecha");
         $rutencargado = $this->input->post("rutencargado");
+        $path = $_FILES["imagen"]["tmp_name"];
+        if (is_uploaded_file($path) && !empty($_FILES)) {
+            $imagen = file_get_contents($path);
+            $idproduct = $this->AdminModel->insertarProducto($nombre, $idcat, $descripcion, $precio, $stock, $fecha, $rutencargado);
 
-        $this->AdminModel->insertarProducto($nombre, $idcat, $descripcion, $precio, $stock, $fecha, $rutencargado);
-        echo json_encode(array("msg" => "Producto Agregado"));
+            $this->AdminModel->insertarImagen($nombre, $imagen, $idproduct);
+            echo json_encode(array("msg" => "Producto Agregado"));
+        } else {
+            echo json_encode(array("msg" => "Error de archivo"));
+        }
     }
 
     public function actualizarProducto() {

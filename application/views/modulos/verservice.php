@@ -58,7 +58,7 @@
 
 
                 </div>
-                <div class="dropify-preview col s6 m6">
+<!--                <div class="dropify-preview col s6 m6">
                     <label for="input-file-now"></label>
                     <input type="file" id="input-file-now" class="dropify" />
 
@@ -66,10 +66,10 @@
                 <div class="dropify-preview col s6 m6">
                     <label for="input-file-now"></label>
                     <input type="file" id="input-file-now" class="dropify" />
-                </div>
+                </div>-->
             </div>
             <div class="row">
-                <input type="submit" class="btn right" id="btnaddserv2" value="Actualizar imagen" />
+                <input type="submit" class="btn right" id="btnupserv2" value="Actualizar imagen" />
             </div>
         </form>
     </div>

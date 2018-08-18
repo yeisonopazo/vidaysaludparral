@@ -12,6 +12,8 @@ $route["iniciar"] = "welcome/iniciar";
 $route["user"] = "welcome/user";
 $route["logout"] = "welcome/logout";
 $route["getAllProd"] = "welcome/getProductos";
+$route["getPagNoti"] = "Welcome/getPagNoti";
+$route["buscarPoS"] = "Welcome/buscarProductosoServicios";
 //CLIENTE
 $route["addClient"] = "ClientController/insertarCliente";
 $route["getSesion"] = "ClientController/getSesion";
@@ -48,6 +50,7 @@ $route["addNoti"] = "AdminNotice/insertarNoticia";
 $route["getNoti"] = "AdminNotice/getNoticias";
 $route["getPag"] = "AdminNotice/getPagina";
 $route["publi"] = "AdminNotice/publicarNoti";
+$route["buscarNoti"] = "AdminNotice/buscarNoticia";
 
 //VENTAS
 $route["addVent"] = "VentasController/insertarVenta";
@@ -60,5 +63,6 @@ $route["clearCarro"] = "VentasController/limpiar";
 $route["clearCarro2"] = "VentasController/limpiar2";
 $route["getImg"] = "VentasController/getImagenes";
 $route["getCarroP"] = "VentasController/getCarroProd";
-$route["clearProC"] = "ventasController/eliminarProducto";
+$route["clearProC"] = "VentasController/eliminarProducto";
+$route["cambEV"] = "VentasController/cambiarEstadoV";
 

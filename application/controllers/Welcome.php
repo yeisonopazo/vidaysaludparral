@@ -53,4 +53,28 @@ class Welcome extends CI_Controller {
         echo json_encode($data);
     }
 
+    public function buscarProductosoServicios() {
+        $nombre = $this->input->post("nombre");
+        $productos = $this->AdminModel->buscarProducto($nombre);
+        $data = array();
+        foreach ($productos as $n) {
+
+            array_push($data, array("idproducto" => $n->idproducto, "nombre" => $n->nombre, "idcategoria" => $n->idcategoria,
+                "descripcion" => $n->descripcion, "precio" => $n->precio, "stock" => $n->stock, "rutencargado" => $n->rutencargado,
+                "imagen" => base64_encode($n->imagen)));
+        }
+        echo json_encode($data);
+    }
+
+    public function getPagNoti() {
+        $noticias = $this->AdminModel->getpagNoti();
+        $data = array();
+        foreach ($noticias as $n) {
+            array_push($data, array("idpagina" => $n->idpagina, "nombre" => $n->nombre, "idnoticia" => $n->idnoticia,
+                "titulo" => $n->titulo, "descripcion" => $n->descripcion, "fecha" => $n->fecha, "imagen" => base64_encode($n->imagen),
+                "autor" => $n->autor, "referencia" => $n->referencia));
+        }
+        echo json_encode($data);
+    }
+
 }

@@ -14,7 +14,7 @@
         <link href="<?php echo base_url(); ?>lib/css/dropify.min.css" type="text/css" rel="stylesheet"/>
     </head>
     <style>
-         body {
+        body {
             display: flex;
             min-height: 100vh;
             flex-direction: column;
@@ -34,9 +34,10 @@
             <nav class="teal nav-extended grey lighten-5" role="navigation">
                 <div class="nav-wrapper container">
                     <a id="logo-container" href="<?PHP echo site_url() ?>/welcome" class="brand-logo center-on-small-only"><img width="340" src="<?php echo base_url(); ?>/lib/img/logo3.png"></a>
+                    <input type="text" name="rut" id="rutusuario" hidden>
                     <ul class="right hide-on-med-and-down">
+                        <li><a id="saludo1" class="purple-text" href=""></a></li>
                         <li><a class="waves-effect waves-light purple-text" href="<?PHP echo site_url() ?>/logout">Salir</a></li>
-
                         <li><a href="#"><i class="material-icons purple-text">shopping_cart</i> </a></li>
                         <li><a href="#"><i class="material-icons purple-text">notifications</i> </a></li>
                     </ul>              
@@ -67,10 +68,76 @@
             <div class="container">
                 <div>
                     <div id="home" class="col s12">
-                        <div class="card light-green lighten-5">
-                            <h4 class="center light-green-text darken-4" >Resumen</h4>
+                             <div class="card light-green lighten-5">
+                            <br>
+                            <h5 class="center light-green-text darken-4" >Resumen</h5><br>
                         </div>
                         <div class="divider light-green darken-4"></div>
+                        <div class="card-panel">
+                            <div id="card-stats">
+                                <div class="row">
+                                    <div class="card-panel hoverable blue white-text col s12 m6 l3">
+                                        <div class="card">                                          
+                                                <div class="col s7 m7">
+                                                    <i class="material-icons">add_shopping_cart</i>
+                                                    <p>Pedidos</p>
+                                                </div>
+                                                <div class="col s5 m5 right-align">
+                                                    <h5 class="mb-0">690</h5>
+                                                    <p class="no-margin">Esta semana</p>
+                                                    <p>23</p>
+                                                </div>                                          
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m6 l3 card-panel hoverable red  white-text">
+                                        <div class="card">
+                                            <div class="padding-4">
+                                                <div class="col s7 m7">
+                                                    <i class="material-icons background-round mt-5">perm_identity</i>
+                                                    <p>Clientes</p>
+                                                </div>
+                                                <div class="col s5 m5 right-align">
+                                                    <h5 class="mb-0">23</h5>
+                                                    <p class="no-margin">Esta semana</p>
+                                                    <p>2</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m6 l3 card-panel hoverable amber  white-text">
+                                        <div class="card">
+                                            <div class="padding-4">
+                                                <div class="col s7 m7">
+                                                    <i class="material-icons background-round mt-5">timeline</i>
+                                                    <p>Ventas</p>
+                                                </div>
+                                                <div class="col s5 m5 right-align">
+                                                    <h5 class="mb-0">40</h5>
+                                                    <p class="no-margin">Esta semana</p>
+                                                    <p>5</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col s12 m6 l3 card-panel hoverable green white-text">
+                                        <div class="card">
+                                            <div class="padding-4">
+                                                <div class="col s7 m7">
+                                                    <i class="material-icons background-round mt-5">attach_money</i>
+                                                    <p>Ingresos</p>
+                                                </div>
+                                                <div class="col s5 m5 right-align">
+                                                    <h5 class="mb-0">$890,679</h5>
+                                                    <p class="no-margin">Esta semana</p>
+                                                  <p>$128,590</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
                     </div>
                     <div id="gproductos" class="col s12">
 
@@ -88,8 +155,9 @@
 
                     <div id="gotros" class="col s12">   
                         <div class="divider light-green darken-4"></div>
-                        <div class="card light-green lighten-5">                           
-                            <h4 class="center light-green-text darken-4" >Administrar</h4>
+                        <div class="card light-green lighten-5">   
+                            <br>
+                            <h5 class="center light-green-text darken-4" >Administrar</h5><br>
                         </div>
                         <div class="divider light-green darken-4"></div>
 
@@ -356,6 +424,7 @@
                 ocultar();
                 verClientes();
                 verProveedores();
+                getSesion();
                 //////////
 
                 $("#btnshowclient").click(function (e) {
@@ -458,6 +527,38 @@
                     $("#encargados").hide();
 
                 }
+
+                function getSesion() {
+                    var url = "<?php echo site_url() ?>/getAdmin";
+                    $.getJSON(url, function (result) {
+                        $.each(result, function (i, o) {
+                            $("#rutusuario").val(o.rutusuario);
+                            getUser();
+                        });
+                    });
+                }
+
+                function getUser() {
+                    var rut = $("#rutusuario").val();
+                    $("#saludo1").empty();
+                    $("#saludo2").empty();
+                    $.ajax({
+                        url: '<?php echo site_url() ?>/getUser',
+                        type: "POST",
+                        dataType: 'json',
+                        data: {"rutusuario": rut}
+                    }).success(function (obj) {
+                        $("#saludo1").empty();
+                        $("#saludo2").empty();
+                        $.each(obj, function (i, u) {
+                            $("#saludo1").append("Bienvenida " + u.nombre + " " + u.apellido + "!");
+                            $("#saludo2").append("Bienvenida " + u.nombre + " " + u.apellido + "!");
+
+                        });
+                    });
+
+                }
+
             });
         </script>
     </body>
